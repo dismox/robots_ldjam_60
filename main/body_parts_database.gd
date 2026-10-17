@@ -1,19 +1,19 @@
 extends Resource
 class_name BodyPartsDatabase
 
-@export var head_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var head_top_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var nose_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var eyes_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var mouth_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var ears_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var body_top_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var body_bottom_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var arm_textures: Dictionary[int, CompressedTexture2D] = {}
-@export var shoulder_textures: Dictionary[int, CompressedTexture2D] = {}
+@export var head_textures: Array[CompressedTexture2D]
+@export var head_top_textures: Array[CompressedTexture2D]
+@export var nose_textures: Array[CompressedTexture2D]
+@export var eyes_textures: Array[CompressedTexture2D]
+@export var mouth_textures: Array[CompressedTexture2D]
+@export var ears_textures: Array[CompressedTexture2D]
+@export var body_top_textures: Array[CompressedTexture2D]
+@export var body_bottom_textures: Array[CompressedTexture2D]
+@export var arm_textures: Array[CompressedTexture2D]
+@export var shoulder_textures: Array[CompressedTexture2D]
 
 func get_body_part_texture(body_part: BodyPart.Type, id: int) -> CompressedTexture2D:
-	var textures: Dictionary[int, CompressedTexture2D]
+	var textures: Array[CompressedTexture2D]
 
 	match body_part:
 		BodyPart.Type.HEAD:
@@ -39,4 +39,5 @@ func get_body_part_texture(body_part: BodyPart.Type, id: int) -> CompressedTextu
 		_:
 			return null
 
-	return textures.get(id) as CompressedTexture2D
+	return textures[id]
+	#return textures.get(id) as CompressedTexture2D

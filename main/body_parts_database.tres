@@ -1,6 +1,36 @@
-[gd_resource type="Resource" format=3 uid="uid://cqynlk8wux1by"]
+[gd_resource type="Resource" script_class="BodyPartsDatabase" format=3 uid="uid://cqynlk8wux1by"]
 
 [ext_resource type="Script" uid="uid://dfkco684768ik" path="res://main/body_parts_database.gd" id="1_p484u"]
+[ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="1_q5w1d"]
+[ext_resource type="Texture2D" uid="uid://ca84qph2hfwr6" path="res://main/assets/robot_parts/arm/arm_2.png" id="2_ubbhr"]
+[ext_resource type="Texture2D" uid="uid://f48s55dg5o6j" path="res://main/assets/robot_parts/body_bottom/body_bottom_1.png" id="3_54jrn"]
+[ext_resource type="Texture2D" uid="uid://c1nrjhf1lht4k" path="res://main/assets/robot_parts/body_bottom/body_bottom_2.png" id="4_hxqrn"]
+[ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="5_up2tj"]
+[ext_resource type="Texture2D" uid="uid://6r5r3acjvgnl" path="res://main/assets/robot_parts/body_top/body_top_2.png" id="6_2mys8"]
+[ext_resource type="Texture2D" uid="uid://c2o0sgndwhf4t" path="res://main/assets/robot_parts/ears/ears_1.png" id="7_3tbcw"]
+[ext_resource type="Texture2D" uid="uid://g58yk11vngvt" path="res://main/assets/robot_parts/ears/ears_2.png" id="8_aaqin"]
+[ext_resource type="Texture2D" uid="uid://2c7yitt45sdm" path="res://main/assets/robot_parts/eyes/eyes_1.png" id="9_m1isf"]
+[ext_resource type="Texture2D" uid="uid://bt5numnaiio74" path="res://main/assets/robot_parts/eyes/eyes_2.png" id="10_behdd"]
+[ext_resource type="Texture2D" uid="uid://bpsjrvjnx7jth" path="res://main/assets/robot_parts/head/head_1.png" id="11_pdibs"]
+[ext_resource type="Texture2D" uid="uid://b35ggcve4whp6" path="res://main/assets/robot_parts/head/head_2.png" id="12_vk7qt"]
+[ext_resource type="Texture2D" uid="uid://l5gsuo458ka7" path="res://main/assets/robot_parts/head_top/head_top_1.png" id="13_mtrqn"]
+[ext_resource type="Texture2D" uid="uid://dv1pwk4p78et6" path="res://main/assets/robot_parts/head_top/head_top_2.png" id="14_lhsam"]
+[ext_resource type="Texture2D" uid="uid://bgdbeld386pwu" path="res://main/assets/robot_parts/mouth/mouth_1.png" id="15_ppd75"]
+[ext_resource type="Texture2D" uid="uid://c8dvosfysh0oh" path="res://main/assets/robot_parts/mouth/mouth_2.png" id="16_o0c5c"]
+[ext_resource type="Texture2D" uid="uid://d2kjpsijjq8sj" path="res://main/assets/robot_parts/nose/nose_1.png" id="17_x6vl0"]
+[ext_resource type="Texture2D" uid="uid://bs068uq13gqxe" path="res://main/assets/robot_parts/nose/nose_2.png" id="18_dd1jt"]
+[ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="20_aar13"]
+[ext_resource type="Texture2D" uid="uid://dyk4jhkwprgoi" path="res://main/assets/robot_parts/shoulder/shoulder_2.png" id="21_vi2qg"]
 
 [resource]
 script = ExtResource("1_p484u")
+head_textures = Array[CompressedTexture2D]([ExtResource("11_pdibs"), ExtResource("12_vk7qt")])
+head_top_textures = Array[CompressedTexture2D]([ExtResource("13_mtrqn"), ExtResource("14_lhsam")])
+nose_textures = Array[CompressedTexture2D]([ExtResource("17_x6vl0"), ExtResource("18_dd1jt")])
+eyes_textures = Array[CompressedTexture2D]([ExtResource("9_m1isf"), ExtResource("10_behdd")])
+mouth_textures = Array[CompressedTexture2D]([ExtResource("15_ppd75"), ExtResource("16_o0c5c")])
+ears_textures = Array[CompressedTexture2D]([ExtResource("7_3tbcw"), ExtResource("8_aaqin")])
+body_top_textures = Array[CompressedTexture2D]([ExtResource("5_up2tj"), ExtResource("6_2mys8")])
+body_bottom_textures = Array[CompressedTexture2D]([ExtResource("3_54jrn"), ExtResource("4_hxqrn")])
+arm_textures = Array[CompressedTexture2D]([ExtResource("1_q5w1d"), ExtResource("2_ubbhr")])
+shoulder_textures = Array[CompressedTexture2D]([ExtResource("20_aar13"), ExtResource("21_vi2qg")])

@@ -1,10 +1,14 @@
 extends Node
 
-var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
+#var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
 var game_state: GameState
 
 var game_scene: GameScene
 var current_robot: Robot
+
+const BODY_PART_DATABASE: BodyPartsDatabase = preload(
+	"res://main/all_body_parts.tres"
+)
 
 enum GameState {
 	MAIN_MENU,
