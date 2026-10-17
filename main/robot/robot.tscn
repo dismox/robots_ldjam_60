@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://f48s55dg5o6j" path="res://main/assets/robot_parts/body_bottom/body_bottom_1.png" id="10_12f26"]
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="11_asxop"]
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
-[ext_resource type="Texture2D" uid="uid://b1ccfcvsyv7rg" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
+[ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
 
 [node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
 script = ExtResource("1_3153p")
@@ -120,10 +120,10 @@ has_color = false
 [node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 69.0
-offset_top = 199.0
-offset_right = 575.0
-offset_bottom = 548.0
+offset_left = 79.0
+offset_top = 201.0
+offset_right = 561.0
+offset_bottom = 550.0
 texture = ExtResource("11_asxop")
 script = ExtResource("2_ewvo3")
 
@@ -138,30 +138,30 @@ has_color = false
 [node name="LeftArm" type="TextureRect" parent="Wireframe" unique_id=1720877252]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -142.0
-offset_top = 222.0
-offset_right = 59.0
-offset_bottom = 776.0
+offset_left = -85.0
+offset_top = 214.99997
+offset_right = 65.0
+offset_bottom = 772.0
 texture = ExtResource("12_81ma6")
 script = ExtResource("2_ewvo3")
 
 [node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -38.0
-offset_top = -132.0
-offset_right = 291.0
-offset_bottom = 130.0
+offset_left = -42.0
+offset_top = -88.0
+offset_right = 224.21378
+offset_bottom = 124.0
 texture = ExtResource("13_tmtkg")
 script = ExtResource("2_ewvo3")
 
 [node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 585.0
-offset_top = 219.0
-offset_right = 786.0
-offset_bottom = 773.0
+offset_left = 577.0
+offset_top = 219.99997
+offset_right = 727.0
+offset_bottom = 777.0
 texture = ExtResource("12_81ma6")
 flip_h = true
 script = ExtResource("2_ewvo3")
@@ -169,10 +169,10 @@ script = ExtResource("2_ewvo3")
 [node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -81.0
-offset_top = -130.0
-offset_right = 248.0
-offset_bottom = 132.0
+offset_left = -83.0
+offset_top = -99.0
+offset_right = 183.21375
+offset_bottom = 113.0
 texture = ExtResource("13_tmtkg")
 flip_h = true
 script = ExtResource("2_ewvo3")
