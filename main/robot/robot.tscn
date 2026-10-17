@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cndxkft06i84a"]
+
+[ext_resource type="Script" uid="uid://vj6b32x7fci8" path="res://main/robot/robot.gd" id="1_3153p"]
+[ext_resource type="Script" uid="uid://b64af88ukgtxj" path="res://main/robot/body_part.gd" id="2_ewvo3"]
+
+[node name="Robot" type="Node2D" unique_id=560495161]
+script = ExtResource("1_3153p")
+
+[node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
+unique_name_in_owner = true
+script = ExtResource("2_ewvo3")
+current_color = null
+prefered_color = null
+prefered_body_part = null
+current_body_part = null
+rustiness = null
+
+[node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+
+[node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+
+[node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="Guts" type="TextureRect" parent="Wireframe/BodyBottom" unique_id=2048753572]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+
+[node name="LeftArm" type="TextureRect" parent="Wireframe" unique_id=1720877252]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
+unique_name_in_owner = true
+layout_mode = 0
+flip_h = true
+
+[node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
+unique_name_in_owner = true
+layout_mode = 0
+flip_h = true

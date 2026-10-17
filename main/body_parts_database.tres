@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3 uid="uid://cqynlk8wux1by"]
+
+[ext_resource type="Script" uid="uid://dfkco684768ik" path="res://main/body_parts_database.gd" id="1_p484u"]
+
+[resource]
+script = ExtResource("1_p484u")

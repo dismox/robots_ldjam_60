@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://w5xvhqd27ddd"]
 
-[ext_resource type="Texture2D" uid="uid://46c11nn42g3v" path="res://test.png" id="1_qrwm2"]
-[ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://texture.gdshader" id="2_auti2"]
-[ext_resource type="Texture2D" uid="uid://7hf6c6l4ie8o" path="res://Seamless-Rust-Texture.jpg" id="3_3ip43"]
+[ext_resource type="Texture2D" uid="uid://46c11nn42g3v" path="res://main/assets/test.png" id="1_db4gj"]
+[ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="2_i77jv"]
+[ext_resource type="Texture2D" uid="uid://7hf6c6l4ie8o" path="res://main/assets/Seamless-Rust-Texture.jpg" id="3_db4gj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb4oo"]
-shader = ExtResource("2_auti2")
-shader_parameter/polish_texture = ExtResource("3_3ip43")
+shader = ExtResource("2_i77jv")
+shader_parameter/polish_texture = ExtResource("3_db4gj")
 shader_parameter/polish_strength = 0.58400002774
 
 [node name="Workshop" type="Node" unique_id=425906612]
@@ -15,10 +15,10 @@ shader_parameter/polish_strength = 0.58400002774
 modulate = Color(0.64705884, 0.83137256, 0, 1)
 position = Vector2(773.00006, 257)
 scale = Vector2(0.56529623, 0.5652963)
-texture = ExtResource("1_qrwm2")
+texture = ExtResource("1_db4gj")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1715513262]
 material = SubResource("ShaderMaterial_wb4oo")
 position = Vector2(773.00006, 257.00003)
 scale = Vector2(0.56529623, 0.5652963)
-texture = ExtResource("1_qrwm2")
+texture = ExtResource("1_db4gj")

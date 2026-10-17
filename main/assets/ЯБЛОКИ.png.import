@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7hf6c6l4ie8o"
-path="res://.godot/imported/Seamless-Rust-Texture.jpg-3beb1ebd48ba45be90faf5d0faee26be.ctex"
+uid="uid://cdcapggit378h"
+path="res://.godot/imported/ЯБЛОКИ.png-6779a9d25711b6d4520dc25c23afcaf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Seamless-Rust-Texture.jpg"
-dest_files=["res://.godot/imported/Seamless-Rust-Texture.jpg-3beb1ebd48ba45be90faf5d0faee26be.ctex"]
+source_file="res://main/assets/ЯБЛОКИ.png"
+dest_files=["res://.godot/imported/ЯБЛОКИ.png-6779a9d25711b6d4520dc25c23afcaf3.ctex"]
 
 [params]
 

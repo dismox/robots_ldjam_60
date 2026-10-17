@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdcapggit378h"
-path="res://.godot/imported/ЯБЛОКИ.png-5e59a8a2ba97b4570953d04f7c95616a.ctex"
+uid="uid://46c11nn42g3v"
+path="res://.godot/imported/test.png-bb6c2b7a1ec2e783ed1665490cc5322f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ЯБЛОКИ.png"
-dest_files=["res://.godot/imported/ЯБЛОКИ.png-5e59a8a2ba97b4570953d04f7c95616a.ctex"]
+source_file="res://main/assets/test.png"
+dest_files=["res://.godot/imported/test.png-bb6c2b7a1ec2e783ed1665490cc5322f.ctex"]
 
 [params]
 
