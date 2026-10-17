@@ -1,4 +1,18 @@
 extends Node
+class_name GameScene
+
+var current_item: Item
+var unlocked_items: Array[Item]
+
+@onready var current_item_node: TextureRect = %CurrentItemNode
+
+func _ready() -> void:
+	Global.game_scene = self
+
+
+func change_item(item: Item):
+	current_item = item
+	current_item_node.texture = current_item.texture
 
 func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 	if Global.current_robot:

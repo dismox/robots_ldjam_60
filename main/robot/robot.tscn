@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
 [ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrfjb"]
+
 [node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
 position = Vector2(987, 630)
 script = ExtResource("1_3153p")
@@ -29,11 +31,16 @@ offset_bottom = 428.0
 offset_transform_enabled = true
 mouse_filter = 0
 texture = ExtResource("2_ayiut")
+script = ExtResource("2_ewvo3")
+can_rust = false
+has_color = false
+is_shaking = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
 unique_name_in_owner = true
 z_index = 2
+material = SubResource("ShaderMaterial_mrfjb")
 layout_mode = 0
 offset_left = 158.0
 offset_top = -142.0

@@ -2,8 +2,8 @@ extends Node
 
 var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
 var game_state: GameState
-var current_item: Item
-var unlocked_items: Array[Item]
+
+var game_scene: GameScene
 var current_robot: Robot
 
 enum GameState {
@@ -11,6 +11,7 @@ enum GameState {
 	GAMEPLAY_NORMAL,
 	GAMEPLAY_XRAY
 }
+
 
 func shake_control(control: Control, strength: float = 10.0, duration: float = 0.3) -> void:
 	var original_position := control.position
