@@ -1,24 +1,67 @@
 [gd_scene format=3 uid="uid://w5xvhqd27ddd"]
 
 [ext_resource type="Texture2D" uid="uid://46c11nn42g3v" path="res://main/assets/test.png" id="1_db4gj"]
+[ext_resource type="Script" uid="uid://btua4i6yhf0ie" path="res://main/gameplay.gd" id="1_s8op5"]
 [ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="2_i77jv"]
 [ext_resource type="Texture2D" uid="uid://7hf6c6l4ie8o" path="res://main/assets/Seamless-Rust-Texture.jpg" id="3_db4gj"]
+[ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="5_gt6vn"]
+[ext_resource type="Texture2D" uid="uid://coq2v511dd6ui" path="res://icon.svg" id="6_gt6vn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb4oo"]
 shader = ExtResource("2_i77jv")
 shader_parameter/polish_texture = ExtResource("3_db4gj")
-shader_parameter/polish_strength = 0.58400002774
+shader_parameter/polish_strength = 0.5130000243675
 
-[node name="Workshop" type="Node" unique_id=425906612]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1914482927]
-modulate = Color(0.64705884, 0.83137256, 0, 1)
-position = Vector2(773.00006, 257)
-scale = Vector2(0.56529623, 0.5652963)
-texture = ExtResource("1_db4gj")
+[node name="Gameplay" type="Node" unique_id=425906612]
+script = ExtResource("1_s8op5")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1715513262]
+visible = false
 material = SubResource("ShaderMaterial_wb4oo")
 position = Vector2(773.00006, 257.00003)
 scale = Vector2(0.56529623, 0.5652963)
 texture = ExtResource("1_db4gj")
+
+[node name="Robot" parent="." unique_id=560495161 instance=ExtResource("5_gt6vn")]
+position = Vector2(963, 662)
+
+[node name="XRayButton" type="Button" parent="." unique_id=250855740]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -121.0
+offset_right = 454.0
+grow_vertical = 0
+toggle_mode = true
+text = "X-RAY"
+
+[node name="NextButton" type="Button" parent="." unique_id=1794103372]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -454.0
+offset_top = -121.0
+grow_horizontal = 0
+grow_vertical = 0
+toggle_mode = true
+text = "NEXT"
+
+[node name="Control" type="Control" parent="." unique_id=1403207016]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 518.0
+offset_bottom = 1080.0
+
+[node name="Item" type="TextureRect" parent="Control" unique_id=2085519905]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 57.0
+offset_right = 171.0
+offset_bottom = 185.0
+texture = ExtResource("6_gt6vn")
+
+[connection signal="toggled" from="XRayButton" to="." method="_on_x_ray_button_toggled"]
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
