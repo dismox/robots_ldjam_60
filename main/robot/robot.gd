@@ -18,3 +18,26 @@ class_name Robot
 @onready var brain: TextureRect = %Brain
 @onready var heart: TextureRect = %Heart
 @onready var guts: TextureRect = %Guts
+
+@export var custom_parts: Array[BodyPart]
+@export var inside_parts: Array[BodyPart]
+
+var main_color: Color = Color.WHITE
+
+func _ready() -> void:
+	generate()
+
+func generate():
+	main_color = Color(randf(),randf(),randf(), 1.5)
+	for part in custom_parts:
+		if part.has_color:
+			part.prefered_color = main_color
+			part.change_color(main_color)
+	var random_color_parts_amount: int = randi() % 3
+	if random_color_parts_amount > 0:
+		for i in range(random_color_parts_amount):
+			var part = custom_parts.pick_random()
+			if part.has_color:
+				part.change_color(Color.from_hsv(randf(),0.7,1.0))
+		
+	

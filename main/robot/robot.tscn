@@ -14,8 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
 [ext_resource type="Texture2D" uid="uid://b1ccfcvsyv7rg" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
 
-[node name="Robot" type="Node2D" unique_id=560495161]
+[node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
 script = ExtResource("1_3153p")
+custom_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("Wireframe/RightArm/RightShoulder")]
+inside_parts = [NodePath("Wireframe/Head/Brain"), NodePath("Wireframe/BodyBottom/Guts"), NodePath("Wireframe/BodyTop/Heart")]
 
 [node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
 unique_name_in_owner = true
@@ -24,7 +26,6 @@ offset_top = 312.0
 offset_right = 1309.0
 offset_bottom = 1084.0
 texture = ExtResource("2_ayiut")
-script = ExtResource("2_ewvo3")
 
 [node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
 unique_name_in_owner = true
@@ -34,6 +35,7 @@ offset_top = -142.0
 offset_right = 496.0
 offset_bottom = 162.0
 texture = ExtResource("4_i0eal")
+script = ExtResource("2_ewvo3")
 
 [node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
 unique_name_in_owner = true
@@ -44,6 +46,7 @@ offset_top = -118.0
 offset_right = 211.0
 offset_bottom = 105.0
 texture = ExtResource("5_chm4n")
+script = ExtResource("2_ewvo3")
 
 [node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
 unique_name_in_owner = true
@@ -53,6 +56,7 @@ offset_top = 154.0
 offset_right = 186.0
 offset_bottom = 191.0
 texture = ExtResource("6_8dvs4")
+script = ExtResource("2_ewvo3")
 
 [node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
 unique_name_in_owner = true
@@ -62,6 +66,9 @@ offset_top = 48.0
 offset_right = 310.0
 offset_bottom = 198.0
 texture = ExtResource("7_jdled")
+script = ExtResource("2_ewvo3")
+can_rust = false
+has_color = false
 
 [node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
 unique_name_in_owner = true
@@ -71,6 +78,7 @@ offset_top = 199.0
 offset_right = 348.0
 offset_bottom = 312.0
 texture = ExtResource("8_cg33d")
+script = ExtResource("2_ewvo3")
 
 [node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
 unique_name_in_owner = true
@@ -81,11 +89,15 @@ offset_top = 77.0
 offset_right = 458.0
 offset_bottom = 222.0
 texture = ExtResource("9_vsw52")
+script = ExtResource("2_ewvo3")
 
 [node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
+script = ExtResource("2_ewvo3")
+can_rust = false
+has_color = false
 
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
@@ -95,11 +107,15 @@ offset_top = 504.0
 offset_right = 547.0
 offset_bottom = 777.0
 texture = ExtResource("10_12f26")
+script = ExtResource("2_ewvo3")
 
 [node name="Guts" type="TextureRect" parent="Wireframe/BodyBottom" unique_id=2048753572]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
+script = ExtResource("2_ewvo3")
+can_rust = false
+has_color = false
 
 [node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
 unique_name_in_owner = true
@@ -109,11 +125,15 @@ offset_top = 199.0
 offset_right = 575.0
 offset_bottom = 548.0
 texture = ExtResource("11_asxop")
+script = ExtResource("2_ewvo3")
 
 [node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
+script = ExtResource("2_ewvo3")
+can_rust = false
+has_color = false
 
 [node name="LeftArm" type="TextureRect" parent="Wireframe" unique_id=1720877252]
 unique_name_in_owner = true
@@ -123,6 +143,7 @@ offset_top = 222.0
 offset_right = 59.0
 offset_bottom = 776.0
 texture = ExtResource("12_81ma6")
+script = ExtResource("2_ewvo3")
 
 [node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
 unique_name_in_owner = true
@@ -132,6 +153,7 @@ offset_top = -132.0
 offset_right = 291.0
 offset_bottom = 130.0
 texture = ExtResource("13_tmtkg")
+script = ExtResource("2_ewvo3")
 
 [node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
 unique_name_in_owner = true
@@ -142,6 +164,7 @@ offset_right = 786.0
 offset_bottom = 773.0
 texture = ExtResource("12_81ma6")
 flip_h = true
+script = ExtResource("2_ewvo3")
 
 [node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
 unique_name_in_owner = true
@@ -152,3 +175,4 @@ offset_right = 248.0
 offset_bottom = 132.0
 texture = ExtResource("13_tmtkg")
 flip_h = true
+script = ExtResource("2_ewvo3")
