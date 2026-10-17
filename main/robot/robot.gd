@@ -24,6 +24,8 @@ class_name Robot
 
 var main_color: Color = Color.WHITE
 
+@export var color_palette: Array[Color] 
+
 
 func _ready() -> void:
 	generate()
