@@ -2,7 +2,7 @@ extends Node
 
 #var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
 var game_state: GameState
-
+var money: int = 0
 var game_scene: GameScene
 var current_robot: Robot
 

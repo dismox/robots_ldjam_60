@@ -8,10 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://c63w55kimrot6" path="res://main/assets/ui/xray_button.png" id="7_a534b"]
 [ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
 [ext_resource type="Texture2D" uid="uid://cdt7c0hakaudk" path="res://main/assets/tools/drill.png" id="7_ei2x0"]
+[ext_resource type="Texture2D" uid="uid://dk77ssraff6vl" path="res://main/assets/ui/xray_background.png" id="7_q6u0f"]
 [ext_resource type="Texture2D" uid="uid://cbrcmnyjxfbi1" path="res://main/assets/ui/xray_button_pushed.png" id="8_ei2x0"]
+[ext_resource type="Texture2D" uid="uid://detb3ssthygvt" path="res://main/assets/ui/xray_frame.png" id="8_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dlyrwrn0dy24c" path="res://main/assets/tools/polisher.png" id="9_3m56o"]
+[ext_resource type="Texture2D" uid="uid://bx1pmtashmap7" path="res://main/assets/ui/xray_tile.png" id="9_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://cba3pjecgmrcv" path="res://main/assets/tools/paint.png" id="10_q6u0f"]
 [ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
+[ext_resource type="Texture2D" uid="uid://dwflukicymp4d" path="res://main/assets/ui/pricetag.png" id="11_yfhdg"]
+[ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
 
 [node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
@@ -28,18 +33,82 @@ texture = ExtResource("2_m2qia")
 
 [node name="RobotsLayer" type="CanvasLayer" parent="." unique_id=18804413]
 
-[node name="RobotStartPosition" type="Marker2D" parent="RobotsLayer" unique_id=1318234240]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1600925358]
+
+[node name="RobotStartPosition" type="Marker2D" parent="UILayer" unique_id=1318234240]
 unique_name_in_owner = true
+z_index = 4
 position = Vector2(-61, 641)
 
-[node name="Robot" parent="RobotsLayer/RobotStartPosition" unique_id=560495161 instance=ExtResource("5_gt6vn")]
+[node name="Robot" parent="UILayer/RobotStartPosition" unique_id=560495161 instance=ExtResource("5_gt6vn")]
 z_index = 1
+position = Vector2(-544, 0)
 
-[node name="RobotEndPosition" type="Marker2D" parent="RobotsLayer" unique_id=85788587]
+[node name="RobotEndPosition" type="Marker2D" parent="UILayer" unique_id=85788587]
 unique_name_in_owner = true
 position = Vector2(991, 9)
 
-[node name="UILayer" type="CanvasLayer" parent="." unique_id=1600925358]
+[node name="XRay" type="TextureRect" parent="UILayer" unique_id=1395580667]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -552.5
+offset_top = 560.0
+offset_right = 552.5
+offset_bottom = 1625.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+mouse_filter = 2
+texture = ExtResource("7_q6u0f")
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/XRay" unique_id=243697421]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = -536.0
+offset_right = 577.0
+offset_bottom = 536.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_o0rdg")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="UILayer/XRay/TextureRect" unique_id=775017473]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = 24.0
+offset_right = -31.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Parallax2D" type="Parallax2D" parent="UILayer/XRay/TextureRect/Control" unique_id=481001277]
+show_behind_parent = true
+scroll_offset = Vector2(289, 940)
+repeat_size = Vector2(183, 183)
+autoscroll = Vector2(20, 20)
+repeat_times = 15
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/XRay/TextureRect/Control/Parallax2D" unique_id=1203113762]
+modulate = Color(1, 1, 1, 0.6627451)
+texture = ExtResource("9_o0rdg")
 
 [node name="ToolsPanel" type="TextureRect" parent="UILayer" unique_id=1176114932]
 anchors_preset = 4
@@ -49,7 +118,165 @@ offset_top = -509.0
 offset_right = 436.0
 offset_bottom = 509.0
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("3_yitua")
+
+[node name="Drill" type="TextureRect" parent="UILayer" unique_id=2085519905]
+z_index = 1
+offset_left = 168.0
+offset_top = 55.0
+offset_right = 397.0
+offset_bottom = 334.0
+offset_transform_enabled = true
+texture = ExtResource("7_ei2x0")
+script = ExtResource("7_eewe3")
+
+[node name="PriceTag" type="TextureRect" parent="UILayer/Drill" unique_id=1892118663]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -156.0
+offset_top = 72.0
+offset_right = 113.0
+offset_bottom = 179.0
+texture = ExtResource("11_yfhdg")
+flip_h = true
+
+[node name="PriceTagLabel" type="Label" parent="UILayer/Drill/PriceTag" unique_id=1212850301]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.49999
+offset_top = -21.5
+offset_right = -11.499992
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.107168265
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polisher" type="TextureRect" parent="UILayer" unique_id=1281302774]
+z_index = 1
+offset_left = 17.0
+offset_top = 268.0
+offset_right = 259.0
+offset_bottom = 511.0
+offset_transform_enabled = true
+texture = ExtResource("9_3m56o")
+script = ExtResource("7_eewe3")
+price = 100
+
+[node name="PriceTag" type="TextureRect" parent="UILayer/Polisher" unique_id=1353460471]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 135.0
+offset_top = 99.0
+offset_right = 404.0
+offset_bottom = 206.0
+texture = ExtResource("11_yfhdg")
+
+[node name="PriceTagLabel" type="Label" parent="UILayer/Polisher/PriceTag" unique_id=1737943445]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.5
+offset_top = -30.5
+offset_right = 101.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.123166606
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Paint" type="TextureRect" parent="UILayer" unique_id=645278114]
+z_index = 1
+offset_left = 206.0
+offset_top = 529.0
+offset_right = 396.0
+offset_bottom = 726.0
+offset_transform_enabled = true
+texture = ExtResource("10_q6u0f")
+script = ExtResource("7_eewe3")
+price = 200
+
+[node name="PriceTag" type="TextureRect" parent="UILayer/Paint" unique_id=237596286]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -193.0
+offset_top = -21.0
+offset_right = 76.0
+offset_bottom = 86.0
+texture = ExtResource("11_yfhdg")
+flip_h = true
+
+[node name="PriceTagLabel" type="Label" parent="UILayer/Paint/PriceTag" unique_id=846476410]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.49999
+offset_top = -21.5
+offset_right = -11.499992
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.107168265
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Saw" type="TextureRect" parent="UILayer" unique_id=781649646]
+z_index = 1
+offset_left = 24.0
+offset_top = 655.0
+offset_right = 305.0
+offset_bottom = 889.0
+offset_transform_enabled = true
+texture = ExtResource("11_o0rdg")
+script = ExtResource("7_eewe3")
+price = 500
+
+[node name="PriceTag" type="TextureRect" parent="UILayer/Saw" unique_id=1818939115]
+layout_mode = 0
+offset_left = 133.00002
+offset_top = 101.0
+offset_right = 402.0
+offset_bottom = 208.0
+rotation = -0.00906387
+texture = ExtResource("11_yfhdg")
+
+[node name="PriceTagLabel" type="Label" parent="UILayer/Saw/PriceTag" unique_id=608243201]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.5
+offset_top = -30.5
+offset_right = 101.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.123166606
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Money" type="Label" parent="UILayer" unique_id=202371671]
 anchors_preset = 1
@@ -60,20 +287,6 @@ offset_bottom = 51.0
 grow_horizontal = 0
 text = "$0000"
 horizontal_alignment = 2
-
-[node name="NextButton" type="Button" parent="UILayer" unique_id=1794103372]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -494.0
-offset_top = -153.0
-offset_right = -40.0
-offset_bottom = -32.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "NEXT"
 
 [node name="XRayButton" type="TextureButton" parent="UILayer" unique_id=871643545]
 offset_left = 43.0
@@ -86,6 +299,41 @@ texture_pressed = ExtResource("8_ei2x0")
 texture_hover = ExtResource("7_a534b")
 texture_disabled = ExtResource("7_a534b")
 texture_focused = ExtResource("7_a534b")
+
+[node name="NextButton" type="TextureButton" parent="UILayer" unique_id=1984278053]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -452.0
+offset_top = -213.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("15_1pnch")
+texture_pressed = ExtResource("15_1pnch")
+texture_hover = ExtResource("15_1pnch")
+texture_disabled = ExtResource("15_1pnch")
+texture_focused = ExtResource("15_1pnch")
+
+[node name="Label" type="Label" parent="UILayer/NextButton" unique_id=1659960923]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -46.5
+offset_right = 116.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Next"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
 unique_name_in_owner = true
@@ -104,52 +352,16 @@ mouse_filter = 2
 stretch_mode = 2
 script = ExtResource("2_mrfjb")
 
-[node name="Drill" type="TextureRect" parent="GameObjectLayer" unique_id=2085519905]
-offset_left = 168.0
-offset_top = 55.0
-offset_right = 397.0
-offset_bottom = 334.0
-offset_transform_enabled = true
-texture = ExtResource("7_ei2x0")
-script = ExtResource("7_eewe3")
-
-[node name="Polisher" type="TextureRect" parent="GameObjectLayer" unique_id=1281302774]
-offset_left = 17.0
-offset_top = 268.0
-offset_right = 259.0
-offset_bottom = 511.0
-offset_transform_enabled = true
-texture = ExtResource("9_3m56o")
-script = ExtResource("7_eewe3")
-
-[node name="Paint" type="TextureRect" parent="GameObjectLayer" unique_id=645278114]
-offset_left = 206.0
-offset_top = 529.0
-offset_right = 396.0
-offset_bottom = 726.0
-offset_transform_enabled = true
-texture = ExtResource("10_q6u0f")
-script = ExtResource("7_eewe3")
-
-[node name="Saw" type="TextureRect" parent="GameObjectLayer" unique_id=781649646]
-offset_left = 24.0
-offset_top = 631.0
-offset_right = 305.0
-offset_bottom = 865.0
-offset_transform_enabled = true
-texture = ExtResource("11_o0rdg")
-script = ExtResource("7_eewe3")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=340578607]
 position = Vector2(326, 538)
 
-[connection signal="pressed" from="UILayer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="gui_input" from="UILayer/Drill" to="UILayer/Drill" method="_on_gui_input"]
+[connection signal="mouse_entered" from="UILayer/Drill" to="UILayer/Drill" method="_on_mouse_entered"]
+[connection signal="gui_input" from="UILayer/Polisher" to="UILayer/Polisher" method="_on_gui_input"]
+[connection signal="mouse_entered" from="UILayer/Polisher" to="UILayer/Polisher" method="_on_mouse_entered"]
+[connection signal="gui_input" from="UILayer/Paint" to="UILayer/Paint" method="_on_gui_input"]
+[connection signal="mouse_entered" from="UILayer/Paint" to="UILayer/Paint" method="_on_mouse_entered"]
+[connection signal="gui_input" from="UILayer/Saw" to="UILayer/Saw" method="_on_gui_input"]
+[connection signal="mouse_entered" from="UILayer/Saw" to="UILayer/Saw" method="_on_mouse_entered"]
 [connection signal="toggled" from="UILayer/XRayButton" to="." method="_on_x_ray_button_toggled"]
-[connection signal="gui_input" from="GameObjectLayer/Drill" to="GameObjectLayer/Drill" method="_on_gui_input"]
-[connection signal="mouse_entered" from="GameObjectLayer/Drill" to="GameObjectLayer/Drill" method="_on_mouse_entered"]
-[connection signal="gui_input" from="GameObjectLayer/Polisher" to="GameObjectLayer/Polisher" method="_on_gui_input"]
-[connection signal="mouse_entered" from="GameObjectLayer/Polisher" to="GameObjectLayer/Polisher" method="_on_mouse_entered"]
-[connection signal="gui_input" from="GameObjectLayer/Paint" to="GameObjectLayer/Paint" method="_on_gui_input"]
-[connection signal="mouse_entered" from="GameObjectLayer/Paint" to="GameObjectLayer/Paint" method="_on_mouse_entered"]
-[connection signal="gui_input" from="GameObjectLayer/Saw" to="GameObjectLayer/Saw" method="_on_gui_input"]
-[connection signal="mouse_entered" from="GameObjectLayer/Saw" to="GameObjectLayer/Saw" method="_on_mouse_entered"]
+[connection signal="pressed" from="UILayer/NextButton" to="." method="_on_next_button_pressed"]

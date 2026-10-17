@@ -19,6 +19,8 @@ var shake_strength: float = 1.0
 @export var target_shake_strength: float = 1.0
 var shake_speed: float = 50000.0
 
+var modulation_tween: Tween
+
 enum Type {
 	HEAD,
 	HEAD_TOP,
@@ -71,11 +73,11 @@ func set_rust_level(value: float) -> void:
 func _on_mouse_entered() -> void:
 	Global.shake_control(self)
 	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
-		self_modulate += Color(0.5, 0.5, 0.5, 1.0)
+		self_modulate += Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_mouse_exited() -> void:
 	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
-		self_modulate -= Color(0.5, 0.5, 0.5, 1.0)
+		self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
