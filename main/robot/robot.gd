@@ -26,10 +26,13 @@ var main_color: Color = Color.WHITE
 
 func _ready() -> void:
 	generate()
+	Global.current_robot = self
 
 func generate():
 	main_color = Color(randf(),randf(),randf(), 1.5)
 	for part in custom_parts:
+		part.connect("mouse_entered", part._on_mouse_entered)
+		part.connect("mouse_exited", part._on_mouse_exited)
 		if part.has_color:
 			part.prefered_color = main_color
 			part.change_color(main_color)
@@ -39,5 +42,9 @@ func generate():
 			var part = custom_parts.pick_random()
 			if part.has_color:
 				part.change_color(Color.from_hsv(randf(),0.7,1.0))
-		
 	
+	
+
+
+func _on_head_mouse_exited() -> void:
+	pass # Replace with function body.
