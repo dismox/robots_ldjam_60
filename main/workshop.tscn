@@ -4,15 +4,13 @@
 [ext_resource type="Script" uid="uid://btua4i6yhf0ie" path="res://main/gameplay.gd" id="1_s8op5"]
 [ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="2_i77jv"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
-[ext_resource type="Texture2D" uid="uid://7hf6c6l4ie8o" path="res://main/assets/Seamless-Rust-Texture.jpg" id="3_db4gj"]
 [ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="5_gt6vn"]
 [ext_resource type="Texture2D" uid="uid://coq2v511dd6ui" path="res://icon.svg" id="6_gt6vn"]
 [ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb4oo"]
 shader = ExtResource("2_i77jv")
-shader_parameter/polish_texture = ExtResource("3_db4gj")
-shader_parameter/polish_strength = 0.5130000243675
+shader_parameter/rust_strength = 1.0
 
 [node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
@@ -102,7 +100,7 @@ offset_transform_enabled = true
 texture = ExtResource("6_gt6vn")
 script = ExtResource("7_eewe3")
 
-[node name="Label" type="Label" parent="." unique_id=202371671]
+[node name="Money" type="Label" parent="." unique_id=202371671]
 offset_right = 377.0
 offset_bottom = 97.0
 text = "$0000"
