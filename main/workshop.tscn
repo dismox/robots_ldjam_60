@@ -1,54 +1,67 @@
 [gd_scene format=3 uid="uid://w5xvhqd27ddd"]
 
-[ext_resource type="Texture2D" uid="uid://46c11nn42g3v" path="res://main/assets/test.png" id="1_db4gj"]
 [ext_resource type="Script" uid="uid://btua4i6yhf0ie" path="res://main/gameplay.gd" id="1_s8op5"]
-[ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="2_i77jv"]
+[ext_resource type="Texture2D" uid="uid://dmdukvpfsbpk4" path="res://main/assets/background.png" id="2_m2qia"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
+[ext_resource type="Texture2D" uid="uid://cagohirur5ktq" path="res://main/assets/ui/tools_panel.png" id="3_yitua"]
 [ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="5_gt6vn"]
-[ext_resource type="Texture2D" uid="uid://coq2v511dd6ui" path="res://icon.svg" id="6_gt6vn"]
+[ext_resource type="Texture2D" uid="uid://c63w55kimrot6" path="res://main/assets/ui/xray_button.png" id="7_a534b"]
 [ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb4oo"]
-shader = ExtResource("2_i77jv")
-shader_parameter/rust_strength = 1.0
+[ext_resource type="Texture2D" uid="uid://cdt7c0hakaudk" path="res://main/assets/tools/drill.png" id="7_ei2x0"]
+[ext_resource type="Texture2D" uid="uid://cbrcmnyjxfbi1" path="res://main/assets/ui/xray_button_pushed.png" id="8_ei2x0"]
+[ext_resource type="Texture2D" uid="uid://dlyrwrn0dy24c" path="res://main/assets/tools/polisher.png" id="9_3m56o"]
+[ext_resource type="Texture2D" uid="uid://cba3pjecgmrcv" path="res://main/assets/tools/paint.png" id="10_q6u0f"]
+[ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
 
 [node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
 
-[node name="CurrentItemNode" type="TextureRect" parent="." unique_id=984135821]
-unique_name_in_owner = true
-top_level = true
-z_index = 83
-offset_left = 1581.0
-offset_top = 96.0
-offset_right = 1709.0
-offset_bottom = 224.0
-mouse_filter = 2
-script = ExtResource("2_mrfjb")
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=2110333918]
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1715513262]
-visible = false
-material = SubResource("ShaderMaterial_wb4oo")
-position = Vector2(773.00006, 257.00003)
-scale = Vector2(0.56529623, 0.5652963)
-texture = ExtResource("1_db4gj")
-
-[node name="Robot" parent="." unique_id=560495161 instance=ExtResource("5_gt6vn")]
-position = Vector2(963, 662)
-
-[node name="XRayButton" type="Button" parent="." unique_id=250855740]
-anchors_preset = 2
-anchor_top = 1.0
+[node name="Background" type="TextureRect" parent="BackgroundLayer" unique_id=1311736852]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -145.0
-offset_right = 478.0
-offset_bottom = -24.0
-grow_vertical = 0
-toggle_mode = true
-text = "X-RAY"
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m2qia")
 
-[node name="NextButton" type="Button" parent="." unique_id=1794103372]
+[node name="RobotsLayer" type="CanvasLayer" parent="." unique_id=18804413]
+
+[node name="RobotStartPosition" type="Marker2D" parent="RobotsLayer" unique_id=1318234240]
+unique_name_in_owner = true
+position = Vector2(-61, 641)
+
+[node name="Robot" parent="RobotsLayer/RobotStartPosition" unique_id=560495161 instance=ExtResource("5_gt6vn")]
+z_index = 1
+
+[node name="RobotEndPosition" type="Marker2D" parent="RobotsLayer" unique_id=85788587]
+unique_name_in_owner = true
+position = Vector2(991, 9)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1600925358]
+
+[node name="ToolsPanel" type="TextureRect" parent="UILayer" unique_id=1176114932]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -509.0
+offset_right = 436.0
+offset_bottom = 509.0
+grow_vertical = 2
+texture = ExtResource("3_yitua")
+
+[node name="Money" type="Label" parent="UILayer" unique_id=202371671]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -86.0
+offset_bottom = 51.0
+grow_horizontal = 0
+text = "$0000"
+horizontal_alignment = 2
+
+[node name="NextButton" type="Button" parent="UILayer" unique_id=1794103372]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -60,56 +73,83 @@ offset_right = -40.0
 offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
-toggle_mode = true
 text = "NEXT"
 
-[node name="Control" type="Control" parent="." unique_id=1403207016]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 518.0
-offset_bottom = 1080.0
+[node name="XRayButton" type="TextureButton" parent="UILayer" unique_id=871643545]
+offset_left = 43.0
+offset_top = 879.0
+offset_right = 351.0
+offset_bottom = 1083.0
+toggle_mode = true
+texture_normal = ExtResource("7_a534b")
+texture_pressed = ExtResource("8_ei2x0")
+texture_hover = ExtResource("7_a534b")
+texture_disabled = ExtResource("7_a534b")
+texture_focused = ExtResource("7_a534b")
+
+[node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
+unique_name_in_owner = true
+
+[node name="CurrentItemNode" type="TextureRect" parent="GameObjectLayer" unique_id=984135821]
+unique_name_in_owner = true
+top_level = true
+z_index = 83
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
 mouse_filter = 2
+stretch_mode = 2
+script = ExtResource("2_mrfjb")
 
-[node name="Item1" type="TextureRect" parent="Control" unique_id=2085519905]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 57.0
-offset_right = 171.0
-offset_bottom = 185.0
+[node name="Drill" type="TextureRect" parent="GameObjectLayer" unique_id=2085519905]
+offset_left = 168.0
+offset_top = 55.0
+offset_right = 397.0
+offset_bottom = 334.0
 offset_transform_enabled = true
-texture = ExtResource("6_gt6vn")
+texture = ExtResource("7_ei2x0")
 script = ExtResource("7_eewe3")
 
-[node name="Item2" type="TextureRect" parent="Control" unique_id=1281302774]
-layout_mode = 0
-offset_left = 115.0
-offset_top = 225.0
-offset_right = 243.0
-offset_bottom = 353.0
+[node name="Polisher" type="TextureRect" parent="GameObjectLayer" unique_id=1281302774]
+offset_left = 17.0
+offset_top = 268.0
+offset_right = 259.0
+offset_bottom = 511.0
 offset_transform_enabled = true
-texture = ExtResource("6_gt6vn")
+texture = ExtResource("9_3m56o")
 script = ExtResource("7_eewe3")
 
-[node name="Item3" type="TextureRect" parent="Control" unique_id=645278114]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 409.0
-offset_right = 171.0
-offset_bottom = 537.0
+[node name="Paint" type="TextureRect" parent="GameObjectLayer" unique_id=645278114]
+offset_left = 206.0
+offset_top = 529.0
+offset_right = 396.0
+offset_bottom = 726.0
 offset_transform_enabled = true
-texture = ExtResource("6_gt6vn")
+texture = ExtResource("10_q6u0f")
 script = ExtResource("7_eewe3")
 
-[node name="Money" type="Label" parent="." unique_id=202371671]
-offset_right = 377.0
-offset_bottom = 97.0
-text = "$0000"
+[node name="Saw" type="TextureRect" parent="GameObjectLayer" unique_id=781649646]
+offset_left = 24.0
+offset_top = 631.0
+offset_right = 305.0
+offset_bottom = 865.0
+offset_transform_enabled = true
+texture = ExtResource("11_o0rdg")
+script = ExtResource("7_eewe3")
 
-[connection signal="toggled" from="XRayButton" to="." method="_on_x_ray_button_toggled"]
-[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="gui_input" from="Control/Item1" to="Control/Item1" method="_on_gui_input"]
-[connection signal="mouse_entered" from="Control/Item1" to="Control/Item1" method="_on_mouse_entered"]
-[connection signal="gui_input" from="Control/Item2" to="Control/Item2" method="_on_gui_input"]
-[connection signal="mouse_entered" from="Control/Item2" to="Control/Item2" method="_on_mouse_entered"]
-[connection signal="gui_input" from="Control/Item3" to="Control/Item3" method="_on_gui_input"]
-[connection signal="mouse_entered" from="Control/Item3" to="Control/Item3" method="_on_mouse_entered"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=340578607]
+position = Vector2(326, 538)
+
+[connection signal="pressed" from="UILayer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="toggled" from="UILayer/XRayButton" to="." method="_on_x_ray_button_toggled"]
+[connection signal="gui_input" from="GameObjectLayer/Drill" to="GameObjectLayer/Drill" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GameObjectLayer/Drill" to="GameObjectLayer/Drill" method="_on_mouse_entered"]
+[connection signal="gui_input" from="GameObjectLayer/Polisher" to="GameObjectLayer/Polisher" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GameObjectLayer/Polisher" to="GameObjectLayer/Polisher" method="_on_mouse_entered"]
+[connection signal="gui_input" from="GameObjectLayer/Paint" to="GameObjectLayer/Paint" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GameObjectLayer/Paint" to="GameObjectLayer/Paint" method="_on_mouse_entered"]
+[connection signal="gui_input" from="GameObjectLayer/Saw" to="GameObjectLayer/Saw" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GameObjectLayer/Saw" to="GameObjectLayer/Saw" method="_on_mouse_entered"]

@@ -12,6 +12,11 @@ enum GameState {
 	GAMEPLAY_XRAY
 }
 
+func move_to(node: Node, target_position: Vector2, duration: float = 1.0) -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(node, "position", target_position, duration)
 
 func shake_control(control: Control, strength: float = 10.0, duration: float = 0.3) -> void:
 	var original_position := control.position
