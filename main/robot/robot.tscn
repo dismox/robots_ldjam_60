@@ -19,16 +19,18 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrfjb"]
 shader = ExtResource("4_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = 1.0
+shader_parameter/rust_strength = 0.0
 
 [node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
 position = Vector2(987, 630)
 script = ExtResource("1_3153p")
 custom_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("Wireframe/RightArm/RightShoulder")]
 inside_parts = [NodePath("Wireframe/Head/Brain"), NodePath("Wireframe/BodyBottom/Guts"), NodePath("Wireframe/BodyTop/Heart")]
+color_palette = Array[Color]([Color(1, 0.2784314, 0.2784314, 1), Color(1.6852883, 0.9638797, 0.33264714, 1), Color(1.6852883, 1.2412809, 0.2831602, 1), Color(0.8562249, 1.4369954, 0.19248736, 1), Color(0.33830616, 1.0813689, 0.4869188, 1), Color(0.16772464, 1.6590892, 1.8247963, 1), Color(0.415, 0.87966657, 2.055, 1), Color(1.3182483, 0.6255031, 2.2241454, 1), Color(1.8532405, 0.6051969, 1.146016, 1), Color(2.6072748, 1.0174804, 1.0174804, 1), Color(2.2720351, 1.2684324, 0.72803074, 1), Color(1.6037612, 1.8659585, 1.2104656, 1), Color(1.9655429, 1.746571, 1.0270916, 1), Color(1.1298953, 1.8247963, 1.2109671, 1), Color(1.3739033, 2.2939777, 2.396208, 1), Color(1.3222859, 1.7089368, 2.6111224, 1), Color(1.7818676, 1.4211535, 2.2868676, 1), Color(2.7075353, 1.6339436, 2.3496714, 1), Color(1.6978991, 1.5084864, 1.3822112, 1), Color(1.3822112, 1.3979955, 1.6978991, 1), Color(3.3561718, 3.3720791, 3.6743124, 1), Color(0.35962272, 0.36223018, 0.41177243, 1)])
 
 [node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
 unique_name_in_owner = true
+self_modulate = Color(0.39723974, 0.39723974, 0.39723974, 1)
 offset_left = -325.0
 offset_top = -344.0
 offset_right = 320.0
