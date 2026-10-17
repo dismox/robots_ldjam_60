@@ -76,3 +76,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 		self_modulate -= Color(0.5, 0.5, 0.5, 1.0)
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		Global.shake_control(self, 10, 0.1)

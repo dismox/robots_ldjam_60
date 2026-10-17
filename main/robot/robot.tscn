@@ -22,7 +22,6 @@ shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = 1.0
 
 [node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
-position = Vector2(987, 630)
 script = ExtResource("1_3153p")
 custom_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("Wireframe/RightArm/RightShoulder")]
 inside_parts = [NodePath("Wireframe/Head/Brain"), NodePath("Wireframe/BodyBottom/Guts"), NodePath("Wireframe/BodyTop/Heart")]

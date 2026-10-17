@@ -34,12 +34,12 @@ func generate():
 	for part in custom_parts:
 		part.connect("mouse_entered", part._on_mouse_entered)
 		part.connect("mouse_exited", part._on_mouse_exited)
+		part.connect("gui_input", part._on_gui_input)
 		if part.can_rust:
 			part.set_rust_level(randf())
 		if part.has_color:
 			part.prefered_color = main_color
 			part.change_color(main_color)
-			part
 	var random_color_parts_amount: int = randi() % 3
 	if random_color_parts_amount > 0:
 		for i in range(random_color_parts_amount):
