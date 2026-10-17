@@ -9,11 +9,6 @@ script = ExtResource("1_3153p")
 [node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
 unique_name_in_owner = true
 script = ExtResource("2_ewvo3")
-current_color = null
-prefered_color = null
-prefered_body_part = null
-current_body_part = null
-rustiness = null
 
 [node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
 unique_name_in_owner = true

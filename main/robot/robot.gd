@@ -18,19 +18,3 @@ class_name Robot
 @onready var brain: TextureRect = %Brain
 @onready var heart: TextureRect = %Heart
 @onready var guts: TextureRect = %Guts
-
-enum BodyPart {
-	HEAD,
-	HEAD_TOP,
-	NOSE,
-	EYES,
-	MOUTH,
-	EARS,
-	BODY_TOP,
-	BODY_BOTTOM,
-	ARM,
-	SHOULDER,
-	BRAIN,
-	HEART,
-	GUTS
-}
