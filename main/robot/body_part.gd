@@ -8,7 +8,7 @@ class_name BodyPart
 @export var prefered_body_part: int
 @export var current_body_part: int
 
-@export var rustiness: float = 0.0
+@export var rust_level: float = 0.0
 @export var can_rust: bool = true
 @export var has_color: bool = true
 @export var is_shaking: bool = false
@@ -63,6 +63,10 @@ func change_body_part(type: Type, texture_id: int):
 	texture = Global.body_part_database.get_body_part_texture(type, texture_id)
 	current_body_part = texture_id
 
+func set_rust_level(value: float) -> void:
+	rust_level = value
+	var rust_material := material as ShaderMaterial
+	rust_material.set_shader_parameter("rust_strength", rust_level)
 
 func _on_mouse_entered() -> void:
 	Global.shake_control(self)
