@@ -8,6 +8,7 @@ var unlocked_items: Array[Item]
 
 @onready var robot_start_position: Marker2D = %RobotStartPosition
 @onready var robot_end_position: Marker2D = %RobotEndPosition
+@onready var x_ray: TextureRect = %XRay
 
 func _ready() -> void:
 	Global.game_scene = self
@@ -28,12 +29,26 @@ func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 	if Global.current_robot:
 		for part in Global.current_robot.custom_parts:
 			if toggled_on:
+				Global.move_to(x_ray, Vector2(x_ray.position.x, 30.0), 2.0)
 				Global.game_state = Global.GameState.GAMEPLAY_XRAY
-				part.self_modulate = Color(0.0, 0.0, 0.0, 1.0)
+				if part.modulation_tween:
+					part.modulation_tween.kill()
+				part.modulation_tween = create_tween()
+				part.modulation_tween.set_ease(Tween.EASE_OUT)
+				part.modulation_tween.set_trans(Tween.TRANS_EXPO)
+				part.modulation_tween.tween_property(part, "self_modulate", Color(0.0, 0.0, 0.0, 1.0), 0.5)
+				#part.self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 				Global.current_robot.wireframe.self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 			else:
+				Global.move_to(x_ray, Vector2(x_ray.position.x, 1100.0), 2.0)
 				Global.game_state = Global.GameState.GAMEPLAY_NORMAL
-				part.self_modulate = part.current_color
+				if part.modulation_tween:
+					part.modulation_tween.kill()
+				part.modulation_tween = create_tween()
+				part.modulation_tween.set_ease(Tween.EASE_OUT)
+				part.modulation_tween.set_trans(Tween.TRANS_EXPO)
+				part.modulation_tween.tween_property(part, "self_modulate", part.current_color, 0.5)
+				#part.self_modulate = part.current_color
 				Global.current_robot.wireframe.self_modulate = Color(1.0, 1.0, 1.0, 1.0)
 		for part in Global.current_robot.inside_parts:
 			part.visible = toggled_on
