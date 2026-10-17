@@ -1,13 +1,29 @@
 [gd_scene format=3 uid="uid://cndxkft06i84a"]
 
 [ext_resource type="Script" uid="uid://vj6b32x7fci8" path="res://main/robot/robot.gd" id="1_3153p"]
+[ext_resource type="Texture2D" uid="uid://1nqcblo4bp5b" path="res://main/assets/robot_parts/wireframe.png" id="2_ayiut"]
 [ext_resource type="Script" uid="uid://b64af88ukgtxj" path="res://main/robot/body_part.gd" id="2_ewvo3"]
+[ext_resource type="Texture2D" uid="uid://bpsjrvjnx7jth" path="res://main/assets/robot_parts/head/head_1.png" id="4_i0eal"]
+[ext_resource type="Texture2D" uid="uid://l5gsuo458ka7" path="res://main/assets/robot_parts/head_top/head_top_1.png" id="5_chm4n"]
+[ext_resource type="Texture2D" uid="uid://d2kjpsijjq8sj" path="res://main/assets/robot_parts/nose/nose_1.png" id="6_8dvs4"]
+[ext_resource type="Texture2D" uid="uid://2c7yitt45sdm" path="res://main/assets/robot_parts/eyes/eyes_1.png" id="7_jdled"]
+[ext_resource type="Texture2D" uid="uid://bgdbeld386pwu" path="res://main/assets/robot_parts/mouth/mouth_1.png" id="8_cg33d"]
+[ext_resource type="Texture2D" uid="uid://c2o0sgndwhf4t" path="res://main/assets/robot_parts/ears/ears_1.png" id="9_vsw52"]
+[ext_resource type="Texture2D" uid="uid://f48s55dg5o6j" path="res://main/assets/robot_parts/body_bottom/body_bottom_1.png" id="10_12f26"]
+[ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="11_asxop"]
+[ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
+[ext_resource type="Texture2D" uid="uid://b1ccfcvsyv7rg" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
 
 [node name="Robot" type="Node2D" unique_id=560495161]
 script = ExtResource("1_3153p")
 
 [node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
 unique_name_in_owner = true
+offset_left = 664.0
+offset_top = 312.0
+offset_right = 1309.0
+offset_bottom = 1084.0
+texture = ExtResource("2_ayiut")
 script = ExtResource("2_ewvo3")
 current_color = null
 prefered_color = null
@@ -18,37 +34,60 @@ rustiness = null
 [node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = 158.0
+offset_top = -142.0
+offset_right = 496.0
+offset_bottom = 162.0
+texture = ExtResource("4_i0eal")
 
 [node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
 unique_name_in_owner = true
+show_behind_parent = true
 layout_mode = 0
+offset_left = 121.0
+offset_top = -118.0
+offset_right = 211.0
+offset_bottom = 105.0
+texture = ExtResource("5_chm4n")
 
 [node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = 144.0
+offset_top = 154.0
+offset_right = 186.0
+offset_bottom = 191.0
+texture = ExtResource("6_8dvs4")
 
 [node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 310.0
+offset_bottom = 198.0
+texture = ExtResource("7_jdled")
 
 [node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = -11.0
+offset_top = 199.0
+offset_right = 348.0
+offset_bottom = 312.0
+texture = ExtResource("8_cg33d")
 
 [node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
 unique_name_in_owner = true
+show_behind_parent = true
 layout_mode = 0
+offset_left = -119.0
+offset_top = 77.0
+offset_right = 458.0
+offset_bottom = 222.0
+texture = ExtResource("9_vsw52")
 
 [node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-
-[node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
-unique_name_in_owner = true
-layout_mode = 0
-
-[node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -56,8 +95,27 @@ layout_mode = 0
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = 95.0
+offset_top = 504.0
+offset_right = 547.0
+offset_bottom = 777.0
+texture = ExtResource("10_12f26")
 
 [node name="Guts" type="TextureRect" parent="Wireframe/BodyBottom" unique_id=2048753572]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+
+[node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 69.0
+offset_top = 199.0
+offset_right = 575.0
+offset_bottom = 548.0
+texture = ExtResource("11_asxop")
+
+[node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -65,17 +123,37 @@ layout_mode = 0
 [node name="LeftArm" type="TextureRect" parent="Wireframe" unique_id=1720877252]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = -142.0
+offset_top = 222.0
+offset_right = 59.0
+offset_bottom = 776.0
+texture = ExtResource("12_81ma6")
 
 [node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = -38.0
+offset_top = -132.0
+offset_right = 291.0
+offset_bottom = 130.0
+texture = ExtResource("13_tmtkg")
 
 [node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = 585.0
+offset_top = 219.0
+offset_right = 786.0
+offset_bottom = 773.0
+texture = ExtResource("12_81ma6")
 flip_h = true
 
 [node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
 unique_name_in_owner = true
 layout_mode = 0
+offset_left = -81.0
+offset_top = -130.0
+offset_right = 248.0
+offset_bottom = 132.0
+texture = ExtResource("13_tmtkg")
 flip_h = true
