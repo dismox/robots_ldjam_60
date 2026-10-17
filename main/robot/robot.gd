@@ -24,6 +24,7 @@ class_name Robot
 
 var main_color: Color = Color.WHITE
 
+
 func _ready() -> void:
 	generate()
 	Global.current_robot = self
@@ -42,9 +43,3 @@ func generate():
 			var part = custom_parts.pick_random()
 			if part.has_color:
 				part.change_color(Color.from_hsv(randf(),0.7,1.0))
-	
-	
-
-
-func _on_head_mouse_exited() -> void:
-	pass # Replace with function body.

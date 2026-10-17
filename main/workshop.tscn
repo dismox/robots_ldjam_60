@@ -3,17 +3,30 @@
 [ext_resource type="Texture2D" uid="uid://46c11nn42g3v" path="res://main/assets/test.png" id="1_db4gj"]
 [ext_resource type="Script" uid="uid://btua4i6yhf0ie" path="res://main/gameplay.gd" id="1_s8op5"]
 [ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="2_i77jv"]
+[ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
 [ext_resource type="Texture2D" uid="uid://7hf6c6l4ie8o" path="res://main/assets/Seamless-Rust-Texture.jpg" id="3_db4gj"]
 [ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="5_gt6vn"]
 [ext_resource type="Texture2D" uid="uid://coq2v511dd6ui" path="res://icon.svg" id="6_gt6vn"]
+[ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb4oo"]
 shader = ExtResource("2_i77jv")
 shader_parameter/polish_texture = ExtResource("3_db4gj")
 shader_parameter/polish_strength = 0.5130000243675
 
-[node name="Gameplay" type="Node" unique_id=425906612]
+[node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
+
+[node name="CurrentItemNode" type="TextureRect" parent="." unique_id=984135821]
+unique_name_in_owner = true
+top_level = true
+z_index = 83
+offset_left = 1581.0
+offset_top = 96.0
+offset_right = 1709.0
+offset_bottom = 224.0
+mouse_filter = 2
+script = ExtResource("2_mrfjb")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1715513262]
 visible = false
@@ -29,8 +42,10 @@ position = Vector2(963, 662)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -121.0
-offset_right = 454.0
+offset_left = 24.0
+offset_top = -145.0
+offset_right = 478.0
+offset_bottom = -24.0
 grow_vertical = 0
 toggle_mode = true
 text = "X-RAY"
@@ -41,27 +56,62 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -454.0
-offset_top = -121.0
+offset_left = -494.0
+offset_top = -153.0
+offset_right = -40.0
+offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
 toggle_mode = true
 text = "NEXT"
 
 [node name="Control" type="Control" parent="." unique_id=1403207016]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 518.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
-[node name="Item" type="TextureRect" parent="Control" unique_id=2085519905]
+[node name="Item1" type="TextureRect" parent="Control" unique_id=2085519905]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 57.0
 offset_right = 171.0
 offset_bottom = 185.0
+offset_transform_enabled = true
 texture = ExtResource("6_gt6vn")
+script = ExtResource("7_eewe3")
+
+[node name="Item2" type="TextureRect" parent="Control" unique_id=1281302774]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 225.0
+offset_right = 243.0
+offset_bottom = 353.0
+offset_transform_enabled = true
+texture = ExtResource("6_gt6vn")
+script = ExtResource("7_eewe3")
+
+[node name="Item3" type="TextureRect" parent="Control" unique_id=645278114]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 409.0
+offset_right = 171.0
+offset_bottom = 537.0
+offset_transform_enabled = true
+texture = ExtResource("6_gt6vn")
+script = ExtResource("7_eewe3")
+
+[node name="Label" type="Label" parent="." unique_id=202371671]
+offset_right = 377.0
+offset_bottom = 97.0
+text = "$0000"
 
 [connection signal="toggled" from="XRayButton" to="." method="_on_x_ray_button_toggled"]
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="gui_input" from="Control/Item1" to="Control/Item1" method="_on_gui_input"]
+[connection signal="mouse_entered" from="Control/Item1" to="Control/Item1" method="_on_mouse_entered"]
+[connection signal="gui_input" from="Control/Item2" to="Control/Item2" method="_on_gui_input"]
+[connection signal="mouse_entered" from="Control/Item2" to="Control/Item2" method="_on_mouse_entered"]
+[connection signal="gui_input" from="Control/Item3" to="Control/Item3" method="_on_gui_input"]
+[connection signal="mouse_entered" from="Control/Item3" to="Control/Item3" method="_on_mouse_entered"]
