@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dt6xglgxu7t6j"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nsl6p"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pmbv6"]
+load_path = "res://.godot/imported/spray_sheet.png-6d74bbed6b09bfa20330ee5936ca722a.ctex"
+
+[sub_resource type="Gradient" id="Gradient_nsl6p"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_756mo"]
+gradient = SubResource("Gradient_nsl6p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f7p1o"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 45.91
+angle_min = -108.29999
+angle_max = 64.10001
+spread = 111.742
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_756mo")
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=848403985]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_nsl6p")
+scale = Vector2(2.81, 1)
+amount = 40
+texture = SubResource("CompressedTexture2D_pmbv6")
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_f7p1o")

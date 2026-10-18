@@ -98,7 +98,7 @@ func change_body_part(type: Type, texture_id: int) -> void:
 	current_body_part = texture_id
 
 func set_rust_level(value: float) -> void:
-	value = clamp(value, 0.0, 1.0)
+	value = clamp(value, -1.0, 1.0)
 	rust_level = value
 	var rust_material := material as ShaderMaterial
 	rust_material.set_shader_parameter("rust_strength", rust_level)

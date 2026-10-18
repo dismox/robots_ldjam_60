@@ -16,13 +16,19 @@
 [ext_resource type="Texture2D" uid="uid://cba3pjecgmrcv" path="res://main/assets/tools/paint.png" id="10_q6u0f"]
 [ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dwflukicymp4d" path="res://main/assets/ui/pricetag.png" id="11_yfhdg"]
+[ext_resource type="PackedScene" uid="uid://cwik70hotsvmd" path="res://main/particles/dust_particles.tscn" id="12_4n5ef"]
+[ext_resource type="PackedScene" uid="uid://dt6xglgxu7t6j" path="res://main/particles/paint_particles.tscn" id="14_7tsgm"]
 [ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
+[ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="15_3mocd"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3mocd"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7tsgm"]
 particles_animation = true
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1bxel"]
+load_path = "res://.godot/imported/particle_sheet_outline.png-1ab0ec6c0632faef0771905b3f54c61d.ctex"
 
 [sub_resource type="Gradient" id="Gradient_7ubaa"]
 colors = PackedColorArray(0.50534403, 0.5053441, 0.50534403, 1, 1, 1, 1, 1)
@@ -37,7 +43,7 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_buy4y"]
 curve = SubResource("Curve_buy4y")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bxel"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0f3bu"]
 particle_flag_disable_z = true
 angle_min = -108.29999
 angle_max = 64.10001
@@ -161,11 +167,6 @@ offset_bottom = 334.0
 offset_transform_enabled = true
 texture = ExtResource("7_ei2x0")
 script = ExtResource("7_eewe3")
-
-[node name="Particles" parent="UILayer/Drill" unique_id=493265499 instance=ExtResource("10_4n5ef")]
-material = SubResource("CanvasItemMaterial_3mocd")
-position = Vector2(8, 8)
-process_material = SubResource("ParticleProcessMaterial_1bxel")
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Drill" unique_id=1892118663]
 show_behind_parent = true
@@ -390,6 +391,32 @@ grow_horizontal = 0
 mouse_filter = 2
 stretch_mode = 2
 script = ExtResource("2_mrfjb")
+
+[node name="DrillParticles" parent="GameObjectLayer/CurrentItemNode" unique_id=493265499 instance=ExtResource("10_4n5ef")]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_7tsgm")
+emitting = false
+amount = 5
+texture = SubResource("CompressedTexture2D_1bxel")
+lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_0f3bu")
+
+[node name="PolisherParticles" parent="GameObjectLayer/CurrentItemNode" unique_id=848403985 instance=ExtResource("12_4n5ef")]
+unique_name_in_owner = true
+show_behind_parent = true
+scale = Vector2(2, 1)
+emitting = false
+
+[node name="PaintParticles" parent="GameObjectLayer/CurrentItemNode" unique_id=609197671 instance=ExtResource("14_7tsgm")]
+unique_name_in_owner = true
+show_behind_parent = true
+emitting = false
+
+[node name="SawParticles" parent="GameObjectLayer/CurrentItemNode" unique_id=1357119640 instance=ExtResource("15_3mocd")]
+unique_name_in_owner = true
+show_behind_parent = true
+emitting = false
+speed_scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=340578607]
 position = Vector2(326, 538)

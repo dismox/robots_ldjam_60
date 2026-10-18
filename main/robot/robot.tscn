@@ -21,7 +21,7 @@
 code = "shader_type canvas_item;
 
 uniform sampler2D rust_texture : source_color;
-uniform float rust_strength : hint_range(0.0, 1.0) = 1.0;
+uniform float rust_strength : hint_range(-1.0, 1.0) = 1.0;
 
 void fragment() {
 	vec4 base = texture(TEXTURE, UV);
@@ -108,7 +108,7 @@ shader_parameter/rust_strength = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8dvs4"]
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = 0.0
+shader_parameter/rust_strength = 4.7499999933364734e-08
 
 [node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
 script = ExtResource("1_3153p")
