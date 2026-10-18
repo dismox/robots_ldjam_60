@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://bco8ufnrqfok7"]
+
+[ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="1_k5thq"]
+[ext_resource type="Script" uid="uid://dic5l4qgj24so" path="res://main/robot/villian.gd" id="2_ywd0x"]
+[ext_resource type="Texture2D" uid="uid://bm48k7jtevvix" path="res://main/assets/robot_parts/head/head_8.png" id="3_qbw2t"]
+[ext_resource type="Texture2D" uid="uid://bof0jg7qrk1c" path="res://main/assets/robot_parts/eyes/eyes_8.png" id="4_ocjsf"]
+[ext_resource type="Texture2D" uid="uid://hay2u32udn6m" path="res://main/assets/robot_parts/mouth/mouth_8.png" id="5_31aep"]
+[ext_resource type="Texture2D" uid="uid://c12lc8em7r3eg" path="res://main/assets/robot_parts/ears/ears_8.png" id="6_7xbrf"]
+[ext_resource type="Texture2D" uid="uid://bysyiodngqqxd" path="res://main/assets/robot_parts/nose/nose_8.png" id="7_j04a6"]
+[ext_resource type="Texture2D" uid="uid://c5ph1bkmbofii" path="res://main/assets/robot_parts/body_bottom/body_bottom_8.png" id="8_0v03g"]
+[ext_resource type="Texture2D" uid="uid://cuh0devsds4o2" path="res://main/assets/robot_parts/body_top/body_top_8.png" id="9_0mb2a"]
+[ext_resource type="Texture2D" uid="uid://fwkrfp38t7ex" path="res://main/assets/robot_parts/arm/arm_8.png" id="10_8ksim"]
+[ext_resource type="Texture2D" uid="uid://b2wfs0ip11oa2" path="res://main/assets/robot_parts/shoulder/shoulder_8.png" id="11_xbc2n"]
+[ext_resource type="Texture2D" uid="uid://cwjtftgrlulog" path="res://main/assets/rust.png" id="12_51ka1"]
+
+[sub_resource type="Shader" id="Shader_chm4n"]
+code = "shader_type canvas_item;
+
+uniform sampler2D rust_texture : source_color;
+uniform float rust_strength : hint_range(-1.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	vec4 rust = texture(rust_texture, UV);
+
+	float blend = rust.a * rust_strength;
+
+	COLOR = vec4(
+		base.rgb * mix(vec3(1.0), rust.rgb, blend),
+		base.a
+	) * COLOR;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o8v4"]
+resource_local_to_scene = true
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("12_51ka1")
+shader_parameter/rust_strength = -1.0
+
+[node name="Robot" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts") instance=ExtResource("1_k5thq")]
+script = ExtResource("2_ywd0x")
+custom_parts = []
+inside_parts = []
+color_palette = []
+
+[node name="Head" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="0" unique_id=445030624]
+offset_left = -168.5
+offset_top = -190.036
+offset_right = 169.5
+offset_bottom = 158.964
+texture = ExtResource("3_qbw2t")
+
+[node name="HeadTop" parent="Wireframe/Head" index="1" unique_id=1111886860]
+texture = null
+
+[node name="Eyes" parent="Wireframe/Head" index="2" unique_id=1012287820]
+offset_top = -130.98401
+offset_bottom = 19.015991
+texture = ExtResource("4_ocjsf")
+
+[node name="Mouth" parent="Wireframe/Head" index="3" unique_id=563573763]
+offset_top = -48.48401
+offset_bottom = 160.51599
+texture = ExtResource("5_31aep")
+
+[node name="Ears" parent="Wireframe/Head" index="4" unique_id=2100132916]
+offset_left = -288.0
+offset_top = -114.5
+offset_right = 289.0
+offset_bottom = 159.5
+texture = ExtResource("6_7xbrf")
+
+[node name="Nose" parent="Wireframe/Head" index="6" unique_id=1772832644]
+offset_left = -178.0
+offset_top = -66.5
+offset_right = 174.0
+offset_bottom = 110.5
+texture = ExtResource("7_j04a6")
+can_wreck = true
+
+[node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1929036463]
+offset_left = -225.5
+offset_top = -104.304016
+offset_right = 226.5
+offset_bottom = 168.69598
+texture = ExtResource("8_0v03g")
+
+[node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=1674611870]
+texture = ExtResource("9_0mb2a")
+
+[node name="LeftArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="3" unique_id=1720877252]
+texture = ExtResource("10_8ksim")
+
+[node name="LeftShoulder" parent="Wireframe/LeftArm" index="2" unique_id=1301256859]
+offset_left = -143.0
+offset_top = -196.127
+offset_right = 144.0
+offset_bottom = 96.873
+texture = ExtResource("11_xbc2n")
+
+[node name="RightArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="4" unique_id=1702133536]
+texture = ExtResource("10_8ksim")
+
+[node name="RightShoulder" parent="Wireframe/RightArm" index="2" unique_id=389838525]
+material = SubResource("ShaderMaterial_2o8v4")
+offset_left = -138.0
+offset_top = -209.736
+offset_right = 149.0
+offset_bottom = 83.264
+texture = ExtResource("11_xbc2n")
