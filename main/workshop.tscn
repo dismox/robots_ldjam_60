@@ -17,9 +17,23 @@
 [ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dwflukicymp4d" path="res://main/assets/ui/pricetag.png" id="11_yfhdg"]
 [ext_resource type="PackedScene" uid="uid://cwik70hotsvmd" path="res://main/particles/dust_particles.tscn" id="12_4n5ef"]
+[ext_resource type="FontFile" uid="uid://c8jubn3pjesot" path="res://main/assets/fonts/Albertsthal Typewriter.ttf" id="13_0f3bu"]
 [ext_resource type="PackedScene" uid="uid://dt6xglgxu7t6j" path="res://main/particles/paint_particles.tscn" id="14_7tsgm"]
 [ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
 [ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="15_3mocd"]
+[ext_resource type="FontFile" uid="uid://cuvdph8ilxe4j" path="res://main/assets/fonts/ALBAS___.TTF" id="17_dgth2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8dvs4"]
+font = ExtResource("13_0f3bu")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jdled"]
+font = ExtResource("17_dgth2")
+font_size = 41
+font_color = Color(0.8887008, 0.86864185, 0.8631793, 1)
+outline_size = 18
+outline_color = Color(0.17410353, 0.1496839, 0.13339686, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7tsgm"]
 particles_animation = true
@@ -314,7 +328,8 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.123166606
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "000"
+text = "1870"
+label_settings = SubResource("LabelSettings_8dvs4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -365,13 +380,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -185.0
-offset_top = -46.5
-offset_right = 116.0
-offset_bottom = 23.5
+offset_left = -176.0
+offset_top = -47.5
+offset_right = 125.0
+offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Next"
+text = "NEXT CUSTOMER"
+label_settings = SubResource("LabelSettings_jdled")
 horizontal_alignment = 1
 vertical_alignment = 1
 
