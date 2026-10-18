@@ -89,7 +89,8 @@ func change_color(color: Color):
 	self_modulate = color
 	current_color = self_modulate
 	if particles:
-		particles.modulate = self_modulate
+		particles.modulate = self_modulate /  2.0
+		particles.modulate.a = 1.0
 	
 func change_body_part(type: Type, texture_id: int) -> void:
 	texture = Global.body_part_database.get_body_part_texture(type, texture_id)

@@ -58,14 +58,14 @@ func _on_next_button_pressed() -> void:
 	if Global.current_robot:
 		check_result()
 		Global.current_robot.queue_free()
-		var new_robot_scene: PackedScene = load("res://main/robot/robot.tscn")
-		var robot: Robot = new_robot_scene.instantiate()
-		robot.generate()
-		robot_start_position.add_child(robot)
-		#robot.position = robot_start_position.global_position
-		Global.move_to(robot, robot_end_position.global_position)
-		for part in robot.custom_parts:
-			Global.shake_control(part, 30.0)
+	var new_robot_scene: PackedScene = load("res://main/robot/robot.tscn")
+	var robot: Robot = new_robot_scene.instantiate()
+	robot.generate()
+	robot_start_position.add_child(robot)
+	#robot.position = robot_start_position.global_position
+	Global.move_to(robot, robot_end_position.global_position)
+	for part in robot.custom_parts:
+		Global.shake_control(part, 30.0)
 
 func check_result() -> void:
 	pass
