@@ -11,6 +11,8 @@ var current_item: Item
 @onready var money: Label = %Money
 @onready var list_label: Label = %ListLabel
 @onready var paint_container: GridContainer = %PaintContainer
+@onready var paint_drawer: TextureRect = %PaintDrawer
+@onready var color_container: TextureRect = %ColorContainer
 
 
 func _ready() -> void:
@@ -22,8 +24,11 @@ func _ready() -> void:
 
 func fill_paint_container():
 	var paints = paint_container.get_children()
-	for i in range(paints.size()):
-		paints[i].modulate = Global.ROBOT_PALETTE.color_palette[i]
+	for i in range(Global.ROBOT_PALETTE.color_palette.size()):
+		if i > 0:
+			paint_container.add_child(color_container.duplicate())
+		paint_container.get_child(i).modulate = Global.ROBOT_PALETTE.color_palette[i]
+		#paints[i]
 
 func _on_money_changed(value: int):
 	money.text = "$" + str(Global.money)
@@ -109,3 +114,15 @@ func check_result() -> void:
 
 func _on_panic_button_pressed() -> void:
 	pass # Replace with function body.
+
+func show_paint_drawer() -> void:
+	Global.move_to(paint_drawer, Vector2(280.0, paint_drawer.position.y), 1.0)
+	
+func hide_paint_drawer() -> void:
+	Global.move_to(paint_drawer, Vector2(-280.0, paint_drawer.position.y), 1.0)
+
+func change_color(color: Color) -> void:
+	$UILayer/Paint/PaintColor.self_modulate = color
+	$GameObjectLayer/CurrentItemNode/Paint/PaintColor.self_modulate = color
+	%PaintParticles.self_modulate = color
+	hide_paint_drawer()

@@ -36,27 +36,15 @@ func emit_particles(value: bool):
 			Item.ItemType.SAW:
 				%SawParticles.emitting = value
 
-
-func _change_item(item: Item):
-	var current_item: Item = Global.game_scene.current_item
-	if current_item:
-		if current_item == item:
-			current_item.self_modulate = Color.WHITE
-			#current_item_node.texture = null
-		else:
-			current_item.self_modulate = Color.WHITE
-	current_item = item
-	current_item.self_modulate = Color.TRANSPARENT
-	#current_item_node.texture = current_item.texture
-	
 	
 func change_item(item: Item):
+	Global.shake_control(self, 20, 1.0)
 	if Global.game_scene.current_item:
 		#if current_item == item:
 		#	current_item.self_modulate = Color.WHITE
-		Global.game_scene.current_item.self_modulate = Color.WHITE
+		Global.game_scene.current_item.modulate = Color.WHITE
 	Global.game_scene.current_item = item
-	Global.game_scene.current_item.self_modulate = Color.TRANSPARENT
+	Global.game_scene.current_item.modulate = Color(0.2, 0.2, 0.2, 1.0)
 		
 	drill.hide()
 	polisher.hide()
@@ -66,11 +54,15 @@ func change_item(item: Item):
 	match item.type:
 		Item.ItemType.DRILL:
 			drill.show()
+			Global.game_scene.hide_paint_drawer()
 		Item.ItemType.POLISHER:
 			polisher.show()
+			Global.game_scene.hide_paint_drawer()
 		Item.ItemType.PAINT:
 			paint.show()
+			Global.game_scene.show_paint_drawer()
 		Item.ItemType.SAW:
 			saw.show()
+			Global.game_scene.hide_paint_drawer()
 
 	

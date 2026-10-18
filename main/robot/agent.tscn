@@ -32,7 +32,7 @@ void fragment() {
 	) * COLOR;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrdww"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_po0n5"]
 resource_local_to_scene = true
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("13_po0n5")
@@ -52,14 +52,14 @@ offset_bottom = 182.244
 texture = ExtResource("3_ptdxf")
 
 [node name="HeadTop" parent="Wireframe/Head" index="1" unique_id=1111886860]
-offset_left = -214.5
-offset_top = -60.335983
-offset_right = 219.5
-offset_bottom = 166.66402
+anchor_top = 0.006
+anchor_bottom = 0.006
+offset_left = -217.0
+offset_top = -113.34797
+offset_right = 217.0
+offset_bottom = 113.65203
+grow_vertical = 2
 texture = ExtResource("4_tbmsl")
-
-[node name="BoltParticles" parent="Wireframe/Head/HeadTop" index="0" unique_id=493265499]
-emitting = false
 
 [node name="Eyes" parent="Wireframe/Head" index="2" unique_id=1012287820]
 z_index = 5
@@ -76,18 +76,12 @@ offset_right = 233.5
 offset_bottom = 72.28
 texture = ExtResource("6_jrdww")
 
-[node name="BoltParticles" parent="Wireframe/Head/Mouth" index="0" unique_id=1088554949]
-emitting = false
-
 [node name="Ears" parent="Wireframe/Head" index="4" unique_id=2100132916]
 offset_left = -456.5
 offset_top = -94.0
 offset_right = 120.5
 offset_bottom = 51.0
 texture = ExtResource("7_xja8g")
-
-[node name="BoltParticles" parent="Wireframe/Head/Ears" index="0" unique_id=90581697]
-emitting = false
 
 [node name="Nose" parent="Wireframe/Head" index="6" unique_id=1772832644]
 offset_left = -109.5
@@ -96,14 +90,8 @@ offset_right = 109.5
 offset_bottom = 49.0
 texture = ExtResource("8_nugae")
 
-[node name="BoltParticles" parent="Wireframe/Head/Nose" index="0" unique_id=1420413534]
-emitting = false
-
 [node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1929036463]
 texture = ExtResource("9_1lx44")
-
-[node name="BoltParticles" parent="Wireframe/BodyBottom" index="1" unique_id=935642460]
-emitting = false
 
 [node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=1674611870]
 offset_left = -248.5
@@ -112,14 +100,8 @@ offset_right = 249.5
 offset_bottom = 188.0
 texture = ExtResource("10_nrkdu")
 
-[node name="BoltParticles" parent="Wireframe/BodyTop" index="1" unique_id=356535094]
-emitting = false
-
 [node name="LeftArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="3" unique_id=1720877252]
 texture = ExtResource("11_lllbe")
-
-[node name="BoltParticles" parent="Wireframe/LeftArm" index="1" unique_id=1918213950]
-emitting = false
 
 [node name="LeftShoulder" parent="Wireframe/LeftArm" index="2" unique_id=1301256859]
 offset_left = -163.00002
@@ -128,22 +110,13 @@ offset_right = 103.21376
 offset_bottom = 222.04999
 texture = ExtResource("12_3da0l")
 
-[node name="BoltParticles" parent="Wireframe/LeftArm/LeftShoulder" index="0" unique_id=580078497]
-emitting = false
-
 [node name="RightArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="4" unique_id=1702133536]
 texture = ExtResource("11_lllbe")
 
-[node name="BoltParticles" parent="Wireframe/RightArm" index="1" unique_id=731095502]
-emitting = false
-
 [node name="RightShoulder" parent="Wireframe/RightArm" index="2" unique_id=389838525]
-material = SubResource("ShaderMaterial_jrdww")
+material = SubResource("ShaderMaterial_po0n5")
 offset_left = -104.5
 offset_top = -189.5
 offset_right = 161.71375
 offset_bottom = 220.5
 texture = ExtResource("12_3da0l")
-
-[node name="BoltParticles" parent="Wireframe/RightArm/RightShoulder" index="0" unique_id=287667304]
-emitting = false
