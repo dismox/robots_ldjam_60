@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cwik70hotsvmd"]
+
+[ext_resource type="Texture2D" uid="uid://ctlvyvkho67nd" path="res://main/assets/particle/spray_sheet.png" id="1_6mlvi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vrhw8"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_6mlvi"]
+colors = PackedColorArray(0.7111256, 0.66994804, 0.5472584, 1, 0.93695295, 0.90419483, 0.67825717, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrhw8"]
+gradient = SubResource("Gradient_6mlvi")
+
+[sub_resource type="Curve" id="Curve_buy4y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10819672, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.3773155, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_buy4y"]
+curve = SubResource("Curve_buy4y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yplvi"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 37.68
+angle_min = -108.29999
+angle_max = 64.10001
+spread = 111.742
+angular_velocity_min = -60.160015
+angular_velocity_max = 143.29999
+radial_velocity_min = 27.859978
+radial_velocity_max = 50.139977
+gravity = Vector3(0, 0, 0)
+damping_max = 78.01601
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_buy4y")
+color_initial_ramp = SubResource("GradientTexture1D_vrhw8")
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=848403985]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_vrhw8")
+scale = Vector2(2.81, 1)
+amount = 10
+texture = ExtResource("1_6mlvi")
+speed_scale = 2.5
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_yplvi")
