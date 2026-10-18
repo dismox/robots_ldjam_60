@@ -28,7 +28,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			if !avaible:
 				buy_item()
 			else:
-				Global.game_scene.change_item(self)
+				Global.game_scene.current_item_node.change_item(self)
 
 func _on_mouse_entered() -> void:
 	Global.shake_control(self)

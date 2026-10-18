@@ -2,6 +2,13 @@ extends TextureRect
 
 var mouse_pressed: bool = false
 
+@onready var drill: TextureRect = $Drill
+@onready var polisher: TextureRect = $Polisher
+@onready var paint: TextureRect = $Paint
+@onready var paint_color: TextureRect = $Paint/PaintColor
+@onready var saw: TextureRect = $Saw
+
+
 func _process(_delta: float) -> void:
 	position = get_global_mouse_position() - size/6
 
@@ -28,3 +35,42 @@ func emit_particles(value: bool):
 				%PaintParticles.emitting = value
 			Item.ItemType.SAW:
 				%SawParticles.emitting = value
+
+
+func _change_item(item: Item):
+	var current_item: Item = Global.game_scene.current_item
+	if current_item:
+		if current_item == item:
+			current_item.self_modulate = Color.WHITE
+			#current_item_node.texture = null
+		else:
+			current_item.self_modulate = Color.WHITE
+	current_item = item
+	current_item.self_modulate = Color.TRANSPARENT
+	#current_item_node.texture = current_item.texture
+	
+	
+func change_item(item: Item):
+	if Global.game_scene.current_item:
+		#if current_item == item:
+		#	current_item.self_modulate = Color.WHITE
+		Global.game_scene.current_item.self_modulate = Color.WHITE
+	Global.game_scene.current_item = item
+	Global.game_scene.current_item.self_modulate = Color.TRANSPARENT
+		
+	drill.hide()
+	polisher.hide()
+	paint.hide()
+	saw.hide()
+	
+	match item.type:
+		Item.ItemType.DRILL:
+			drill.show()
+		Item.ItemType.POLISHER:
+			polisher.show()
+		Item.ItemType.PAINT:
+			paint.show()
+		Item.ItemType.SAW:
+			saw.show()
+
+	

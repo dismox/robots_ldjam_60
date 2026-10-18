@@ -28,6 +28,11 @@
 [ext_resource type="Texture2D" uid="uid://dxfrnbft8y2lh" path="res://main/assets/tools/paint_2.png" id="15_jgwn3"]
 [ext_resource type="FontFile" uid="uid://cuvdph8ilxe4j" path="res://main/assets/fonts/ALBAS___.TTF" id="17_dgth2"]
 [ext_resource type="Texture2D" uid="uid://p3fsdly1leni" path="res://main/assets/ui/todo_lines.png" id="19_avfl2"]
+[ext_resource type="Texture2D" uid="uid://bv4ykmg8wkbxt" path="res://main/assets/ui/next_button_pressed.png" id="21_83spd"]
+[ext_resource type="Texture2D" uid="uid://bvwyxbvyxvn7x" path="res://main/assets/ui/next_button_hovered.png" id="22_g5gjt"]
+[ext_resource type="Texture2D" uid="uid://twq0ofisd1um" path="res://main/assets/ui/panic_button.png" id="24_5m0js"]
+[ext_resource type="Texture2D" uid="uid://7a14n74xgiqh" path="res://main/assets/ui/panic_button_pressed.png" id="25_jgwn3"]
+[ext_resource type="Texture2D" uid="uid://bmsa21p1hnvwg" path="res://main/assets/ui/drawer_parts.png" id="28_undrf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
 font = ExtResource("14_k7k2e")
@@ -168,7 +173,7 @@ mouse_filter = 2
 show_behind_parent = true
 scroll_offset = Vector2(289, 940)
 repeat_size = Vector2(183, 183)
-autoscroll = Vector2(20, 20)
+autoscroll = Vector2(50, 50)
 repeat_times = 15
 follow_viewport = false
 
@@ -179,6 +184,7 @@ texture = ExtResource("9_o0rdg")
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1600925358]
 
 [node name="Drawer" type="TextureRect" parent="UILayer" unique_id=1498818115]
+visible = false
 offset_left = 280.0
 offset_top = 508.0
 offset_right = 959.0
@@ -508,9 +514,9 @@ offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("15_1pnch")
-texture_pressed = ExtResource("15_1pnch")
-texture_hover = ExtResource("15_1pnch")
-texture_disabled = ExtResource("15_1pnch")
+texture_pressed = ExtResource("21_83spd")
+texture_hover = ExtResource("22_g5gjt")
+texture_disabled = ExtResource("21_83spd")
 texture_focused = ExtResource("15_1pnch")
 
 [node name="Label" type="Label" parent="UILayer/NextButton" unique_id=1659960923]
@@ -572,6 +578,51 @@ text = "REQUIREMENTS:"
 label_settings = SubResource("LabelSettings_avfl2")
 autowrap_mode = 2
 
+[node name="PanicButton" type="TextureButton" parent="UILayer" unique_id=1603140766]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_top = -447.0
+offset_right = 29.0
+offset_bottom = -216.0
+grow_horizontal = 0
+grow_vertical = 0
+toggle_mode = true
+texture_normal = ExtResource("24_5m0js")
+texture_pressed = ExtResource("25_jgwn3")
+texture_hover = ExtResource("24_5m0js")
+texture_disabled = ExtResource("24_5m0js")
+texture_focused = ExtResource("24_5m0js")
+
+[node name="PartsDrawer" type="TextureRect" parent="UILayer" unique_id=1900642551]
+offset_left = 453.0
+offset_top = -1048.0
+offset_right = 1435.0
+offset_bottom = -36.0
+texture = ExtResource("28_undrf")
+
+[node name="TextureButton" type="TextureButton" parent="UILayer/PartsDrawer" unique_id=655712282]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -229.0
+offset_right = 218.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("15_1pnch")
+texture_pressed = ExtResource("21_83spd")
+texture_hover = ExtResource("22_g5gjt")
+texture_disabled = ExtResource("21_83spd")
+texture_focused = ExtResource("15_1pnch")
+
 [node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
 unique_name_in_owner = true
 
@@ -616,6 +667,59 @@ show_behind_parent = true
 emitting = false
 speed_scale = 2.0
 
+[node name="Drill" type="TextureRect" parent="GameObjectLayer/CurrentItemNode" unique_id=748923971]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("7_ei2x0")
+stretch_mode = 2
+
+[node name="Polisher" type="TextureRect" parent="GameObjectLayer/CurrentItemNode" unique_id=1672978216]
+visible = false
+layout_mode = 0
+offset_left = -80.0
+offset_top = -90.0
+offset_right = 162.0
+offset_bottom = 153.00002
+mouse_filter = 2
+texture = ExtResource("9_3m56o")
+stretch_mode = 2
+
+[node name="Paint" type="TextureRect" parent="GameObjectLayer/CurrentItemNode" unique_id=1703495472]
+visible = false
+layout_mode = 0
+offset_left = -30.0
+offset_top = -24.0
+offset_right = 212.0
+offset_bottom = 219.0
+mouse_filter = 2
+texture = ExtResource("14_5m0js")
+stretch_mode = 2
+
+[node name="PaintColor" type="TextureRect" parent="GameObjectLayer/CurrentItemNode/Paint" unique_id=1126627802]
+show_behind_parent = true
+layout_mode = 1
+offset_left = 10.0
+offset_top = 13.0
+offset_right = 185.0
+offset_bottom = 190.0
+mouse_filter = 2
+texture = ExtResource("15_jgwn3")
+stretch_mode = 2
+
+[node name="Saw" type="TextureRect" parent="GameObjectLayer/CurrentItemNode" unique_id=1228446265]
+visible = false
+layout_mode = 0
+offset_left = -32.0
+offset_top = -120.0
+offset_right = 249.0
+offset_bottom = 114.0
+mouse_filter = 2
+texture = ExtResource("11_o0rdg")
+stretch_mode = 2
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=340578607]
 position = Vector2(326, 538)
 
@@ -629,3 +733,4 @@ position = Vector2(326, 538)
 [connection signal="mouse_entered" from="UILayer/Saw" to="UILayer/Saw" method="_on_mouse_entered"]
 [connection signal="toggled" from="UILayer/XRayButton" to="." method="_on_x_ray_button_toggled"]
 [connection signal="pressed" from="UILayer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="UILayer/PanicButton" to="." method="_on_panic_button_pressed"]

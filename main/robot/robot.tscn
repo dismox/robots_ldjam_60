@@ -200,6 +200,7 @@ is_shaking = true
 show_behind_parent = true
 position = Vector2(47, 65)
 scale = Vector2(1.675, 0.12)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/Head/HeadTop" unique_id=1178076783 instance=ExtResource("7_cg33d")]
@@ -265,6 +266,7 @@ is_shaking = true
 show_behind_parent = true
 position = Vector2(176, 64)
 scale = Vector2(2.62, 0.31)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/Head/Mouth" unique_id=195831529 instance=ExtResource("7_cg33d")]
@@ -304,6 +306,7 @@ is_shaking = true
 show_behind_parent = true
 position = Vector2(280, 48)
 scale = Vector2(7.27, 0.33)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/Head/Ears" unique_id=753720069 instance=ExtResource("7_cg33d")]
@@ -360,11 +363,13 @@ texture = ExtResource("6_8dvs4")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 2
+can_wreck = false
 is_shaking = true
 
 [node name="BoltParticles" parent="Wireframe/Head/Nose" unique_id=1420413534 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(16, 16)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/Head/Nose" unique_id=338911709 instance=ExtResource("7_cg33d")]
@@ -418,6 +423,7 @@ has_color = false
 show_behind_parent = true
 position = Vector2(223.99997, 40)
 scale = Vector2(5.99, 1)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/BodyBottom" unique_id=1744900581 instance=ExtResource("7_cg33d")]
@@ -463,6 +469,7 @@ explosiveness = 1.0
 [node name="BoltParticles" parent="Wireframe/BodyTop" unique_id=356535094 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(240, 24)
+emitting = false
 amount = 9
 
 [node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
@@ -515,6 +522,7 @@ explosiveness = 1.0
 [node name="BoltParticles" parent="Wireframe/LeftArm" unique_id=1918213950 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(80, 344)
+emitting = false
 amount = 9
 
 [node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
@@ -544,6 +552,7 @@ is_shaking = true
 [node name="BoltParticles" parent="Wireframe/LeftArm/LeftShoulder" unique_id=580078497 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(136, 112)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/LeftArm/LeftShoulder" unique_id=389319702 instance=ExtResource("7_cg33d")]
@@ -590,6 +599,7 @@ explosiveness = 1.0
 [node name="BoltParticles" parent="Wireframe/RightArm" unique_id=731095502 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(72, 344)
+emitting = false
 amount = 9
 
 [node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
@@ -620,6 +630,7 @@ is_shaking = true
 [node name="BoltParticles" parent="Wireframe/RightArm/RightShoulder" unique_id=287667304 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(120, 120)
+emitting = false
 amount = 9
 
 [node name="SparkParticles" parent="Wireframe/RightArm/RightShoulder" unique_id=505869589 instance=ExtResource("7_cg33d")]
