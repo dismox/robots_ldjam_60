@@ -42,7 +42,10 @@ func generate():
 		if part.can_rust:
 			part.set_rust_level(randf())
 		if part.can_wreck:
-			part.set_wreckness(randf())
+			if randf() > 0.6:
+				part.set_wreckness(1.0)
+			else:
+				part.set_wreckness(0.0)
 		if part.has_color:
 			part.prefered_color = main_color
 			part.change_color(main_color)

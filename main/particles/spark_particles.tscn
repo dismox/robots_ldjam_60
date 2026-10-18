@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dlgq5pbhh3fdj"]
+
+[ext_resource type="Texture2D" uid="uid://dcjr3s47gsqhx" path="res://main/assets/particle/sparkle_sheet.png" id="1_01dux"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jqa0h"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_7ubaa"]
+colors = PackedColorArray(0.9999998, 0.9242158, 0.51184136, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cg33d"]
+gradient = SubResource("Gradient_7ubaa")
+
+[sub_resource type="Curve" id="Curve_buy4y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10819672, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.3773155, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_buy4y"]
+curve = SubResource("Curve_buy4y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipttd"]
+particle_flag_disable_z = true
+angle_min = -108.29999
+angle_max = 64.10001
+spread = 180.0
+angular_velocity_min = -52.140015
+angular_velocity_max = 60.169983
+radial_velocity_min = 133.69998
+radial_velocity_max = 245.11996
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_buy4y")
+color_initial_ramp = SubResource("GradientTexture1D_cg33d")
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=848403985]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_jqa0h")
+scale = Vector2(2.81, 1)
+amount = 10
+texture = ExtResource("1_01dux")
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ipttd")
