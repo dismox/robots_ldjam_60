@@ -8,8 +8,13 @@ class_name BodyPart
 @export var prefered_body_part: int
 @export var current_body_part: int
 
-@export var rust_level: float = 0.0
+@export var can_wreck: bool = true
+@export var wreckness: float = 0.0
+
 @export var can_rust: bool = true
+@export var rust_level: float = 0.0
+
+
 @export var has_color: bool = true
 @export var is_shaking: bool = false
 
@@ -22,6 +27,8 @@ var shake_speed: float = 50000.0
 var modulation_tween: Tween
 
 var is_mouse_hovered: bool = false
+
+var particles: GPUParticles2D
 
 enum Type {
 	HEAD,
@@ -38,6 +45,11 @@ enum Type {
 	HEART,
 	GUTS
 }
+
+func _ready() -> void:
+	if $BoltParticles:
+		particles = $BoltParticles
+		particles.modulate = current_color
 
 func _process(delta: float) -> void:
 	if is_mouse_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -63,12 +75,23 @@ func _process(delta: float) -> void:
 func set_shake_strength(value: float) -> void:
 	target_shake_strength = maxf(value, 0.0)
 
+func set_wreckness(value: float) -> void:
+	value = clamp(value, 0.0, 1.0)
+	wreckness = value
+	if particles:
+		if value > 0.0:
+			particles.emitting = true
+			particles.amount = int(value * 10)
+		else:
+			particles.emitting = false
 
 func change_color(color: Color):
 	self_modulate = color
 	current_color = self_modulate
+	if particles:
+		particles.modulate = self_modulate
 	
-func change_body_part(type: Type, texture_id: int):
+func change_body_part(type: Type, texture_id: int) -> void:
 	texture = Global.body_part_database.get_body_part_texture(type, texture_id)
 	current_body_part = texture_id
 

@@ -40,9 +40,13 @@ func _on_mouse_entered() -> void:
 func process_item(part: BodyPart) -> void:
 	match type:
 		ItemType.DRILL:
-			Global.shake_control(part, 20.0, 0.1)
+			if part.can_wreck:
+				Global.shake_control(part, 10.0, 0.1)
+				part.set_wreckness(part.wreckness - 0.01)
 		ItemType.POLISHER:
-			part.set_rust_level(part.rust_level - 0.01)
+			if part.can_rust:
+				Global.shake_control(part, 10.0, 0.1)
+				part.set_rust_level(part.rust_level - 0.01)
 		ItemType.PAINT:
 			pass
 		ItemType.SAW:

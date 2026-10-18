@@ -41,6 +41,8 @@ func generate():
 		part.connect("gui_input", part._on_gui_input)
 		if part.can_rust:
 			part.set_rust_level(randf())
+		if part.can_wreck:
+			part.set_wreckness(randf())
 		if part.has_color:
 			part.prefered_color = main_color
 			part.change_color(main_color)

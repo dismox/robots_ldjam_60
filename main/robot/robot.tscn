@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="11_asxop"]
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
 [ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
+[ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="16_8dvs4"]
 
 [sub_resource type="Shader" id="Shader_chm4n"]
 code = "shader_type canvas_item;
@@ -129,6 +130,7 @@ mouse_filter = 0
 texture = ExtResource("2_ayiut")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
+can_wreck = false
 can_rust = false
 has_color = false
 is_shaking = true
@@ -184,6 +186,12 @@ script = ExtResource("2_ewvo3")
 type = 1
 is_shaking = true
 
+[node name="BoltParticles" parent="Wireframe/Head/HeadTop" unique_id=493265499 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(47, 65)
+scale = Vector2(1.675, 0.12)
+amount = 9
+
 [node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
 unique_name_in_owner = true
 z_index = 3
@@ -204,6 +212,7 @@ texture = ExtResource("7_jdled")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 3
+can_wreck = false
 can_rust = false
 has_color = false
 
@@ -230,6 +239,12 @@ script = ExtResource("2_ewvo3")
 type = 4
 is_shaking = true
 
+[node name="BoltParticles" parent="Wireframe/Head/Mouth" unique_id=1088554949 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(176, 64)
+scale = Vector2(2.62, 0.31)
+amount = 9
+
 [node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
 unique_name_in_owner = true
 z_index = -1
@@ -255,6 +270,12 @@ script = ExtResource("2_ewvo3")
 type = 5
 is_shaking = true
 
+[node name="BoltParticles" parent="Wireframe/Head/Ears" unique_id=90581697 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(280, 48)
+scale = Vector2(7.27, 0.33)
+amount = 9
+
 [node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
 unique_name_in_owner = true
 visible = false
@@ -266,6 +287,7 @@ mouse_filter = 0
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 10
+can_wreck = false
 can_rust = false
 has_color = false
 
@@ -293,6 +315,11 @@ stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 2
 is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/Head/Nose" unique_id=1420413534 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(16, 16)
+amount = 9
 
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
@@ -328,8 +355,15 @@ mouse_filter = 0
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 12
+can_wreck = false
 can_rust = false
 has_color = false
+
+[node name="BoltParticles" parent="Wireframe/BodyBottom" unique_id=935642460 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(223.99997, 40)
+scale = Vector2(5.99, 1)
+amount = 9
 
 [node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
 unique_name_in_owner = true
@@ -355,6 +389,11 @@ script = ExtResource("2_ewvo3")
 type = 6
 is_shaking = true
 
+[node name="BoltParticles" parent="Wireframe/BodyTop" unique_id=356535094 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(240, 24)
+amount = 9
+
 [node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
 unique_name_in_owner = true
 visible = false
@@ -366,6 +405,7 @@ mouse_filter = 0
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 11
+can_wreck = false
 can_rust = false
 has_color = false
 
@@ -393,6 +433,11 @@ script = ExtResource("2_ewvo3")
 type = 8
 is_shaking = true
 
+[node name="BoltParticles" parent="Wireframe/LeftArm" unique_id=1918213950 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(80, 344)
+amount = 9
+
 [node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_12quv")
@@ -416,6 +461,11 @@ stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 9
 is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/LeftArm/LeftShoulder" unique_id=580078497 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(136, 112)
+amount = 9
 
 [node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
 unique_name_in_owner = true
@@ -442,6 +492,11 @@ script = ExtResource("2_ewvo3")
 type = 8
 is_shaking = true
 
+[node name="BoltParticles" parent="Wireframe/RightArm" unique_id=731095502 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(72, 344)
+amount = 9
+
 [node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_8dvs4")
@@ -466,3 +521,8 @@ flip_h = true
 script = ExtResource("2_ewvo3")
 type = 9
 is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/RightArm/RightShoulder" unique_id=287667304 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(120, 120)
+amount = 9
