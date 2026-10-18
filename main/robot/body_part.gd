@@ -78,6 +78,7 @@ func set_shake_strength(value: float) -> void:
 func set_wreckness(value: float) -> void:
 	value = clamp(value, 0.0, 1.0)
 	wreckness = value
+	#target_shake_strength = wreckness
 	if particles:
 		if value > 0.0:
 			particles.emitting = true
