@@ -21,6 +21,8 @@ var shake_speed: float = 50000.0
 
 var modulation_tween: Tween
 
+var is_mouse_hovered: bool = false
+
 enum Type {
 	HEAD,
 	HEAD_TOP,
@@ -38,6 +40,11 @@ enum Type {
 }
 
 func _process(delta: float) -> void:
+	if is_mouse_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var item = Global.game_scene.current_item
+		if item:
+			item.process_item(self)
+	
 	if !is_shaking:
 		return
 	shake_strength = lerpf(
@@ -66,19 +73,25 @@ func change_body_part(type: Type, texture_id: int):
 	current_body_part = texture_id
 
 func set_rust_level(value: float) -> void:
+	value = clamp(value, 0.0, 1.0)
 	rust_level = value
 	var rust_material := material as ShaderMaterial
 	rust_material.set_shader_parameter("rust_strength", rust_level)
 
 func _on_mouse_entered() -> void:
+	is_mouse_hovered = true
 	Global.shake_control(self)
 	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 		self_modulate += Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_mouse_exited() -> void:
+	is_mouse_hovered = false
 	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 		self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		Global.shake_control(self, 10, 0.1)
+
+
+	
