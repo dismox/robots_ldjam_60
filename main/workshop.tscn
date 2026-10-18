@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dmdukvpfsbpk4" path="res://main/assets/background.png" id="2_m2qia"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
 [ext_resource type="Texture2D" uid="uid://cagohirur5ktq" path="res://main/assets/ui/tools_panel.png" id="3_yitua"]
-[ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="5_gt6vn"]
 [ext_resource type="Texture2D" uid="uid://c63w55kimrot6" path="res://main/assets/ui/xray_button.png" id="7_a534b"]
 [ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
 [ext_resource type="Texture2D" uid="uid://cdt7c0hakaudk" path="res://main/assets/tools/drill.png" id="7_ei2x0"]
@@ -13,10 +12,49 @@
 [ext_resource type="Texture2D" uid="uid://detb3ssthygvt" path="res://main/assets/ui/xray_frame.png" id="8_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dlyrwrn0dy24c" path="res://main/assets/tools/polisher.png" id="9_3m56o"]
 [ext_resource type="Texture2D" uid="uid://bx1pmtashmap7" path="res://main/assets/ui/xray_tile.png" id="9_o0rdg"]
+[ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="10_4n5ef"]
 [ext_resource type="Texture2D" uid="uid://cba3pjecgmrcv" path="res://main/assets/tools/paint.png" id="10_q6u0f"]
 [ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dwflukicymp4d" path="res://main/assets/ui/pricetag.png" id="11_yfhdg"]
 [ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3mocd"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7tsgm"]
+load_path = "res://.godot/imported/particle_sheet.png-234bfb32eb4ac16a0b7af3c93db4e9e9.ctex"
+
+[sub_resource type="Gradient" id="Gradient_7ubaa"]
+colors = PackedColorArray(0.50534403, 0.5053441, 0.50534403, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cg33d"]
+gradient = SubResource("Gradient_7ubaa")
+
+[sub_resource type="Curve" id="Curve_buy4y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.35409838, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.3773155, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_buy4y"]
+curve = SubResource("Curve_buy4y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bxel"]
+particle_flag_disable_z = true
+angle_min = -108.29999
+angle_max = 64.10001
+spread = 111.742
+angular_velocity_min = -52.140015
+angular_velocity_max = 60.169983
+radial_velocity_min = -22.280022
+radial_velocity_max = 116.989975
+gravity = Vector3(0, 98, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_buy4y")
+color = Color(0.49747366, 0.49747366, 0.49747366, 1)
+color_initial_ramp = SubResource("GradientTexture1D_cg33d")
+anim_offset_max = 1.0
 
 [node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
@@ -39,10 +77,6 @@ texture = ExtResource("2_m2qia")
 unique_name_in_owner = true
 z_index = 4
 position = Vector2(-61, 641)
-
-[node name="Robot" parent="UILayer/RobotStartPosition" unique_id=560495161 instance=ExtResource("5_gt6vn")]
-z_index = 1
-position = Vector2(-544, 0)
 
 [node name="RobotEndPosition" type="Marker2D" parent="UILayer" unique_id=85788587]
 unique_name_in_owner = true
@@ -130,6 +164,12 @@ offset_bottom = 334.0
 offset_transform_enabled = true
 texture = ExtResource("7_ei2x0")
 script = ExtResource("7_eewe3")
+
+[node name="Particles" parent="UILayer/Drill" unique_id=493265499 instance=ExtResource("10_4n5ef")]
+material = SubResource("CanvasItemMaterial_3mocd")
+position = Vector2(8, 8)
+texture = SubResource("CompressedTexture2D_7tsgm")
+process_material = SubResource("ParticleProcessMaterial_1bxel")
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Drill" unique_id=1892118663]
 show_behind_parent = true
