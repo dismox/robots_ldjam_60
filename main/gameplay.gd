@@ -13,6 +13,9 @@ var current_item: Item
 @onready var paint_container: GridContainer = %PaintContainer
 @onready var paint_drawer: TextureRect = %PaintDrawer
 @onready var color_container: TextureRect = %ColorContainer
+@onready var parts_drawer: TextureRect = %PartsDrawer
+@onready var body_part: TextureRect = %BodyPart
+@onready var body_parts_container: GridContainer = %BodyPartsContainer
 
 var is_paint_drawer_active: bool = false
 
@@ -24,12 +27,10 @@ func _ready() -> void:
 	
 
 func fill_paint_container():
-	var paints = paint_container.get_children()
 	for i in range(Global.ROBOT_PALETTE.color_palette.size()):
 		if i > 0:
 			paint_container.add_child(color_container.duplicate())
 		paint_container.get_child(i).modulate = Global.ROBOT_PALETTE.color_palette[i]
-		#paints[i]
 
 func _on_money_changed(value: int):
 	money.text = "$" + str(Global.money)
@@ -129,3 +130,22 @@ func change_color(color: Color) -> void:
 	$GameObjectLayer/CurrentItemNode/Paint/PaintColor.self_modulate = color
 	%PaintParticles.self_modulate = color
 	hide_paint_drawer()
+
+
+func fill_parts_container(type: BodyPart.Type):
+	var parts_amount = Global.BODY_PART_DATABASE.get_body_part_array_size(type)
+	for part in body_parts_container.get_children():
+		part.queue_free()
+	
+	for i in range(parts_amount):
+		var new_part = body_part.duplicate(true)
+		body_parts_container.add_child(new_part)
+		new_part.show()
+		new_part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, i)
+
+func show_parts_drawer(type: BodyPart.Type) -> void:
+	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, 0), 1.0)
+	fill_parts_container(type)
+	
+func hide_parts_drawer() -> void:
+	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -1080.0), 1.0)

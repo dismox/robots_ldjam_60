@@ -34,62 +34,6 @@ func _ready() -> void:
 	generate()
 	Global.current_robot = self
 
-func _generate():
-	main_color = color_palette.pick_random()
-	var remain_palette = color_palette
-	remain_palette.pop_at(color_palette.find(color_palette))
-	for part in custom_parts:
-		part.connect("mouse_entered", part._on_mouse_entered)
-		part.connect("mouse_exited", part._on_mouse_exited)
-		part.connect("gui_input", part._on_gui_input)
-		if part.can_rust:
-			part.set_rust_level(randf())
-		if part.can_wreck:
-			if randf() > 0.6:
-				part.set_wreckness(randf())
-			else:
-				part.set_wreckness(0.0)
-		if part.has_color:
-			part.prefered_color = main_color
-			part.change_color(main_color)
-		part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(part.type, randi() % 7)
-		#part.size = Vector2.ZERO
-	var random_color_parts_amount: int = randi() % 3
-	if random_color_parts_amount > 0:
-		for i in range(random_color_parts_amount):
-			var part = custom_parts.pick_random()
-			if part.has_color:
-				part.change_color(remain_palette.pick_random())
-				#part.change_color(Color.from_hsv(randf(), 0.7, 1.0, 1.5))
-				
-	generate_requirements()
-
-
-func _generate_requirements() -> void:
-	requirements.clear()
-
-	for part in custom_parts:
-		if part.can_wreck and part.wreckness > 0.0:
-			var requirement := Requirement.new()
-
-			if part.wreckness > 0.0:
-				requirement.init(Requirement.Type.REPAIR, part)
-			#else:
-			#	requirement.init(Requirement.Type.REPAIR, part)
-
-			requirements.append(requirement)
-
-		if part.can_rust and part.rust_level > 0.0:
-			var requirement := Requirement.new()
-			requirement.init(Requirement.Type.POLISHING, part)
-			requirements.append(requirement)
-
-		if part.has_color and part.current_color != main_color:
-			var requirement := Requirement.new()
-			requirement.init(Requirement.Type.PAINTING, part)
-			requirements.append(requirement)
-
-
 func generate() -> void:
 	requirements.clear()
 	main_color = color_palette.pick_random()
@@ -107,14 +51,14 @@ func generate() -> void:
 			part.connect("gui_input", part._on_gui_input)
 
 		if part.can_rust:
-			part.set_rust_level(0.0)
+			part.set_rust_level(0.0, false)
 
 		if part.can_wreck:
-			part.set_wreckness(0.0)
+			part.set_wreckness(0.0, false)
 
 		if part.has_color:
 			part.prefered_color = main_color
-			part.change_color(main_color)
+			part.change_color(main_color, false)
 
 		var textures_amount = Global.BODY_PART_DATABASE.get_body_part_array_size(part.type)
 		if textures_amount > 0:

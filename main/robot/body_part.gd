@@ -27,6 +27,7 @@ var shake_speed: float = 50000.0
 var modulation_tween: Tween
 
 var is_mouse_hovered: bool = false
+var durability: int = 100
 
 var particles: GPUParticles2D
 
@@ -75,7 +76,9 @@ func _process(delta: float) -> void:
 func set_shake_strength(value: float) -> void:
 	target_shake_strength = maxf(value, 0.0)
 
-func set_wreckness(value: float) -> void:
+func set_wreckness(value: float, emit_particles: bool = true) -> void:
+	if !can_wreck:
+		return
 	value = clamp(value, 0.0, 1.0)
 	wreckness = value
 	#target_shake_strength = wreckness
@@ -84,19 +87,28 @@ func set_wreckness(value: float) -> void:
 			particles.emitting = true
 			particles.amount = int(value * 10)
 		else:
-			if $SparkParticles:
-				$SparkParticles.emitting = true
-			if $SparkParticles2:
-				$SparkParticles2.emitting = true
+			if emit_particles:
+				if $SparkParticles:
+					$SparkParticles.emitting = true
+				if $SparkParticles2:
+					$SparkParticles2.emitting = true
 			particles.emitting = false
 
-func change_color(color: Color):
+func set_durability(value: int) -> void:
+	value = clamp(value, 0, 100)
+	durability = value
+	if value == 0:
+		texture = null
+		set_rust_level(0.0, false)
+		set_wreckness(0.0, false)
+
+func change_color(color: Color, emit_particles: bool = true):
 	self_modulate = color
 	current_color = self_modulate
 	if particles:
 		particles.modulate = self_modulate /  2.0
 		particles.modulate.a = 1.0
-	if current_color == prefered_color:
+	if current_color == prefered_color and emit_particles:
 		if $SparkParticles:
 			$SparkParticles.emitting = true
 		if $SparkParticles2:
@@ -117,10 +129,12 @@ func change_body_part(type: Type, texture_id: int) -> void:
 	texture = Global.body_part_database.get_body_part_texture(type, texture_id)
 	current_body_part = texture_id
 
-func set_rust_level(value: float) -> void:
+func set_rust_level(value: float, emit_particles: bool = true) -> void:
+	if !can_rust:
+		return
 	value = clamp(value, -1.0, 1.0)
 	rust_level = value
-	if rust_level == -1.0:
+	if rust_level == -1.0 and emit_particles:
 		if $SparkParticles:
 			$SparkParticles.emitting = true
 		if $SparkParticles2:
@@ -130,19 +144,25 @@ func set_rust_level(value: float) -> void:
 	rust_material.set_shader_parameter("rust_strength", rust_level)
 
 func _on_mouse_entered() -> void:
-	is_mouse_hovered = true
-	Global.shake_control(self)
+	if durability > 0:
+		is_mouse_hovered = true
+		Global.shake_control(self)
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate += Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_mouse_exited() -> void:
-	is_mouse_hovered = false
+	if durability > 0:
+		is_mouse_hovered = false
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		Global.shake_control(self, 10, 0.1)
+		if event is InputEventMouseButton:
+			if durability > 0:
+				Global.shake_control(self, 10, 0.1)
+			else:
+				Global.game_scene.show_parts_drawer(type)
+			
 
 
 	
