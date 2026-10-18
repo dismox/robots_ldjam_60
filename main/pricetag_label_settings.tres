@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://bvxtks3ewniiw"]
+
+[ext_resource type="FontFile" uid="uid://c8jubn3pjesot" path="res://main/assets/fonts/Albertsthal Typewriter.ttf" id="1_oggpo"]
+
+[resource]
+line_spacing = 16.0
+font = ExtResource("1_oggpo")
+font_size = 32
+font_color = Color(0, 0, 0, 1)

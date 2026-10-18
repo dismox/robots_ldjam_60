@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwjtftgrlulog" path="res://main/assets/rust.png" id="5_8dvs4"]
 [ext_resource type="Texture2D" uid="uid://l5gsuo458ka7" path="res://main/assets/robot_parts/head_top/head_top_1.png" id="5_chm4n"]
 [ext_resource type="Texture2D" uid="uid://d2kjpsijjq8sj" path="res://main/assets/robot_parts/nose/nose_1.png" id="6_8dvs4"]
+[ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="7_cg33d"]
 [ext_resource type="Texture2D" uid="uid://2c7yitt45sdm" path="res://main/assets/robot_parts/eyes/eyes_1.png" id="7_jdled"]
 [ext_resource type="Texture2D" uid="uid://bgdbeld386pwu" path="res://main/assets/robot_parts/mouth/mouth_1.png" id="8_cg33d"]
 [ext_resource type="Texture2D" uid="uid://c2o0sgndwhf4t" path="res://main/assets/robot_parts/ears/ears_1.png" id="9_vsw52"]
@@ -161,6 +162,13 @@ stretch_mode = 3
 script = ExtResource("2_ewvo3")
 is_shaking = true
 
+[node name="SparkParticles" parent="Wireframe/Head" unique_id=848403985 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(166, 83)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
 [node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
 unique_name_in_owner = true
 z_index = -1
@@ -191,6 +199,13 @@ show_behind_parent = true
 position = Vector2(47, 65)
 scale = Vector2(1.675, 0.12)
 amount = 9
+
+[node name="SparkParticles" parent="Wireframe/Head/HeadTop" unique_id=1178076783 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(46, 59)
+emitting = false
+one_shot = true
+explosiveness = 1.0
 
 [node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
 unique_name_in_owner = true
@@ -249,6 +264,13 @@ position = Vector2(176, 64)
 scale = Vector2(2.62, 0.31)
 amount = 9
 
+[node name="SparkParticles" parent="Wireframe/Head/Mouth" unique_id=195831529 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(179, 56)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
 [node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
 unique_name_in_owner = true
 z_index = -1
@@ -279,6 +301,20 @@ show_behind_parent = true
 position = Vector2(280, 48)
 scale = Vector2(7.27, 0.33)
 amount = 9
+
+[node name="SparkParticles" parent="Wireframe/Head/Ears" unique_id=753720069 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(40, 56)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
+[node name="SparkParticles2" parent="Wireframe/Head/Ears" unique_id=1469976445 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(537, 71)
+emitting = false
+one_shot = true
+explosiveness = 1.0
 
 [node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
 unique_name_in_owner = true
@@ -325,6 +361,13 @@ show_behind_parent = true
 position = Vector2(16, 16)
 amount = 9
 
+[node name="SparkParticles" parent="Wireframe/Head/Nose" unique_id=338911709 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(18.999996, 18)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_j644l")
@@ -370,6 +413,13 @@ position = Vector2(223.99997, 40)
 scale = Vector2(5.99, 1)
 amount = 9
 
+[node name="SparkParticles" parent="Wireframe/BodyBottom" unique_id=1744900581 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(224, 112)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
 [node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_wieel")
@@ -393,6 +443,13 @@ stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 6
 is_shaking = true
+
+[node name="SparkParticles" parent="Wireframe/BodyTop" unique_id=646239926 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(240, 144)
+emitting = false
+one_shot = true
+explosiveness = 1.0
 
 [node name="BoltParticles" parent="Wireframe/BodyTop" unique_id=356535094 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
@@ -438,6 +495,13 @@ script = ExtResource("2_ewvo3")
 type = 8
 is_shaking = true
 
+[node name="SparkParticles" parent="Wireframe/LeftArm" unique_id=299860722 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(80, 336)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
 [node name="BoltParticles" parent="Wireframe/LeftArm" unique_id=1918213950 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
 position = Vector2(80, 344)
@@ -472,6 +536,13 @@ show_behind_parent = true
 position = Vector2(136, 112)
 amount = 9
 
+[node name="SparkParticles" parent="Wireframe/LeftArm/LeftShoulder" unique_id=389319702 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(139.50003, 108.5)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+
 [node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_kp0ab")
@@ -496,6 +567,13 @@ flip_h = true
 script = ExtResource("2_ewvo3")
 type = 8
 is_shaking = true
+
+[node name="SparkParticles" parent="Wireframe/RightArm" unique_id=1789655631 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(66, 339)
+emitting = false
+one_shot = true
+explosiveness = 1.0
 
 [node name="BoltParticles" parent="Wireframe/RightArm" unique_id=731095502 instance=ExtResource("16_8dvs4")]
 show_behind_parent = true
@@ -531,3 +609,10 @@ is_shaking = true
 show_behind_parent = true
 position = Vector2(120, 120)
 amount = 9
+
+[node name="SparkParticles" parent="Wireframe/RightArm/RightShoulder" unique_id=505869589 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(128, 104)
+emitting = false
+one_shot = true
+explosiveness = 1.0

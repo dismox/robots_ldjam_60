@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://detb3ssthygvt" path="res://main/assets/ui/xray_frame.png" id="8_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dlyrwrn0dy24c" path="res://main/assets/tools/polisher.png" id="9_3m56o"]
 [ext_resource type="Texture2D" uid="uid://bx1pmtashmap7" path="res://main/assets/ui/xray_tile.png" id="9_o0rdg"]
+[ext_resource type="LabelSettings" uid="uid://bvxtks3ewniiw" path="res://main/pricetag_label_settings.tres" id="10_0f3bu"]
 [ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="10_4n5ef"]
 [ext_resource type="Texture2D" uid="uid://cba3pjecgmrcv" path="res://main/assets/tools/paint.png" id="10_q6u0f"]
 [ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
@@ -19,14 +20,21 @@
 [ext_resource type="PackedScene" uid="uid://cwik70hotsvmd" path="res://main/particles/dust_particles.tscn" id="12_4n5ef"]
 [ext_resource type="FontFile" uid="uid://c8jubn3pjesot" path="res://main/assets/fonts/Albertsthal Typewriter.ttf" id="13_0f3bu"]
 [ext_resource type="PackedScene" uid="uid://dt6xglgxu7t6j" path="res://main/particles/paint_particles.tscn" id="14_7tsgm"]
+[ext_resource type="FontFile" uid="uid://cc5y8gl3us3kt" path="res://main/assets/fonts/256BYTES.TTF" id="14_k7k2e"]
 [ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
 [ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="15_3mocd"]
 [ext_resource type="FontFile" uid="uid://cuvdph8ilxe4j" path="res://main/assets/fonts/ALBAS___.TTF" id="17_dgth2"]
+[ext_resource type="Texture2D" uid="uid://p3fsdly1leni" path="res://main/assets/ui/todo_lines.png" id="19_avfl2"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8dvs4"]
-font = ExtResource("13_0f3bu")
-font_size = 40
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
+font = ExtResource("14_k7k2e")
+font_size = 60
+font_color = Color(0.9324193, 0.88782126, 0.83695835, 1)
+outline_size = 19
+outline_color = Color(0.18431373, 0.11372549, 0.07058824, 1)
+shadow_size = 19
+shadow_color = Color(0.15294118, 0.07450981, 0.03529412, 1)
+shadow_offset = Vector2(5, 5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jdled"]
 font = ExtResource("17_dgth2")
@@ -34,6 +42,12 @@ font_size = 41
 font_color = Color(0.8887008, 0.86864185, 0.8631793, 1)
 outline_size = 18
 outline_color = Color(0.17410353, 0.1496839, 0.13339686, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_avfl2"]
+line_spacing = 16.0
+font = ExtResource("13_0f3bu")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7tsgm"]
 particles_animation = true
@@ -207,7 +221,8 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.107168265
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "000"
+text = "FREE"
+label_settings = ExtResource("10_0f3bu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -248,6 +263,7 @@ grow_vertical = 2
 rotation = 0.123166606
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "000"
+label_settings = ExtResource("10_0f3bu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -261,7 +277,7 @@ offset_transform_enabled = true
 texture = ExtResource("10_q6u0f")
 script = ExtResource("7_eewe3")
 type = 2
-price = 200
+price = 1000
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Paint" unique_id=237596286]
 show_behind_parent = true
@@ -289,6 +305,7 @@ grow_vertical = 2
 rotation = -0.107168265
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "000"
+label_settings = ExtResource("10_0f3bu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -329,18 +346,22 @@ grow_vertical = 2
 rotation = 0.123166606
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "1870"
-label_settings = SubResource("LabelSettings_8dvs4")
+label_settings = ExtResource("10_0f3bu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Money" type="Label" parent="UILayer" unique_id=202371671]
+unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -86.0
-offset_bottom = 51.0
+offset_left = -462.0
+offset_top = 12.0
+offset_right = -24.0
+offset_bottom = 76.0
 grow_horizontal = 0
 text = "$0000"
+label_settings = SubResource("LabelSettings_4gvix")
 horizontal_alignment = 2
 
 [node name="XRayButton" type="TextureButton" parent="UILayer" unique_id=871643545]
@@ -391,6 +412,47 @@ label_settings = SubResource("LabelSettings_jdled")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="UILayer" unique_id=1800462551]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -492.0
+offset_top = 86.0
+offset_right = -19.0
+offset_bottom = 596.0
+grow_horizontal = 0
+texture = ExtResource("19_avfl2")
+stretch_mode = 2
+
+[node name="ListLabel" type="Label" parent="UILayer/TextureRect" unique_id=1627370826]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 87.0
+offset_right = 12.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "- painting
+- polishing
+- repair
+- replacement of parts"
+label_settings = ExtResource("10_0f3bu")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="UILayer/TextureRect" unique_id=890614525]
+layout_mode = 1
+offset_left = 36.0
+offset_top = 16.0
+offset_right = 380.0
+offset_bottom = 70.0
+text = "REQUIREMENTS:"
+label_settings = SubResource("LabelSettings_avfl2")
+autowrap_mode = 2
+
 [node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
 unique_name_in_owner = true
 
@@ -402,7 +464,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -128.0
-offset_bottom = 128.0
+offset_top = -192.0
+offset_bottom = -64.0
 grow_horizontal = 0
 mouse_filter = 2
 stretch_mode = 2

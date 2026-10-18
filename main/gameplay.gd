@@ -9,10 +9,16 @@ var unlocked_items: Array[Item]
 @onready var robot_start_position: Marker2D = %RobotStartPosition
 @onready var robot_end_position: Marker2D = %RobotEndPosition
 @onready var x_ray: TextureRect = %XRay
+@onready var money: Label = %Money
+
 
 func _ready() -> void:
 	Global.game_scene = self
+	money.text = "$" + str(Global.money)
+	Global.money_changed.connect(_on_money_changed)
 
+func _on_money_changed(value: int):
+	money.text = "$" + str(Global.money)
 
 func change_item(item: Item):
 	if current_item:
