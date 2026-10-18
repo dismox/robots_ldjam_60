@@ -50,4 +50,4 @@ func process_item(part: BodyPart) -> void:
 		ItemType.PAINT:
 			pass
 		ItemType.SAW:
-			pass
+			Global.shake_control(part, 20.0, 0.1)
