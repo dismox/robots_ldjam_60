@@ -12,6 +12,31 @@
 [ext_resource type="Texture2D" uid="uid://bseohe4slf5mc" path="res://main/assets/robot_parts/body_top/body_top_agent.png" id="10_nrkdu"]
 [ext_resource type="Texture2D" uid="uid://073ml4anraoy" path="res://main/assets/robot_parts/arm/arm_agent.png" id="11_lllbe"]
 [ext_resource type="Texture2D" uid="uid://b1kid3vx4c4a6" path="res://main/assets/robot_parts/shoulder/shoulder_agent.png" id="12_3da0l"]
+[ext_resource type="Texture2D" uid="uid://cwjtftgrlulog" path="res://main/assets/rust.png" id="13_po0n5"]
+
+[sub_resource type="Shader" id="Shader_chm4n"]
+code = "shader_type canvas_item;
+
+uniform sampler2D rust_texture : source_color;
+uniform float rust_strength : hint_range(-1.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	vec4 rust = texture(rust_texture, UV);
+
+	float blend = rust.a * rust_strength;
+
+	COLOR = vec4(
+		base.rgb * mix(vec3(1.0), rust.rgb, blend),
+		base.a
+	) * COLOR;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrdww"]
+resource_local_to_scene = true
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("13_po0n5")
+shader_parameter/rust_strength = -1.0
 
 [node name="Robot" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts") instance=ExtResource("1_wddfs")]
 script = ExtResource("2_ptdxf")
@@ -26,7 +51,7 @@ offset_right = 167.5
 offset_bottom = 182.244
 texture = ExtResource("3_ptdxf")
 
-[node name="HeadTop" parent="Wireframe/Head" index="0" unique_id=1111886860]
+[node name="HeadTop" parent="Wireframe/Head" index="1" unique_id=1111886860]
 offset_left = -214.5
 offset_top = -60.335983
 offset_right = 219.5
@@ -36,7 +61,7 @@ texture = ExtResource("4_tbmsl")
 [node name="BoltParticles" parent="Wireframe/Head/HeadTop" index="0" unique_id=493265499]
 emitting = false
 
-[node name="Eyes" parent="Wireframe/Head" index="1" unique_id=1012287820]
+[node name="Eyes" parent="Wireframe/Head" index="2" unique_id=1012287820]
 z_index = 5
 offset_left = -143.5
 offset_top = -66.740005
@@ -44,7 +69,7 @@ offset_right = 149.5
 offset_bottom = 83.25999
 texture = ExtResource("5_po0n5")
 
-[node name="Mouth" parent="Wireframe/Head" index="2" unique_id=563573763]
+[node name="Mouth" parent="Wireframe/Head" index="3" unique_id=563573763]
 offset_left = -125.5
 offset_top = -40.72
 offset_right = 233.5
@@ -54,7 +79,7 @@ texture = ExtResource("6_jrdww")
 [node name="BoltParticles" parent="Wireframe/Head/Mouth" index="0" unique_id=1088554949]
 emitting = false
 
-[node name="Ears" parent="Wireframe/Head" index="3" unique_id=2100132916]
+[node name="Ears" parent="Wireframe/Head" index="4" unique_id=2100132916]
 offset_left = -456.5
 offset_top = -94.0
 offset_right = 120.5
@@ -64,7 +89,7 @@ texture = ExtResource("7_xja8g")
 [node name="BoltParticles" parent="Wireframe/Head/Ears" index="0" unique_id=90581697]
 emitting = false
 
-[node name="Nose" parent="Wireframe/Head" index="5" unique_id=1772832644]
+[node name="Nose" parent="Wireframe/Head" index="6" unique_id=1772832644]
 offset_left = -109.5
 offset_top = -159.0
 offset_right = 109.5
@@ -87,16 +112,16 @@ offset_right = 249.5
 offset_bottom = 188.0
 texture = ExtResource("10_nrkdu")
 
-[node name="BoltParticles" parent="Wireframe/BodyTop" index="0" unique_id=356535094]
+[node name="BoltParticles" parent="Wireframe/BodyTop" index="1" unique_id=356535094]
 emitting = false
 
 [node name="LeftArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="3" unique_id=1720877252]
 texture = ExtResource("11_lllbe")
 
-[node name="BoltParticles" parent="Wireframe/LeftArm" index="0" unique_id=1918213950]
+[node name="BoltParticles" parent="Wireframe/LeftArm" index="1" unique_id=1918213950]
 emitting = false
 
-[node name="LeftShoulder" parent="Wireframe/LeftArm" index="1" unique_id=1301256859]
+[node name="LeftShoulder" parent="Wireframe/LeftArm" index="2" unique_id=1301256859]
 offset_left = -163.00002
 offset_top = -187.95001
 offset_right = 103.21376
@@ -109,10 +134,11 @@ emitting = false
 [node name="RightArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="4" unique_id=1702133536]
 texture = ExtResource("11_lllbe")
 
-[node name="BoltParticles" parent="Wireframe/RightArm" index="0" unique_id=731095502]
+[node name="BoltParticles" parent="Wireframe/RightArm" index="1" unique_id=731095502]
 emitting = false
 
-[node name="RightShoulder" parent="Wireframe/RightArm" index="1" unique_id=389838525]
+[node name="RightShoulder" parent="Wireframe/RightArm" index="2" unique_id=389838525]
+material = SubResource("ShaderMaterial_jrdww")
 offset_left = -104.5
 offset_top = -189.5
 offset_right = 161.71375
