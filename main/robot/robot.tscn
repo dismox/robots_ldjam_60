@@ -117,29 +117,6 @@ type = 3
 can_rust = false
 has_color = false
 
-[node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
-unique_name_in_owner = true
-z_index = 2
-material = SubResource("ShaderMaterial_mrfjb")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.84000003
-anchor_right = 0.5
-anchor_bottom = 0.84000003
-offset_left = -180.0
-offset_top = -56.360016
-offset_right = 179.0
-offset_bottom = 56.639984
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("8_cg33d")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 4
-is_shaking = true
-
 [node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
 unique_name_in_owner = true
 z_index = -1
@@ -163,6 +140,31 @@ texture = ExtResource("9_vsw52")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 5
+is_shaking = true
+
+[node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
+unique_name_in_owner = true
+z_index = 2
+material = SubResource("ShaderMaterial_mrfjb")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49600002
+anchor_top = 0.86700004
+anchor_right = 0.49600002
+anchor_bottom = 0.86700004
+offset_left = -179.64801
+offset_top = -56.568024
+offset_right = 179.35199
+offset_bottom = 56.431976
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("8_cg33d")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 4
 is_shaking = true
 
 [node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
