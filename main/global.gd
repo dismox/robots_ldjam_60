@@ -16,6 +16,8 @@ enum GameState {
 	GAMEPLAY_XRAY
 }
 
+var unlocked_items: Array[Item.ItemType] = [Item.ItemType.DRILL]
+
 signal money_changed(value: int)
 
 func set_money(value: int):

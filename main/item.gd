@@ -26,17 +26,20 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT) and event.pressed:
 			if !avaible:
-				if price <= Global.money:
-					Global.set_money(Global.money - price)
-					avaible = true
-					$PriceTag.hide()
-					self_modulate = Color.WHITE
+				buy_item()
 			else:
 				Global.game_scene.change_item(self)
 
 func _on_mouse_entered() -> void:
 	Global.shake_control(self)
 
+func buy_item() -> void:
+	if price <= Global.money:
+		Global.set_money(Global.money - price)
+		avaible = true
+		$PriceTag.hide()
+		self_modulate = Color.WHITE
+		Global.unlocked_items.append(type)
 
 func process_item(part: BodyPart) -> void:
 	match type:

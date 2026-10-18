@@ -2,7 +2,6 @@ extends Node
 class_name GameScene
 
 var current_item: Item
-var unlocked_items: Array[Item]
 
 @onready var current_item_node: TextureRect = %CurrentItemNode
 
@@ -10,7 +9,7 @@ var unlocked_items: Array[Item]
 @onready var robot_end_position: Marker2D = %RobotEndPosition
 @onready var x_ray: TextureRect = %XRay
 @onready var money: Label = %Money
-
+@onready var list_label: Label = %ListLabel
 
 func _ready() -> void:
 	Global.game_scene = self
@@ -64,14 +63,46 @@ func _on_next_button_pressed() -> void:
 	if Global.current_robot:
 		check_result()
 		Global.current_robot.queue_free()
+
 	var new_robot_scene: PackedScene = load("res://main/robot/robot.tscn")
 	var robot: Robot = new_robot_scene.instantiate()
+
 	robot.generate()
+	#robot.filter_requirements_by_available_items()
+
 	robot_start_position.add_child(robot)
-	#robot.position = robot_start_position.global_position
 	Global.move_to(robot, robot_end_position.global_position)
+
 	for part in robot.custom_parts:
 		Global.shake_control(part, 30.0)
+
+	update_requirements_label(robot)
+
+
+func update_requirements_label(robot: Robot) -> void:
+	var messages: Array[String] = []
+	var found_types: Array[Requirement.Type] = []
+
+	for requirement in robot.requirements:
+		if requirement.type in found_types:
+			continue
+
+		found_types.append(requirement.type)
+
+		match requirement.type:
+			Requirement.Type.PAINTING:
+				messages.append("- painting")
+
+			Requirement.Type.POLISHING:
+				messages.append("- polishing")
+
+			Requirement.Type.REPAIR:
+				messages.append("- repair")
+
+			Requirement.Type.REPLACEMENT:
+				messages.append("- replacement of parts")
+
+	list_label.text = "\n".join(messages)
 
 func check_result() -> void:
 	pass

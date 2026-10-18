@@ -24,7 +24,7 @@ curve = SubResource("Curve_buy4y")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8dvs4"]
 particle_flag_disable_z = true
 emission_shape = 1
-emission_sphere_radius = 61.63
+emission_sphere_radius = 18.97
 angle_min = -108.29999
 angle_max = 64.10001
 spread = 111.742
