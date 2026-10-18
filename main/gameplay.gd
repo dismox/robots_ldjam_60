@@ -10,11 +10,20 @@ var current_item: Item
 @onready var x_ray: TextureRect = %XRay
 @onready var money: Label = %Money
 @onready var list_label: Label = %ListLabel
+@onready var paint_container: GridContainer = %PaintContainer
+
 
 func _ready() -> void:
 	Global.game_scene = self
 	money.text = "$" + str(Global.money)
 	Global.money_changed.connect(_on_money_changed)
+	fill_paint_container()
+	
+
+func fill_paint_container():
+	var paints = paint_container.get_children()
+	for i in range(paints.size()):
+		paints[i].modulate = Global.ROBOT_PALETTE.color_palette[i]
 
 func _on_money_changed(value: int):
 	money.text = "$" + str(Global.money)

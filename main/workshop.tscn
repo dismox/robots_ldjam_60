@@ -4,25 +4,28 @@
 [ext_resource type="Texture2D" uid="uid://dmdukvpfsbpk4" path="res://main/assets/background.png" id="2_m2qia"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
 [ext_resource type="Texture2D" uid="uid://cagohirur5ktq" path="res://main/assets/ui/tools_panel.png" id="3_yitua"]
+[ext_resource type="Texture2D" uid="uid://217ag8jrcl83" path="res://main/assets/ui/drawer.png" id="6_ic5fk"]
 [ext_resource type="Texture2D" uid="uid://c63w55kimrot6" path="res://main/assets/ui/xray_button.png" id="7_a534b"]
 [ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
 [ext_resource type="Texture2D" uid="uid://cdt7c0hakaudk" path="res://main/assets/tools/drill.png" id="7_ei2x0"]
 [ext_resource type="Texture2D" uid="uid://dk77ssraff6vl" path="res://main/assets/ui/xray_background.png" id="7_q6u0f"]
+[ext_resource type="Texture2D" uid="uid://c3c10uqqo7mak" path="res://main/assets/ui/drawer_paint.png" id="7_x04c1"]
 [ext_resource type="Texture2D" uid="uid://cbrcmnyjxfbi1" path="res://main/assets/ui/xray_button_pushed.png" id="8_ei2x0"]
 [ext_resource type="Texture2D" uid="uid://detb3ssthygvt" path="res://main/assets/ui/xray_frame.png" id="8_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dlyrwrn0dy24c" path="res://main/assets/tools/polisher.png" id="9_3m56o"]
 [ext_resource type="Texture2D" uid="uid://bx1pmtashmap7" path="res://main/assets/ui/xray_tile.png" id="9_o0rdg"]
 [ext_resource type="LabelSettings" uid="uid://bvxtks3ewniiw" path="res://main/pricetag_label_settings.tres" id="10_0f3bu"]
 [ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="10_4n5ef"]
-[ext_resource type="Texture2D" uid="uid://cba3pjecgmrcv" path="res://main/assets/tools/paint.png" id="10_q6u0f"]
 [ext_resource type="Texture2D" uid="uid://bbhxbk052dfsd" path="res://main/assets/tools/saw.png" id="11_o0rdg"]
 [ext_resource type="Texture2D" uid="uid://dwflukicymp4d" path="res://main/assets/ui/pricetag.png" id="11_yfhdg"]
 [ext_resource type="PackedScene" uid="uid://cwik70hotsvmd" path="res://main/particles/dust_particles.tscn" id="12_4n5ef"]
 [ext_resource type="FontFile" uid="uid://c8jubn3pjesot" path="res://main/assets/fonts/Albertsthal Typewriter.ttf" id="13_0f3bu"]
+[ext_resource type="Texture2D" uid="uid://bdkl1ugohd11j" path="res://main/assets/tools/paint_1.png" id="14_5m0js"]
 [ext_resource type="PackedScene" uid="uid://dt6xglgxu7t6j" path="res://main/particles/paint_particles.tscn" id="14_7tsgm"]
 [ext_resource type="FontFile" uid="uid://cc5y8gl3us3kt" path="res://main/assets/fonts/256BYTES.TTF" id="14_k7k2e"]
 [ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
 [ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="15_3mocd"]
+[ext_resource type="Texture2D" uid="uid://dxfrnbft8y2lh" path="res://main/assets/tools/paint_2.png" id="15_jgwn3"]
 [ext_resource type="FontFile" uid="uid://cuvdph8ilxe4j" path="res://main/assets/fonts/ALBAS___.TTF" id="17_dgth2"]
 [ext_resource type="Texture2D" uid="uid://p3fsdly1leni" path="res://main/assets/ui/todo_lines.png" id="19_avfl2"]
 
@@ -102,18 +105,16 @@ texture = ExtResource("2_m2qia")
 
 [node name="RobotsLayer" type="CanvasLayer" parent="." unique_id=18804413]
 
-[node name="UILayer" type="CanvasLayer" parent="." unique_id=1600925358]
-
-[node name="RobotStartPosition" type="Marker2D" parent="UILayer" unique_id=1318234240]
+[node name="RobotStartPosition" type="Marker2D" parent="RobotsLayer" unique_id=1318234240]
 unique_name_in_owner = true
 z_index = 4
 position = Vector2(-61, 641)
 
-[node name="RobotEndPosition" type="Marker2D" parent="UILayer" unique_id=85788587]
+[node name="RobotEndPosition" type="Marker2D" parent="RobotsLayer" unique_id=85788587]
 unique_name_in_owner = true
 position = Vector2(991, 9)
 
-[node name="XRay" type="TextureRect" parent="UILayer" unique_id=1395580667]
+[node name="XRay" type="TextureRect" parent="RobotsLayer" unique_id=1395580667]
 unique_name_in_owner = true
 z_index = 1
 anchors_preset = 8
@@ -132,7 +133,7 @@ mouse_filter = 2
 texture = ExtResource("7_q6u0f")
 stretch_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="UILayer/XRay" unique_id=243697421]
+[node name="TextureRect" type="TextureRect" parent="RobotsLayer/XRay" unique_id=243697421]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -149,7 +150,7 @@ mouse_filter = 2
 texture = ExtResource("8_o0rdg")
 stretch_mode = 3
 
-[node name="Control" type="Control" parent="UILayer/XRay/TextureRect" unique_id=775017473]
+[node name="Control" type="Control" parent="RobotsLayer/XRay/TextureRect" unique_id=775017473]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -163,7 +164,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Parallax2D" type="Parallax2D" parent="UILayer/XRay/TextureRect/Control" unique_id=481001277]
+[node name="Parallax2D" type="Parallax2D" parent="RobotsLayer/XRay/TextureRect/Control" unique_id=481001277]
 show_behind_parent = true
 scroll_offset = Vector2(289, 940)
 repeat_size = Vector2(183, 183)
@@ -171,9 +172,115 @@ autoscroll = Vector2(20, 20)
 repeat_times = 15
 follow_viewport = false
 
-[node name="Sprite2D" type="Sprite2D" parent="UILayer/XRay/TextureRect/Control/Parallax2D" unique_id=1203113762]
+[node name="Sprite2D" type="Sprite2D" parent="RobotsLayer/XRay/TextureRect/Control/Parallax2D" unique_id=1203113762]
 modulate = Color(1, 1, 1, 0.6627451)
 texture = ExtResource("9_o0rdg")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1600925358]
+
+[node name="Drawer" type="TextureRect" parent="UILayer" unique_id=1498818115]
+offset_left = 280.0
+offset_top = 508.0
+offset_right = 959.0
+offset_bottom = 837.0
+texture = ExtResource("6_ic5fk")
+
+[node name="PaintContainer" type="GridContainer" parent="UILayer/Drawer" unique_id=1300367881]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -515.0
+offset_top = 55.0
+offset_right = -78.0
+offset_bottom = 246.0
+grow_horizontal = 0
+columns = 7
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1162621615]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect2" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1872235051]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect3" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1046884828]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect4" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1741852330]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect5" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=703917602]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect6" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=497941764]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect7" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=2015980914]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect8" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=28633663]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect9" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=2040930116]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect10" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=2070720205]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect11" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=234724935]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect12" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1018260729]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect13" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1094974019]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect14" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=2076507881]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect15" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=932114200]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect16" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1224275525]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect17" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=651889386]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect18" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1608079714]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect19" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=716057904]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect20" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=1221488579]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
+
+[node name="TextureRect21" type="TextureRect" parent="UILayer/Drawer/PaintContainer" unique_id=491515627]
+layout_mode = 2
+texture = ExtResource("7_x04c1")
 
 [node name="ToolsPanel" type="TextureRect" parent="UILayer" unique_id=1176114932]
 anchors_preset = 4
@@ -274,10 +381,22 @@ offset_top = 529.0
 offset_right = 396.0
 offset_bottom = 726.0
 offset_transform_enabled = true
-texture = ExtResource("10_q6u0f")
+texture = ExtResource("14_5m0js")
 script = ExtResource("7_eewe3")
 type = 2
 price = 1000
+
+[node name="PaintColor" type="TextureRect" parent="UILayer/Paint" unique_id=1878692293]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_jgwn3")
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Paint" unique_id=237596286]
 show_behind_parent = true

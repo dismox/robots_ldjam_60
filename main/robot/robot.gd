@@ -24,11 +24,13 @@ class_name Robot
 
 var main_color: Color = Color.WHITE
 
-@export var color_palette: Array[Color] 
+@export var color_palette: Array[Color]
+static var static_color_palette: Array[Color]
 
 var requirements: Array[Requirement]
 
 func _ready() -> void:
+	static_color_palette = color_palette
 	generate()
 	Global.current_robot = self
 
@@ -114,10 +116,12 @@ func generate() -> void:
 			part.prefered_color = main_color
 			part.change_color(main_color)
 
-		part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(
-			part.type,
-			randi() % 6
-		)
+		var textures_amount = Global.BODY_PART_DATABASE.get_body_part_array_size(part.type)
+		if textures_amount > 0:
+			part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(
+				part.type,
+				randi() % textures_amount
+			)
 		
 	generate_requirements()
 
