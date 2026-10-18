@@ -16,6 +16,12 @@ enum GameState {
 	GAMEPLAY_XRAY
 }
 
+signal money_changed(value: int)
+
+func set_money(value: int):
+	money = value
+	money_changed.emit(money)
+
 func move_to(node: Node, target_position: Vector2, duration: float = 1.0) -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)

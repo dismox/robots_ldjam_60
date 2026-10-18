@@ -84,6 +84,7 @@ func set_wreckness(value: float) -> void:
 			particles.emitting = true
 			particles.amount = int(value * 10)
 		else:
+			$SparkParticles.emitting = true
 			particles.emitting = false
 
 func change_color(color: Color):
@@ -100,6 +101,9 @@ func change_body_part(type: Type, texture_id: int) -> void:
 func set_rust_level(value: float) -> void:
 	value = clamp(value, -1.0, 1.0)
 	rust_level = value
+	if rust_level == -1.0:
+		$SparkParticles.emitting = true
+		return
 	var rust_material := material as ShaderMaterial
 	rust_material.set_shader_parameter("rust_strength", rust_level)
 
