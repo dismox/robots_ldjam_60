@@ -96,7 +96,23 @@ func change_color(color: Color):
 	if particles:
 		particles.modulate = self_modulate /  2.0
 		particles.modulate.a = 1.0
+	if current_color == prefered_color:
+		if $SparkParticles:
+			$SparkParticles.emitting = true
+		if $SparkParticles2:
+			$SparkParticles2.emitting = true
+
+func paint(color: Color, delta: float) -> void:
+	var new_color := current_color.lerp(color, 1.0 - exp(-10.0 * delta))
+
+	if absf(new_color.r - prefered_color.r) < 0.1 \
+	and absf(new_color.g - prefered_color.g) < 0.1 \
+	and absf(new_color.b - prefered_color.b) < 0.1:
+		new_color = prefered_color
+
+	change_color(new_color)
 	
+
 func change_body_part(type: Type, texture_id: int) -> void:
 	texture = Global.body_part_database.get_body_part_texture(type, texture_id)
 	current_body_part = texture_id
@@ -116,13 +132,13 @@ func set_rust_level(value: float) -> void:
 func _on_mouse_entered() -> void:
 	is_mouse_hovered = true
 	Global.shake_control(self)
-	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
-		self_modulate += Color(2.0, 2.0, 2.0, 1.0)
+	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
+	#	self_modulate += Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_mouse_exited() -> void:
 	is_mouse_hovered = false
-	if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
-		self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
+	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
+	#	self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

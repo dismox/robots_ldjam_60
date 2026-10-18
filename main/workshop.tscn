@@ -27,13 +27,15 @@
 [ext_resource type="Texture2D" uid="uid://c8gwsxj0ojqty" path="res://main/assets/ui/next_button.png" id="15_1pnch"]
 [ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="15_3mocd"]
 [ext_resource type="Texture2D" uid="uid://dxfrnbft8y2lh" path="res://main/assets/tools/paint_2.png" id="15_jgwn3"]
-[ext_resource type="FontFile" uid="uid://cuvdph8ilxe4j" path="res://main/assets/fonts/ALBAS___.TTF" id="17_dgth2"]
 [ext_resource type="Texture2D" uid="uid://p3fsdly1leni" path="res://main/assets/ui/todo_lines.png" id="19_avfl2"]
 [ext_resource type="Texture2D" uid="uid://bv4ykmg8wkbxt" path="res://main/assets/ui/next_button_pressed.png" id="21_83spd"]
 [ext_resource type="Texture2D" uid="uid://bvwyxbvyxvn7x" path="res://main/assets/ui/next_button_hovered.png" id="22_g5gjt"]
 [ext_resource type="Texture2D" uid="uid://twq0ofisd1um" path="res://main/assets/ui/panic_button.png" id="24_5m0js"]
 [ext_resource type="Texture2D" uid="uid://7a14n74xgiqh" path="res://main/assets/ui/panic_button_pressed.png" id="25_jgwn3"]
 [ext_resource type="Texture2D" uid="uid://bmsa21p1hnvwg" path="res://main/assets/ui/drawer_parts.png" id="28_undrf"]
+[ext_resource type="Texture2D" uid="uid://djacne27vhiga" path="res://main/assets/ui/drawer_button.png" id="30_nhi0k"]
+[ext_resource type="Texture2D" uid="uid://cd7ff0fvsd2bf" path="res://main/assets/ui/drawer_button_pressed.png" id="31_rmefo"]
+[ext_resource type="Texture2D" uid="uid://u5o3mx63odrd" path="res://main/assets/ui/drawer_button_hovered.png" id="32_asy1s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
 font = ExtResource("14_k7k2e")
@@ -45,12 +47,15 @@ shadow_size = 19
 shadow_color = Color(0.15294118, 0.07450981, 0.03529412, 1)
 shadow_offset = Vector2(5, 5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jdled"]
-font = ExtResource("17_dgth2")
-font_size = 41
-font_color = Color(0.8887008, 0.86864185, 0.8631793, 1)
-outline_size = 18
-outline_color = Color(0.17410353, 0.1496839, 0.13339686, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_lj7jo"]
+font = ExtResource("14_k7k2e")
+font_size = 53
+font_color = Color(0.9324193, 0.88782126, 0.83695835, 1)
+outline_size = 19
+outline_color = Color(0.18431373, 0.11372549, 0.07058824, 1)
+shadow_size = 19
+shadow_color = Color(0.15294118, 0.07450981, 0.03529412, 1)
+shadow_offset = Vector2(5, 5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_avfl2"]
 line_spacing = 16.0
@@ -449,14 +454,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -176.0
-offset_top = -47.5
-offset_right = 125.0
-offset_bottom = 22.5
+offset_left = -191.0
+offset_top = -51.5
+offset_right = 138.0
+offset_bottom = 18.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "NEXT CUSTOMER"
-label_settings = SubResource("LabelSettings_jdled")
+label_settings = SubResource("LabelSettings_lj7jo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -534,17 +539,33 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -218.0
-offset_top = -229.0
-offset_right = 218.0
-offset_bottom = -32.0
+offset_left = -182.0
+offset_top = -185.0
+offset_right = 182.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("15_1pnch")
-texture_pressed = ExtResource("21_83spd")
-texture_hover = ExtResource("22_g5gjt")
-texture_disabled = ExtResource("21_83spd")
-texture_focused = ExtResource("15_1pnch")
+texture_normal = ExtResource("30_nhi0k")
+texture_pressed = ExtResource("31_rmefo")
+texture_hover = ExtResource("32_asy1s")
+texture_disabled = ExtResource("31_rmefo")
+texture_focused = ExtResource("30_nhi0k")
+
+[node name="Label" type="Label" parent="UILayer/PartsDrawer/TextureButton" unique_id=1535294241]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -43.0
+offset_right = 56.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLOSE"
+label_settings = SubResource("LabelSettings_4gvix")
 
 [node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
 unique_name_in_owner = true

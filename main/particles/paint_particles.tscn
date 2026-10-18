@@ -24,15 +24,15 @@ angle_max = 64.10001
 spread = 111.742
 gravity = Vector3(0, 0, 0)
 scale_max = 1.5
+color = Color(0.37413925, 0.37413928, 0.37413922, 1)
 color_ramp = SubResource("GradientTexture1D_756mo")
 anim_offset_max = 1.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" unique_id=848403985]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_nsl6p")
-scale = Vector2(2.81, 1)
+scale = Vector2(1.88, 0.664)
 amount = 40
 texture = SubResource("CompressedTexture2D_pmbv6")
 lifetime = 2.0
-explosiveness = 0.25
 process_material = SubResource("ParticleProcessMaterial_f7p1o")

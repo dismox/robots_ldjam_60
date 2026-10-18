@@ -56,6 +56,7 @@ func process_item(part: BodyPart) -> void:
 				#if part.self_modulate != part.current_color:
 				#	part.self_modulate = part.current_color
 		ItemType.PAINT:
-			pass
+			if part.has_color:
+				part.paint($PaintColor.self_modulate, 0.01)
 		ItemType.SAW:
 			Global.shake_control(part, 20.0, 0.1)
