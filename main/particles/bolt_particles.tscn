@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7h8jhfnve4me"]
 
-[ext_resource type="Texture2D" uid="uid://dcgx82tpiw2bd" path="res://main/assets/particle/particle_sheet.png" id="1_buy4y"]
+[ext_resource type="Texture2D" uid="uid://djhphllih8lwi" path="res://main/assets/particle/particle_sheet_outline.png" id="1_buy4y"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jdled"]
 particles_animation = true

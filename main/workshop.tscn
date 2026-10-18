@@ -24,9 +24,6 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7tsgm"]
-load_path = "res://.godot/imported/particle_sheet.png-234bfb32eb4ac16a0b7af3c93db4e9e9.ctex"
-
 [sub_resource type="Gradient" id="Gradient_7ubaa"]
 colors = PackedColorArray(0.50534403, 0.5053441, 0.50534403, 1, 1, 1, 1, 1)
 
@@ -168,7 +165,6 @@ script = ExtResource("7_eewe3")
 [node name="Particles" parent="UILayer/Drill" unique_id=493265499 instance=ExtResource("10_4n5ef")]
 material = SubResource("CanvasItemMaterial_3mocd")
 position = Vector2(8, 8)
-texture = SubResource("CompressedTexture2D_7tsgm")
 process_material = SubResource("ParticleProcessMaterial_1bxel")
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Drill" unique_id=1892118663]
