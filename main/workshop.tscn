@@ -169,6 +169,7 @@ offset_bottom = 511.0
 offset_transform_enabled = true
 texture = ExtResource("9_3m56o")
 script = ExtResource("7_eewe3")
+type = 1
 price = 100
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Polisher" unique_id=1353460471]
@@ -208,6 +209,7 @@ offset_bottom = 726.0
 offset_transform_enabled = true
 texture = ExtResource("10_q6u0f")
 script = ExtResource("7_eewe3")
+type = 2
 price = 200
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Paint" unique_id=237596286]
@@ -248,6 +250,7 @@ offset_bottom = 889.0
 offset_transform_enabled = true
 texture = ExtResource("11_o0rdg")
 script = ExtResource("7_eewe3")
+type = 3
 price = 500
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Saw" unique_id=1818939115]

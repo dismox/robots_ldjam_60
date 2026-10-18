@@ -16,8 +16,96 @@
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
 [ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrfjb"]
+[sub_resource type="Shader" id="Shader_chm4n"]
+code = "shader_type canvas_item;
+
+uniform sampler2D rust_texture : source_color;
+uniform float rust_strength : hint_range(0.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	vec4 rust = texture(rust_texture, UV);
+
+	float blend = rust.a * rust_strength;
+
+	COLOR = vec4(
+		base.rgb * mix(vec3(1.0), rust.rgb, blend),
+		base.a
+	) * COLOR;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdled"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cg33d"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsw52"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12f26"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asxop"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81ma6"]
 shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tmtkg"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j644l"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d838f"]
+shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wieel"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chm4n"]
+shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n88vt"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12quv"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp0ab"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dvs4"]
+shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = 0.0
 
@@ -30,6 +118,7 @@ color_palette = Array[Color]([Color(1, 0.2784314, 0.2784314, 1), Color(1.6852883
 [node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
 unique_name_in_owner = true
 self_modulate = Color(0.39723974, 0.39723974, 0.39723974, 1)
+material = SubResource("ShaderMaterial_jdled")
 offset_left = -323.0
 offset_top = -344.0
 offset_right = 322.0
@@ -48,17 +137,19 @@ metadata/_edit_use_anchors_ = true
 [node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
 unique_name_in_owner = true
 z_index = 2
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_cg33d")
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.507
-anchor_top = 0.013
-anchor_right = 0.507
-anchor_bottom = 0.013
-offset_left = -169.01501
-offset_top = -152.036
-offset_right = 168.98499
-offset_bottom = 151.964
+anchor_left = 0.5
+anchor_top = 0.023000002
+anchor_right = 0.5
+anchor_bottom = 0.023000002
+offset_left = -169.0
+offset_top = -151.756
+offset_right = 169.0
+offset_bottom = 152.244
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 offset_transform_enabled = true
 mouse_filter = 0
@@ -67,12 +158,11 @@ texture = ExtResource("4_i0eal")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 is_shaking = true
-metadata/_edit_use_anchors_ = true
 
 [node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
 unique_name_in_owner = true
 z_index = -1
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_vsw52")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -120,7 +210,7 @@ has_color = false
 [node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
 unique_name_in_owner = true
 z_index = 2
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_12f26")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -143,7 +233,7 @@ is_shaking = true
 [node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
 unique_name_in_owner = true
 z_index = -1
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_asxop")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -168,7 +258,7 @@ is_shaking = true
 [node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
 unique_name_in_owner = true
 visible = false
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_81ma6")
 layout_mode = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 offset_transform_enabled = true
@@ -182,7 +272,7 @@ has_color = false
 [node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
 unique_name_in_owner = true
 z_index = 4
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_tmtkg")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -206,7 +296,7 @@ is_shaking = true
 
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_j644l")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.49800003
@@ -230,7 +320,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Guts" type="TextureRect" parent="Wireframe/BodyBottom" unique_id=2048753572]
 unique_name_in_owner = true
 visible = false
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_d838f")
 layout_mode = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 offset_transform_enabled = true
@@ -243,7 +333,7 @@ has_color = false
 
 [node name="BodyTop" type="TextureRect" parent="Wireframe" unique_id=1674611870]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_wieel")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -268,7 +358,7 @@ is_shaking = true
 [node name="Heart" type="TextureRect" parent="Wireframe/BodyTop" unique_id=853200514]
 unique_name_in_owner = true
 visible = false
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_chm4n")
 layout_mode = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 offset_transform_enabled = true
@@ -281,7 +371,7 @@ has_color = false
 
 [node name="LeftArm" type="TextureRect" parent="Wireframe" unique_id=1720877252]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_n88vt")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.022000002
@@ -305,7 +395,7 @@ is_shaking = true
 
 [node name="LeftShoulder" type="TextureRect" parent="Wireframe/LeftArm" unique_id=1301256859]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_12quv")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -329,7 +419,7 @@ is_shaking = true
 
 [node name="RightArm" type="TextureRect" parent="Wireframe" unique_id=1702133536]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_kp0ab")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.033
@@ -354,7 +444,7 @@ is_shaking = true
 
 [node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_mrfjb")
+material = SubResource("ShaderMaterial_8dvs4")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

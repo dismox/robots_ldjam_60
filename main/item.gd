@@ -1,9 +1,16 @@
 extends TextureRect
 class_name Item
 
-var title: String = "unknown"
+@export var type: ItemType
 @export var price: int = 0
 @export var avaible: bool = false
+
+enum ItemType {
+	DRILL,
+	POLISHER,
+	PAINT,
+	SAW
+}
 
 func _ready() -> void:
 	if !avaible:
@@ -28,3 +35,15 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func _on_mouse_entered() -> void:
 	Global.shake_control(self)
+
+
+func process_item(part: BodyPart) -> void:
+	match type:
+		ItemType.DRILL:
+			Global.shake_control(part, 20.0, 0.1)
+		ItemType.POLISHER:
+			part.set_rust_level(part.rust_level - 0.01)
+		ItemType.PAINT:
+			pass
+		ItemType.SAW:
+			pass
