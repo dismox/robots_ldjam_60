@@ -41,3 +41,28 @@ func get_body_part_texture(body_part: BodyPart.Type, id: int) -> CompressedTextu
 
 	return textures[id]
 	#return textures.get(id) as CompressedTexture2D
+
+func get_body_part_array_size(body_part: BodyPart.Type) -> int:
+	match body_part:
+		BodyPart.Type.HEAD:
+			return head_textures.size()
+		BodyPart.Type.HEAD_TOP:
+			return head_top_textures.size()
+		BodyPart.Type.NOSE:
+			return nose_textures.size()
+		BodyPart.Type.EYES:
+			return eyes_textures.size()
+		BodyPart.Type.MOUTH:
+			return mouth_textures.size()
+		BodyPart.Type.EARS:
+			return ears_textures.size()
+		BodyPart.Type.BODY_TOP:
+			return body_top_textures.size()
+		BodyPart.Type.BODY_BOTTOM:
+			return body_bottom_textures.size()
+		BodyPart.Type.ARM:
+			return arm_textures.size()
+		BodyPart.Type.SHOULDER:
+			return shoulder_textures.size()
+		_:
+			return 0

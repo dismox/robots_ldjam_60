@@ -10,6 +10,10 @@ const BODY_PART_DATABASE = preload(
 	"res://main/all_body_parts.tres"
 )
 
+const ROBOT_PALETTE = preload(
+	"res://main/robot_palette.tres"
+)
+
 enum GameState {
 	MAIN_MENU,
 	GAMEPLAY_NORMAL,
