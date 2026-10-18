@@ -106,15 +106,9 @@ shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dvs4"]
-resource_local_to_scene = true
-shader = SubResource("Shader_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = -1.0
-
 [node name="Robot" type="Node2D" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts")]
 script = ExtResource("1_3153p")
-custom_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("Wireframe/RightArm/RightShoulder")]
+custom_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("")]
 inside_parts = [NodePath("Wireframe/Head/Brain"), NodePath("Wireframe/BodyBottom/Guts"), NodePath("Wireframe/BodyTop/Heart")]
 color_palette = Array[Color]([Color(1, 0.2784314, 0.2784314, 1), Color(1.6852883, 0.9638797, 0.33264714, 1), Color(1.6852883, 1.2412809, 0.2831602, 1), Color(0.8562249, 1.4369954, 0.19248736, 1), Color(0.33830616, 1.0813689, 0.4869188, 1), Color(0.16772464, 1.6590892, 1.8247963, 1), Color(0.415, 0.87966657, 2.055, 1), Color(1.3182483, 0.6255031, 2.2241454, 1), Color(1.8532405, 0.6051969, 1.146016, 1), Color(2.6072748, 1.0174804, 1.0174804, 1), Color(2.2720351, 1.2684324, 0.72803074, 1), Color(1.6037612, 1.8659585, 1.2104656, 1), Color(1.9655429, 1.746571, 1.0270916, 1), Color(1.1298953, 1.8247963, 1.2109671, 1), Color(1.3739033, 2.2939777, 2.396208, 1), Color(1.3222859, 1.7089368, 2.6111224, 1), Color(1.7818676, 1.4211535, 2.2868676, 1), Color(2.7075353, 1.6339436, 2.3496714, 1), Color(1.6978991, 1.5084864, 1.3822112, 1), Color(1.3822112, 1.3979955, 1.6978991, 1), Color(3.3561718, 3.3720791, 3.6743124, 1), Color(0.35962272, 0.36223018, 0.41177243, 1)])
 
@@ -580,40 +574,3 @@ explosiveness = 1.0
 show_behind_parent = true
 position = Vector2(72, 344)
 amount = 9
-
-[node name="RightShoulder" type="TextureRect" parent="Wireframe/RightArm" unique_id=389838525]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_8dvs4")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.048
-anchor_right = 0.5
-anchor_bottom = 0.048
-offset_left = -132.0
-offset_top = -105.736
-offset_right = 134.21375
-offset_bottom = 106.264
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("13_tmtkg")
-stretch_mode = 3
-flip_h = true
-script = ExtResource("2_ewvo3")
-type = 9
-is_shaking = true
-
-[node name="BoltParticles" parent="Wireframe/RightArm/RightShoulder" unique_id=287667304 instance=ExtResource("16_8dvs4")]
-show_behind_parent = true
-position = Vector2(120, 120)
-amount = 9
-
-[node name="SparkParticles" parent="Wireframe/RightArm/RightShoulder" unique_id=505869589 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(128, 104)
-emitting = false
-one_shot = true
-explosiveness = 1.0

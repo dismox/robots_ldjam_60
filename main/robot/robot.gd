@@ -49,7 +49,7 @@ func generate():
 		if part.has_color:
 			part.prefered_color = main_color
 			part.change_color(main_color)
-		part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(part.type, randi() % 6)
+		part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(part.type, randi() % 7)
 		#part.size = Vector2.ZERO
 	var random_color_parts_amount: int = randi() % 3
 	if random_color_parts_amount > 0:
