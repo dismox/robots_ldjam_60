@@ -28,16 +28,7 @@ func fill_paint_container():
 func _on_money_changed(value: int):
 	money.text = "$" + str(Global.money)
 
-func change_item(item: Item):
-	if current_item:
-		if current_item == item:
-			current_item.self_modulate = Color.WHITE
-			current_item_node.texture = null
-		else:
-			current_item.self_modulate = Color.WHITE
-	current_item = item
-	current_item.self_modulate = Color.TRANSPARENT
-	current_item_node.texture = current_item.texture
+
 
 func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 	if Global.current_robot:
@@ -115,3 +106,6 @@ func update_requirements_label(robot: Robot) -> void:
 
 func check_result() -> void:
 	pass
+
+func _on_panic_button_pressed() -> void:
+	pass # Replace with function body.
