@@ -14,6 +14,7 @@ var current_item: Item
 @onready var paint_drawer: TextureRect = %PaintDrawer
 @onready var color_container: TextureRect = %ColorContainer
 
+var is_paint_drawer_active: bool = false
 
 func _ready() -> void:
 	Global.game_scene = self
@@ -116,9 +117,11 @@ func _on_panic_button_pressed() -> void:
 	pass # Replace with function body.
 
 func show_paint_drawer() -> void:
+	is_paint_drawer_active = true
 	Global.move_to(paint_drawer, Vector2(280.0, paint_drawer.position.y), 1.0)
 	
 func hide_paint_drawer() -> void:
+	is_paint_drawer_active = false
 	Global.move_to(paint_drawer, Vector2(-280.0, paint_drawer.position.y), 1.0)
 
 func change_color(color: Color) -> void:

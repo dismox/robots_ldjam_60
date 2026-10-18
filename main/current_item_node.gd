@@ -60,7 +60,10 @@ func change_item(item: Item):
 			Global.game_scene.hide_paint_drawer()
 		Item.ItemType.PAINT:
 			paint.show()
-			Global.game_scene.show_paint_drawer()
+			if Global.game_scene.is_paint_drawer_active:
+				Global.game_scene.hide_paint_drawer()
+			else:
+				Global.game_scene.show_paint_drawer()
 		Item.ItemType.SAW:
 			saw.show()
 			Global.game_scene.hide_paint_drawer()
