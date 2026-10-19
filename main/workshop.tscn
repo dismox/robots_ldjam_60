@@ -127,7 +127,6 @@ script = ExtResource("1_s8op5")
 unique_name_in_owner = true
 stream = ExtResource("2_8mlkk")
 autoplay = true
-bus = &"Music"
 parameters/looping = true
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=2110333918]
