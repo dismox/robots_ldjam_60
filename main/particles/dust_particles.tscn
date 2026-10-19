@@ -37,6 +37,7 @@ damping_max = 78.01601
 scale_min = 1.5
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_buy4y")
+color = Color(1, 1, 1, 0.49019608)
 color_initial_ramp = SubResource("GradientTexture1D_vrhw8")
 anim_offset_max = 1.0
 

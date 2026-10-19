@@ -1,7 +1,8 @@
 extends TextureRect
 class_name BodyPart
 
-@export var type: Type
+@export var type: BodyPartType.Type
+
 
 @export var current_color: Color = Color.WHITE
 @export var prefered_color: Color = Color.WHITE
@@ -27,6 +28,7 @@ var shake_speed: float = 50000.0
 var modulation_tween: Tween
 
 var is_mouse_hovered: bool = false
+var durability: int = 100
 
 var particles: GPUParticles2D
 
@@ -75,7 +77,9 @@ func _process(delta: float) -> void:
 func set_shake_strength(value: float) -> void:
 	target_shake_strength = maxf(value, 0.0)
 
-func set_wreckness(value: float) -> void:
+func set_wreckness(value: float, emit_particles: bool = true) -> void:
+	if !can_wreck:
+		return
 	value = clamp(value, 0.0, 1.0)
 	wreckness = value
 	#target_shake_strength = wreckness
@@ -84,23 +88,28 @@ func set_wreckness(value: float) -> void:
 			particles.emitting = true
 			particles.amount = int(value * 10)
 		else:
-			if $SparkParticles:
-				$SparkParticles.emitting = true
-			if $SparkParticles2:
-				$SparkParticles2.emitting = true
+			if emit_particles:
+				complete_requirement()
 			particles.emitting = false
 
-func change_color(color: Color):
+func set_durability(value: int) -> void:
+	value = clamp(value, 0, 100)
+	durability = value
+	if value == 0:
+		current_body_part = -1
+		texture = null
+		set_rust_level(0.0, false)
+		set_wreckness(0.0, false)
+		change_color(Color.WHITE)
+
+func change_color(color: Color, emit_particles: bool = true):
 	self_modulate = color
 	current_color = self_modulate
 	if particles:
 		particles.modulate = self_modulate /  2.0
 		particles.modulate.a = 1.0
-	if current_color == prefered_color:
-		if $SparkParticles:
-			$SparkParticles.emitting = true
-		if $SparkParticles2:
-			$SparkParticles2.emitting = true
+	if current_color == prefered_color and emit_particles:
+		complete_requirement()
 
 func paint(color: Color, delta: float) -> void:
 	var new_color := current_color.lerp(color, 1.0 - exp(-10.0 * delta))
@@ -113,36 +122,57 @@ func paint(color: Color, delta: float) -> void:
 	change_color(new_color)
 	
 
-func change_body_part(type: Type, texture_id: int) -> void:
-	texture = Global.body_part_database.get_body_part_texture(type, texture_id)
+func change_body_part(_type: BodyPartType.Type, texture_id: int) -> void:
+	texture = Global.BODY_PART_DATABASE.get_body_part_texture(_type, texture_id)
 	current_body_part = texture_id
+	if texture_id == prefered_body_part:
+		complete_requirement()
+		Global.game_scene.check_replacement(Global.current_robot)
 
-func set_rust_level(value: float) -> void:
+func set_rust_level(value: float, emit_particles: bool = true) -> void:
+	if !can_rust:
+		return
 	value = clamp(value, -1.0, 1.0)
 	rust_level = value
-	if rust_level == -1.0:
-		if $SparkParticles:
-			$SparkParticles.emitting = true
-		if $SparkParticles2:
-			$SparkParticles2.emitting = true
+	if rust_level == -1.0 and emit_particles:
+		complete_requirement()
 		return
 	var rust_material := material as ShaderMaterial
 	rust_material.set_shader_parameter("rust_strength", rust_level)
 
 func _on_mouse_entered() -> void:
-	is_mouse_hovered = true
-	Global.shake_control(self)
+	if durability > 0:
+		is_mouse_hovered = true
+		Global.shake_control(self)
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate += Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_mouse_exited() -> void:
-	is_mouse_hovered = false
+	if durability > 0:
+		is_mouse_hovered = false
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		Global.shake_control(self, 10, 0.1)
+		if event is InputEventMouseButton:
+			if durability > 0:
+				Global.shake_control(self, 10, 0.1)
+			else:
+				if Global.game_scene.current_body_part_type == type and Global.game_scene.current_body_part_id > -1:
+					#texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, Global.game_scene.current_body_part_id)
+					change_body_part(type, Global.game_scene.current_body_part_id)
+					Global.game_scene.current_body_part_id = -1
+					Global.game_scene.part_texture.texture = null
+					durability = 100
+				else:
+					Global.game_scene.show_parts_drawer(type)
+			
 
-
-	
+func complete_requirement() -> void:
+	if $SparkParticles:
+			$SparkParticles.emitting = true
+	if $SparkParticles2:
+		$SparkParticles2.emitting = true
+	for requirement in Global.current_robot.requirements:
+		if requirement.body_part == self:
+			requirement.complete()

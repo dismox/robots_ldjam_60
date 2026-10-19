@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://vj6b32x7fci8" path="res://main/robot/robot.gd" id="1_3153p"]
 [ext_resource type="Texture2D" uid="uid://1nqcblo4bp5b" path="res://main/assets/robot_parts/wireframe.png" id="2_ayiut"]
 [ext_resource type="Script" uid="uid://b64af88ukgtxj" path="res://main/robot/body_part.gd" id="2_ewvo3"]
+[ext_resource type="AudioStream" uid="uid://cirm43ip4d17a" path="res://main/assets/sounds/voice_1.wav" id="2_tmtkg"]
+[ext_resource type="AudioStream" uid="uid://jscks6ghnrbw" path="res://main/assets/sounds/voice_2.wav" id="3_j644l"]
 [ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="4_chm4n"]
+[ext_resource type="AudioStream" uid="uid://b0rya4dve41n4" path="res://main/assets/sounds/voice_3.wav" id="4_d838f"]
 [ext_resource type="Texture2D" uid="uid://bpsjrvjnx7jth" path="res://main/assets/robot_parts/head/head_1.png" id="4_i0eal"]
 [ext_resource type="Texture2D" uid="uid://cwjtftgrlulog" path="res://main/assets/rust.png" id="5_8dvs4"]
 [ext_resource type="Texture2D" uid="uid://l5gsuo458ka7" path="res://main/assets/robot_parts/head_top/head_top_1.png" id="5_chm4n"]
+[ext_resource type="AudioStream" uid="uid://8wmerk3c4ii" path="res://main/assets/sounds/voice_4.wav" id="5_wieel"]
 [ext_resource type="Texture2D" uid="uid://d2kjpsijjq8sj" path="res://main/assets/robot_parts/nose/nose_1.png" id="6_8dvs4"]
 [ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="7_cg33d"]
 [ext_resource type="Texture2D" uid="uid://2c7yitt45sdm" path="res://main/assets/robot_parts/eyes/eyes_1.png" id="7_jdled"]
@@ -16,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="11_asxop"]
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
 [ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
+[ext_resource type="Texture2D" uid="uid://bohcd5x05xonl" path="res://main/assets/ui/xray_gear.png" id="13_vsw52"]
 [ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="16_8dvs4"]
+[ext_resource type="Texture2D" uid="uid://8aeampo2wc0t" path="res://main/assets/ui/xray_heart.png" id="17_12f26"]
 
 [sub_resource type="Shader" id="Shader_chm4n"]
 code = "shader_type canvas_item;
@@ -61,15 +67,15 @@ shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_81ma6"]
-shader = ExtResource("4_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = 0.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tmtkg"]
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81ma6"]
+shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j644l"]
 shader = SubResource("Shader_chm4n")
@@ -117,6 +123,8 @@ script = ExtResource("1_3153p")
 custom_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("Wireframe/RightArm/RightShoulder")]
 inside_parts = [NodePath("Wireframe/Head/Brain"), NodePath("Wireframe/BodyBottom/Guts"), NodePath("Wireframe/BodyTop/Heart")]
 color_palette = Array[Color]([Color(1, 0.2784314, 0.2784314, 1), Color(1.6852883, 0.9638797, 0.33264714, 1), Color(1.6852883, 1.2412809, 0.2831602, 1), Color(0.8562249, 1.4369954, 0.19248736, 1), Color(0.33830616, 1.0813689, 0.4869188, 1), Color(0.168, 1.659, 1.825, 1), Color(0.415, 0.88, 2.055, 1), Color(1.318, 0.626, 2.224, 1), Color(1.853, 0.605, 1.146, 1), Color(2.6072748, 1.0174804, 1.0174804, 1), Color(2.2720351, 1.2684324, 0.72803074, 1), Color(1.6037612, 1.8659585, 1.2104656, 1), Color(1.9655429, 1.746571, 1.0270916, 1), Color(1.1298953, 1.8247963, 1.2109671, 1), Color(1.3739033, 2.2939777, 2.396208, 1), Color(1.3222859, 1.7089368, 2.6111224, 1), Color(1.7818676, 1.4211535, 2.2868676, 1), Color(2.7075353, 1.6339436, 2.3496714, 1), Color(1.6978991, 1.5084864, 1.3822112, 1), Color(1.382, 1.398, 1.698, 1), Color(3.356, 3.372, 3.674, 1)])
+voices = Array[AudioStream]([ExtResource("2_tmtkg"), ExtResource("3_j644l"), ExtResource("4_d838f"), ExtResource("5_wieel")])
+comes_phrases = Array[String](["Girlfriend, this is a disaster!", "I got dumped again, I need to be prettier", "Make it quick", "Can I have a bot-burger and large bot-fries?", "Hello...", "Can you make me look like new bot?", "I would like a new style!", "Please, help me!", "Don't stare at my face... Some things happened", "Something weird happens in this city, eh?"])
 
 [node name="Wireframe" type="TextureRect" parent="." unique_id=1305989227]
 unique_name_in_owner = true
@@ -325,21 +333,6 @@ amount = 30
 one_shot = true
 explosiveness = 1.0
 
-[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_81ma6")
-layout_mode = 0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 10
-can_wreck = false
-can_rust = false
-has_color = false
-
 [node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
 unique_name_in_owner = true
 z_index = 4
@@ -379,6 +372,34 @@ emitting = false
 amount = 30
 one_shot = true
 explosiveness = 1.0
+
+[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
+unique_name_in_owner = true
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_81ma6")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -85.5
+offset_right = 53.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("13_vsw52")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 10
+can_wreck = false
+can_rust = false
+has_color = false
 
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
@@ -476,10 +497,22 @@ amount = 9
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_chm4n")
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -86.0
+offset_right = 131.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 offset_transform_enabled = true
 mouse_filter = 0
+texture = ExtResource("17_12f26")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 11

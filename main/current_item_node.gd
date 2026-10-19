@@ -38,18 +38,12 @@ func emit_particles(value: bool):
 
 	
 func change_item(item: Item):
-	Global.shake_control(self, 20, 1.0)
-	if Global.game_scene.current_item:
-		#if current_item == item:
-		#	current_item.self_modulate = Color.WHITE
-		Global.game_scene.current_item.modulate = Color.WHITE
+	Global.shake_control(self, 10, 0.3)
+	return_item()
+		
 	Global.game_scene.current_item = item
 	Global.game_scene.current_item.modulate = Color(0.2, 0.2, 0.2, 1.0)
-		
-	drill.hide()
-	polisher.hide()
-	paint.hide()
-	saw.hide()
+
 	
 	match item.type:
 		Item.ItemType.DRILL:
@@ -67,5 +61,12 @@ func change_item(item: Item):
 		Item.ItemType.SAW:
 			saw.show()
 			Global.game_scene.hide_paint_drawer()
-
-	
+			
+func return_item():
+	if Global.game_scene.current_item:
+		Global.game_scene.current_item.modulate = Color.WHITE
+		Global.game_scene.current_item = null
+	drill.hide()
+	polisher.hide()
+	paint.hide()
+	saw.hide()

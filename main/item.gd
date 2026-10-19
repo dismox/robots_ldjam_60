@@ -13,10 +13,17 @@ enum ItemType {
 }
 
 func _ready() -> void:
+	Global.money_changed.connect(_on_money_changed)
 	if !avaible:
 		self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 	if price > 0:
-		$PriceTag/PriceTagLabel.text = str(price)
+		$PriceTag/PriceTagLabel.text = "$" + str(price)
+	if Global.money >= price:
+		$PriceTag.self_modulate = Color.WHITE
+	else:
+		$PriceTag.self_modulate = Color.DIM_GRAY
+
+func _on_money_changed(value: int):
 	if Global.money >= price:
 		$PriceTag.self_modulate = Color.WHITE
 	else:
@@ -44,19 +51,21 @@ func buy_item() -> void:
 func process_item(part: BodyPart) -> void:
 	match type:
 		ItemType.DRILL:
-			if part.can_wreck:
+			if part.can_wreck and part.durability > 0:
 				part.set_wreckness(part.wreckness - 0.01)
 				if part.wreckness > 0.0:
 					Global.shake_control(part, 10.0, 0.1)
 		ItemType.POLISHER:
-			if part.can_rust:
+			if part.can_rust and part.durability > 0:
 				part.set_rust_level(part.rust_level - 0.01)
 				if part.rust_level > -1.0:
 					Global.shake_control(part, 10.0, 0.1)
 				#if part.self_modulate != part.current_color:
 				#	part.self_modulate = part.current_color
 		ItemType.PAINT:
-			if part.has_color:
+			if part.has_color and part.durability > 0:
 				part.paint($PaintColor.self_modulate, 0.01)
 		ItemType.SAW:
-			Global.shake_control(part, 20.0, 0.1)
+			if part.durability > 0:
+				Global.shake_control(part, 20.0, 0.1)
+				part.set_durability(part.durability - 1)
