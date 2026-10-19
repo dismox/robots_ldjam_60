@@ -26,6 +26,18 @@ class_name BodyPart
 	load("res://main/assets/sounds/spin.wav"),
 ]
 
+@export var hover_noise: Array[AudioStream] = [
+	load("res://main/assets/sounds/part_hover_1.wav"),
+	load("res://main/assets/sounds/part_hover_2.wav"),
+	load("res://main/assets/sounds/part_hover_3.wav"),
+	load("res://main/assets/sounds/part_hover_4.wav"),
+	load("res://main/assets/sounds/part_hover_5.wav"),
+	load("res://main/assets/sounds/part_hover_6.wav"),
+	load("res://main/assets/sounds/part_hover_7.wav"),
+	load("res://main/assets/sounds/part_hover_8.wav"),
+	load("res://main/assets/sounds/part_hover_9.wav"),
+]
+
 var shake_strength: float = 1.0
 @export var target_shake_strength: float = 1.0
 var shake_speed: float = 50000.0
@@ -107,6 +119,7 @@ func set_durability(value: int) -> void:
 		set_rust_level(0.0, false)
 		set_wreckness(0.0, false)
 		change_color(Color.WHITE)
+		AudioManager.play_sound("res://main/assets/sounds/part_break.wav", Vector2.ZERO, -5.0)
 
 func change_color(color: Color, emit_particles: bool = true):
 	self_modulate = color
@@ -131,6 +144,7 @@ func paint(color: Color, delta: float) -> void:
 func change_body_part(_type: BodyPartType.Type, texture_id: int) -> void:
 	texture = Global.BODY_PART_DATABASE.get_body_part_texture(_type, texture_id)
 	current_body_part = texture_id
+	AudioManager.play_sound("res://main/assets/sounds/part_install.wav", Vector2.ZERO, -5.0)
 	if texture_id == prefered_body_part:
 		complete_requirement()
 		Global.game_scene.check_replacement(Global.current_robot)
@@ -150,6 +164,7 @@ func _on_mouse_entered() -> void:
 	if durability > 0:
 		is_mouse_hovered = true
 		Global.shake_control(self)
+		AudioManager.play_sound(hover_noise, Vector2(0.0, 30.0), -10)
 		#AudioManager.play_sound(wrecking_noise, Vector2(-10.0, -10.0))
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate += Color(2.0, 2.0, 2.0, 1.0)
@@ -157,6 +172,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	if durability > 0:
 		is_mouse_hovered = false
+		AudioManager.play_sound(hover_noise, Vector2(-10.0, 0.0), -10)
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate -= Color(2.0, 2.0, 2.0, 1.0)
 
@@ -177,7 +193,7 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func complete_requirement() -> void:
 	if $SparkParticles.emitting == false:
-		AudioManager.play_sound("res://main/assets/sounds/perfect.wav", Vector2(-10.0, 10.0), -10)
+		AudioManager.play_sound("res://main/assets/sounds/perfect.wav", Vector2(-10.0, 10.0), -5.0)
 	if $SparkParticles:
 			$SparkParticles.emitting = true
 	if $SparkParticles2:

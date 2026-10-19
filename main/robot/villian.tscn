@@ -31,7 +31,7 @@ void fragment() {
 	) * COLOR;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o8v4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5thq"]
 resource_local_to_scene = true
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("12_51ka1")
@@ -49,9 +49,11 @@ offset_top = -190.036
 offset_right = 169.5
 offset_bottom = 158.964
 texture = ExtResource("3_qbw2t")
+has_color = false
 
 [node name="HeadTop" parent="Wireframe/Head" index="1" unique_id=1111886860]
 texture = null
+has_color = false
 
 [node name="Eyes" parent="Wireframe/Head" index="2" unique_id=1012287820]
 offset_top = -130.98401
@@ -62,6 +64,7 @@ texture = ExtResource("4_ocjsf")
 offset_top = -48.48401
 offset_bottom = 160.51599
 texture = ExtResource("5_31aep")
+has_color = false
 
 [node name="Ears" parent="Wireframe/Head" index="4" unique_id=2100132916]
 offset_left = -288.0
@@ -69,14 +72,16 @@ offset_top = -114.5
 offset_right = 289.0
 offset_bottom = 159.5
 texture = ExtResource("6_7xbrf")
+has_color = false
 
-[node name="Nose" parent="Wireframe/Head" index="6" unique_id=1772832644]
+[node name="Nose" parent="Wireframe/Head" index="5" unique_id=1772832644]
 offset_left = -178.0
 offset_top = -66.5
 offset_right = 174.0
 offset_bottom = 110.5
 texture = ExtResource("7_j04a6")
 can_wreck = true
+has_color = false
 
 [node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1929036463]
 offset_left = -225.5
@@ -84,12 +89,22 @@ offset_top = -104.304016
 offset_right = 226.5
 offset_bottom = 168.69598
 texture = ExtResource("8_0v03g")
+has_color = false
 
 [node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=1674611870]
 texture = ExtResource("9_0mb2a")
+has_color = false
+
+[node name="Heart" parent="Wireframe/BodyTop" index="2" unique_id=853200514]
+visible = true
+offset_left = 78.55554
+offset_bottom = -38.0
+expand_mode = 1
+stretch_mode = 0
 
 [node name="LeftArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="3" unique_id=1720877252]
 texture = ExtResource("10_8ksim")
+has_color = false
 
 [node name="LeftShoulder" parent="Wireframe/LeftArm" index="2" unique_id=1301256859]
 offset_left = -143.0
@@ -97,14 +112,17 @@ offset_top = -196.127
 offset_right = 144.0
 offset_bottom = 96.873
 texture = ExtResource("11_xbc2n")
+has_color = false
 
 [node name="RightArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="4" unique_id=1702133536]
 texture = ExtResource("10_8ksim")
+has_color = false
 
 [node name="RightShoulder" parent="Wireframe/RightArm" index="2" unique_id=389838525]
-material = SubResource("ShaderMaterial_2o8v4")
+material = SubResource("ShaderMaterial_k5thq")
 offset_left = -138.0
 offset_top = -209.736
 offset_right = 149.0
 offset_bottom = 83.264
 texture = ExtResource("11_xbc2n")
+has_color = false

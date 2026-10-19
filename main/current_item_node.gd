@@ -16,7 +16,8 @@ func _input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mouse_pressed = true
 		emit_particles(mouse_pressed)
-		%ItemSound.playing = true
+		if Global.game_scene.current_item:
+			%ItemSound.playing = true
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		mouse_pressed = false
 		emit_particles(mouse_pressed)

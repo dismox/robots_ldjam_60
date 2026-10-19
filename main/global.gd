@@ -1,8 +1,11 @@
 extends Node
 
 #var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
+
+var villian_timer: int = 2
+
 var game_state: GameState
-var money: int = 2000
+var money: int = 0
 var game_scene: GameScene
 var current_robot: Robot
 

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://dg4svkyir8ah7"]
+
+[ext_resource type="FontFile" uid="uid://c8jubn3pjesot" path="res://main/assets/fonts/Albertsthal Typewriter.ttf" id="1_0ea4y"]
+
+[resource]
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_0ea4y")

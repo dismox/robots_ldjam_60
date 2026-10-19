@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dxfrnbft8y2lh" path="res://main/assets/tools/paint_2.png" id="15_jgwn3"]
 [ext_resource type="Texture2D" uid="uid://p3fsdly1leni" path="res://main/assets/ui/todo_lines.png" id="19_avfl2"]
 [ext_resource type="Texture2D" uid="uid://bv4ykmg8wkbxt" path="res://main/assets/ui/next_button_pressed.png" id="21_83spd"]
+[ext_resource type="Theme" uid="uid://dg4svkyir8ah7" path="res://main/main_theme.tres" id="21_tpxkm"]
 [ext_resource type="Texture2D" uid="uid://bvwyxbvyxvn7x" path="res://main/assets/ui/next_button_hovered.png" id="22_g5gjt"]
 [ext_resource type="Texture2D" uid="uid://twq0ofisd1um" path="res://main/assets/ui/panic_button.png" id="24_5m0js"]
 [ext_resource type="Texture2D" uid="uid://7a14n74xgiqh" path="res://main/assets/ui/panic_button_pressed.png" id="25_jgwn3"]
@@ -197,7 +198,7 @@ position = Vector2(-61, 641)
 
 [node name="RobotEndPosition" type="Marker2D" parent="RobotsLayer" unique_id=85788587]
 unique_name_in_owner = true
-position = Vector2(991, 9)
+position = Vector2(1007, 41)
 
 [node name="XRay" type="TextureRect" parent="RobotsLayer" unique_id=1395580667]
 unique_name_in_owner = true
@@ -311,6 +312,9 @@ offset_top = 55.0
 offset_right = 397.0
 offset_bottom = 334.0
 offset_transform_enabled = true
+tooltip_text = "Drill
+- Hold down on a part to fix leaking bolts"
+theme = ExtResource("21_tpxkm")
 texture = ExtResource("7_ei2x0")
 script = ExtResource("7_eewe3")
 
@@ -351,10 +355,13 @@ offset_top = 268.0
 offset_right = 259.0
 offset_bottom = 511.0
 offset_transform_enabled = true
+tooltip_text = "Polisher
+- Hold down on a part to polish it until it shines"
+theme = ExtResource("21_tpxkm")
 texture = ExtResource("9_3m56o")
 script = ExtResource("7_eewe3")
 type = 1
-price = 500
+price = 300
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Polisher" unique_id=1353460471]
 show_behind_parent = true
@@ -407,6 +414,10 @@ offset_right = -6.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Paint
+- Hold it over a part to change its color
+- Tap the paint to show/hide the color selection panel"
+theme = ExtResource("21_tpxkm")
 texture = ExtResource("15_jgwn3")
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Paint" unique_id=237596286]
@@ -446,6 +457,9 @@ offset_top = 655.0
 offset_right = 305.0
 offset_bottom = 889.0
 offset_transform_enabled = true
+tooltip_text = "Saw
+- Hold it over a part to replace it"
+theme = ExtResource("21_tpxkm")
 texture = ExtResource("11_o0rdg")
 script = ExtResource("7_eewe3")
 type = 3
@@ -487,6 +501,8 @@ offset_top = 879.0
 offset_right = 351.0
 offset_bottom = 1083.0
 offset_transform_enabled = true
+tooltip_text = "Use an X-ray to see what's inside"
+theme = ExtResource("21_tpxkm")
 toggle_mode = true
 texture_normal = ExtResource("7_a534b")
 texture_pressed = ExtResource("8_ei2x0")
@@ -508,6 +524,8 @@ offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 offset_transform_enabled = true
+tooltip_text = "If the job is done, go ahead and click!"
+theme = ExtResource("21_tpxkm")
 texture_normal = ExtResource("15_1pnch")
 texture_pressed = ExtResource("21_83spd")
 texture_hover = ExtResource("22_g5gjt")
@@ -583,6 +601,10 @@ offset_right = 453.0
 offset_bottom = -216.0
 grow_horizontal = 0
 grow_vertical = 0
+tooltip_text = "Panic Button
+- Use this to alert an agent about a suspect
+WARNING! Choosing an innocent person could have serious consequences..."
+theme = ExtResource("21_tpxkm")
 toggle_mode = true
 texture_normal = ExtResource("24_5m0js")
 texture_pressed = ExtResource("25_jgwn3")
@@ -701,6 +723,9 @@ alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 offset_transform_enabled = true
+tooltip_text = "What do you mean by “What is money?”"
+mouse_filter = 1
+theme = ExtResource("21_tpxkm")
 text = "$0000"
 label_settings = SubResource("LabelSettings_4gvix")
 horizontal_alignment = 2

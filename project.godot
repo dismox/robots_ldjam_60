@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Robots"
+config/name="Beauty Gears: Makeover!"
 run/main_scene="uid://w5xvhqd27ddd"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.22985095, 0.09305998, 0.09904019, 1)
+boot_splash/stretch_mode=0
+boot_splash/image="uid://cdgpmd6y1xk4v"
+config/icon="uid://cm3l36bt62516"
 
 [audio]
 
@@ -28,9 +31,15 @@ AudioManager="*uid://bbbn5rebaj5if"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 mouse_cursor/custom_image="uid://c2gy677qr51pq"
+
+[gui]
+
+theme/custom_font="uid://c8jubn3pjesot"
 
 [physics]
 
