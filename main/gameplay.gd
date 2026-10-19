@@ -172,12 +172,12 @@ func _on_panic_button_pressed() -> void:
 func show_paint_drawer() -> void:
 	is_paint_drawer_active = true
 	AudioManager.play_sound("res://main/assets/sounds/box_open.wav", Vector2(-10.0, 10.0))
-	Global.move_to(paint_drawer, Vector2(280.0, paint_drawer.position.y), 1.0)
+	Global.move_to(paint_drawer, Vector2(60.0, paint_drawer.position.y), 1.0)
 	
 func hide_paint_drawer() -> void:
 	is_paint_drawer_active = false
 	AudioManager.play_sound("res://main/assets/sounds/box_close.wav", Vector2(-10.0, 10.0))
-	Global.move_to(paint_drawer, Vector2(-280.0, paint_drawer.position.y), 1.0)
+	Global.move_to(paint_drawer, Vector2(-416.0, paint_drawer.position.y), 1.0)
 
 func change_color(color: Color) -> void:
 	$UILayer/Paint/PaintColor.self_modulate = color
@@ -201,13 +201,13 @@ func fill_parts_container(type: BodyPartType.Type):
 
 func show_parts_drawer(type: BodyPartType.Type) -> void:
 	AudioManager.play_sound("res://main/assets/sounds/box_open.wav", Vector2(-10.0, 10.0))
-	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, 0), 1.0)
+	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -650), 1.0)
 	fill_parts_container(type)
 	current_item_node.return_item()
 	
 func hide_parts_drawer() -> void:
 	AudioManager.play_sound("res://main/assets/sounds/box_close.wav", Vector2(-10.0, 10.0))
-	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -1080.0), 1.0)
+	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -1670.0), 1.0)
 
 
 func _on_music_button_toggled(toggled_on: bool) -> void:
