@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://btua4i6yhf0ie" path="res://main/gameplay.gd" id="1_s8op5"]
 [ext_resource type="AudioStream" uid="uid://dyv1342x3l1dc" path="res://main/assets/sounds/Cowboy beep-boop.mp3" id="2_8mlkk"]
-[ext_resource type="Texture2D" uid="uid://dmdukvpfsbpk4" path="res://main/assets/background.png" id="2_m2qia"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
 [ext_resource type="AudioStream" uid="uid://dympn088t7gl2" path="res://main/assets/sounds/Agent B.mp3" id="3_1ebap"]
 [ext_resource type="Texture2D" uid="uid://cagohirur5ktq" path="res://main/assets/ui/tools_panel.png" id="3_yitua"]
+[ext_resource type="Texture2D" uid="uid://bxm3yiohayios" path="res://main/assets/background_1.png" id="4_1ebap"]
 [ext_resource type="Texture2D" uid="uid://217ag8jrcl83" path="res://main/assets/ui/drawer.png" id="6_ic5fk"]
 [ext_resource type="Texture2D" uid="uid://c63w55kimrot6" path="res://main/assets/ui/xray_button.png" id="7_a534b"]
 [ext_resource type="Script" uid="uid://cnrbcw2l2jqrh" path="res://main/item.gd" id="7_eewe3"]
@@ -150,7 +150,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_m2qia")
+texture = ExtResource("4_1ebap")
 
 [node name="RobotsLayer" type="CanvasLayer" parent="." unique_id=18804413]
 
