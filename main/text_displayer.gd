@@ -61,7 +61,7 @@ func type_text() -> void:
 				#AudioManager.play_ui(voice.pick_random(), 0)
 				
 			#AudioManager.play_sound(text_sound, Vector2(-1.0, 1.0))
-			AudioManager.play_sound(Global.current_robot.voice, Vector2(Global.current_robot.voice_pitch - 1.0, Global.current_robot.voice_pitch + 1.0))
+			AudioManager.play_sound(Global.current_robot.voice, Vector2(Global.current_robot.voice_pitch - 1.0, Global.current_robot.voice_pitch + 1.0), -10.0)
 			visible_index += 1
 			label.visible_characters = visible_index
 

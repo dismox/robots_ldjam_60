@@ -19,7 +19,12 @@ class_name BodyPart
 @export var has_color: bool = true
 @export var is_shaking: bool = false
 
-var defects
+@export var wrecking_noise: Array[AudioStream] = [
+	load("res://main/assets/sounds/spin1.wav"),
+	load("res://main/assets/sounds/spin2.wav"),
+	load("res://main/assets/sounds/spin3.wav"),
+	load("res://main/assets/sounds/spin.wav"),
+]
 
 var shake_strength: float = 1.0
 @export var target_shake_strength: float = 1.0
@@ -87,6 +92,7 @@ func set_wreckness(value: float, emit_particles: bool = true) -> void:
 		if value > 0.0:
 			particles.emitting = true
 			particles.amount = int(value * 10)
+			AudioManager.play_sound(wrecking_noise, Vector2(10.0, 20.0), -10.0)
 		else:
 			if emit_particles:
 				complete_requirement()
@@ -144,6 +150,7 @@ func _on_mouse_entered() -> void:
 	if durability > 0:
 		is_mouse_hovered = true
 		Global.shake_control(self)
+		#AudioManager.play_sound(wrecking_noise, Vector2(-10.0, -10.0))
 	#if Global.game_state != Global.GameState.GAMEPLAY_XRAY:
 	#	self_modulate += Color(2.0, 2.0, 2.0, 1.0)
 

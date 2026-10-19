@@ -51,6 +51,8 @@ func _ready() -> void:
 			)
 
 func set_money(value: int):
+	if value > money:
+		AudioManager.play_sound("res://main/assets/sounds/buy.wav", Vector2(-10.0, 10.0))
 	money = value
 	money_changed.emit(money)
 

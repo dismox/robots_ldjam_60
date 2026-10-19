@@ -16,9 +16,11 @@ func _input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mouse_pressed = true
 		emit_particles(mouse_pressed)
+		%ItemSound.playing = true
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		mouse_pressed = false
 		emit_particles(mouse_pressed)
+		%ItemSound.playing = false
 		
 func emit_particles(value: bool):
 	%DrillParticles.emitting = false
@@ -49,11 +51,15 @@ func change_item(item: Item):
 		Item.ItemType.DRILL:
 			drill.show()
 			Global.game_scene.hide_paint_drawer()
+			%ItemSound.stream = load("res://main/assets/sounds/drill.mp3")
 		Item.ItemType.POLISHER:
 			polisher.show()
 			Global.game_scene.hide_paint_drawer()
+			%ItemSound.stream = load("res://main/assets/sounds/polisher.wav")
 		Item.ItemType.PAINT:
 			paint.show()
+			AudioManager.play_sound("res://main/assets/sounds/paint_take.wav", Vector2(-10.0, 10.0))
+			%ItemSound.stream = load("res://main/assets/sounds/paint.mp3")
 			if Global.game_scene.is_paint_drawer_active:
 				Global.game_scene.hide_paint_drawer()
 			else:
@@ -61,6 +67,7 @@ func change_item(item: Item):
 		Item.ItemType.SAW:
 			saw.show()
 			Global.game_scene.hide_paint_drawer()
+			%ItemSound.stream = load("res://main/assets/sounds/saw.mp3")
 			
 func return_item():
 	if Global.game_scene.current_item:
