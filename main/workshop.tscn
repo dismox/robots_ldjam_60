@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://u5o3mx63odrd" path="res://main/assets/ui/drawer_button_hovered.png" id="32_asy1s"]
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="32_nhi0k"]
 [ext_resource type="Script" uid="uid://b526shgadchqp" path="res://main/body_part_ui.gd" id="33_rmefo"]
+[ext_resource type="Texture2D" uid="uid://cefilne6s2mgk" path="res://main/assets/ui/thinking_cloud.png" id="34_ksu1h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
 font = ExtResource("14_k7k2e")
@@ -117,6 +118,30 @@ grow_vertical = 2
 texture = ExtResource("2_m2qia")
 
 [node name="RobotsLayer" type="CanvasLayer" parent="." unique_id=18804413]
+
+[node name="PartReplacementContainer" type="TextureRect" parent="RobotsLayer" unique_id=846178588]
+unique_name_in_owner = true
+visible = false
+offset_left = 446.0
+offset_top = 10.0
+offset_right = 801.0
+offset_bottom = 405.0
+texture = ExtResource("34_ksu1h")
+
+[node name="PartReplacement" type="TextureRect" parent="RobotsLayer/PartReplacementContainer" unique_id=903303365]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47500002
+anchor_top = 0.34600002
+anchor_right = 0.47500002
+anchor_bottom = 0.34600002
+offset_left = -115.625015
+offset_top = -111.67001
+offset_right = 127.374985
+offset_bottom = 99.32999
+expand_mode = 1
+stretch_mode = 5
 
 [node name="RobotStartPosition" type="Marker2D" parent="RobotsLayer" unique_id=1318234240]
 unique_name_in_owner = true
@@ -279,7 +304,7 @@ offset_transform_enabled = true
 texture = ExtResource("9_3m56o")
 script = ExtResource("7_eewe3")
 type = 1
-price = 100
+price = 500
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Polisher" unique_id=1353460471]
 show_behind_parent = true
@@ -374,7 +399,7 @@ offset_transform_enabled = true
 texture = ExtResource("11_o0rdg")
 script = ExtResource("7_eewe3")
 type = 3
-price = 500
+price = 2000
 
 [node name="PriceTag" type="TextureRect" parent="UILayer/Saw" unique_id=1818939115]
 layout_mode = 0
@@ -595,10 +620,17 @@ columns = 3
 [node name="BodyPart" type="TextureRect" parent="UILayer" unique_id=1560549844]
 unique_name_in_owner = true
 visible = false
-offset_left = 513.0
-offset_top = -1035.0
-offset_right = 797.0
-offset_bottom = -751.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -456.0
+offset_top = -494.25
+offset_right = -207.0
+offset_bottom = -245.25
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
 texture = ExtResource("32_nhi0k")

@@ -18,6 +18,10 @@ var current_item: Item
 @onready var body_parts_container: GridContainer = %BodyPartsContainer
 @onready var part_texture: TextureRect = %PartTexture
 
+@onready var part_replacement_container: TextureRect = %PartReplacementContainer
+@onready var part_replacement: TextureRect = %PartReplacement
+
+
 var current_body_part_id: int
 var current_body_part_type: BodyPart.Type
 var is_paint_drawer_active: bool = false
@@ -87,6 +91,7 @@ func _on_next_button_pressed() -> void:
 		Global.shake_control(part, 30.0)
 
 	update_requirements_label(robot)
+	check_replacement(Global.current_robot)
 
 
 func update_requirements_label(robot: Robot) -> void:
@@ -114,8 +119,23 @@ func update_requirements_label(robot: Robot) -> void:
 
 	list_label.text = "\n".join(messages)
 
+
+func check_replacement(robot: Robot) -> bool:
+	var has_replacements: bool = false
+	for requirement in robot.requirements:
+		if requirement.type == Requirement.Type.REPLACEMENT and !requirement.completed:
+			part_replacement.texture = Global.BODY_PART_DATABASE.get_body_part_texture(requirement.body_part.type, requirement.body_part.prefered_body_part) 
+			part_replacement_container.show()
+			has_replacements = true
+			break
+	if !has_replacements:
+		part_replacement_container.hide()
+	return has_replacements
+		
+
+
 func check_result() -> void:
-	pass
+	Global.set_money(Global.money + Global.current_robot.calculate_revenue())
 
 func _on_panic_button_pressed() -> void:
 	pass # Replace with function body.

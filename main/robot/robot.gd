@@ -29,6 +29,18 @@ static var static_color_palette: Array[Color]
 
 var requirements: Array[Requirement]
 
+const REQUIREMENT_PRICES: Dictionary = {
+	Requirement.Type.REPAIR: 50.0,
+	Requirement.Type.POLISHING: 75.0,
+	Requirement.Type.PAINTING: 100.0,
+	Requirement.Type.REPLACEMENT: 150.0
+}
+
+const BODY_PART_WEIGHT: float = 3.0
+const WRECKNESS_WEIGHT: float = 2.0
+const RUST_WEIGHT: float = 1.0
+const COLOR_WEIGHT: float = 1.0
+
 func _ready() -> void:
 	static_color_palette = color_palette
 	generate()
@@ -62,10 +74,9 @@ func generate() -> void:
 
 		var textures_amount = Global.BODY_PART_DATABASE.get_body_part_array_size(part.type)
 		if textures_amount > 0:
-			part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(
-				part.type,
-				randi() % textures_amount
-			)
+			var random_part = randi() % textures_amount
+			part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(part.type, random_part)
+			part.current_body_part = random_part
 		
 	generate_requirements()
 
@@ -74,6 +85,18 @@ func generate_requirements() -> void:
 	requirements.clear()
 
 	for part in custom_parts:
+		if Item.ItemType.SAW in Global.unlocked_items:
+			if randf() > 0.8:
+				var requirement := Requirement.new()
+				requirement.init(Requirement.Type.REPLACEMENT, part)
+				requirements.append(requirement)
+				var size = Global.BODY_PART_DATABASE.get_body_part_array_size(part.type)
+				part.prefered_body_part = randi_range(0, size - 1)
+				if part.prefered_body_part == part.current_body_part:
+					if part.prefered_body_part != 0:
+						part.prefered_body_part -= 1
+					else:
+						part.prefered_body_part += 1
 		if Item.ItemType.DRILL in Global.unlocked_items:
 			if part.can_wreck and randf() > 0.6:
 				part.set_wreckness(randf())
@@ -107,6 +130,61 @@ func generate_requirements() -> void:
 					requirement.init(Requirement.Type.PAINTING, part)
 					requirements.append(requirement)
 					
-		if Item.ItemType.SAW in Global.unlocked_items:
-			pass
+		
 		# REPLACEMENT пока не генерируется.
+
+
+func calculate_quality() -> float:
+	var total_quality: float = 0.0
+	var total_weight: float = 0.0
+
+	for part in custom_parts:
+		if part.durability <= 0:
+			continue
+
+		if part.prefered_body_part >= 0:
+			total_weight += BODY_PART_WEIGHT
+			if part.current_body_part == part.prefered_body_part:
+				total_quality += BODY_PART_WEIGHT
+
+		if part.can_wreck:
+			total_weight += WRECKNESS_WEIGHT
+			total_quality += (1.0 - part.wreckness) * WRECKNESS_WEIGHT
+
+		if part.can_rust:
+			total_weight += RUST_WEIGHT
+			var rust_quality: float = (part.rust_level + 1.0) / 2.0
+			total_quality += rust_quality * RUST_WEIGHT
+
+		if part.has_color:
+			total_weight += COLOR_WEIGHT
+			var color_quality: float = get_color_quality(
+				part.current_color,
+				part.prefered_color
+			)
+			total_quality += color_quality * COLOR_WEIGHT
+
+	if total_weight <= 0.0:
+		return 100.0
+
+	return total_quality / total_weight * 100.0
+
+
+func get_color_quality(current: Color, preferred: Color) -> float:
+	var distance: float = sqrt(
+		pow(current.r - preferred.r, 2.0)
+		+ pow(current.g - preferred.g, 2.0)
+		+ pow(current.b - preferred.b, 2.0)
+	)
+
+	return clampf(1.0 - distance / sqrt(3.0), 0.0, 1.0)
+	
+
+func calculate_revenue() -> int:
+	var base_revenue: float = 0.0
+
+	for requirement in requirements:
+		if requirement.completed:
+			base_revenue += REQUIREMENT_PRICES.get(requirement.type, 0.0)
+
+	return int(base_revenue * calculate_quality() / 100.0)

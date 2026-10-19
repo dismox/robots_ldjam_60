@@ -88,16 +88,14 @@ func set_wreckness(value: float, emit_particles: bool = true) -> void:
 			particles.amount = int(value * 10)
 		else:
 			if emit_particles:
-				if $SparkParticles:
-					$SparkParticles.emitting = true
-				if $SparkParticles2:
-					$SparkParticles2.emitting = true
+				complete_requirement()
 			particles.emitting = false
 
 func set_durability(value: int) -> void:
 	value = clamp(value, 0, 100)
 	durability = value
 	if value == 0:
+		current_body_part = -1
 		texture = null
 		set_rust_level(0.0, false)
 		set_wreckness(0.0, false)
@@ -110,10 +108,7 @@ func change_color(color: Color, emit_particles: bool = true):
 		particles.modulate = self_modulate /  2.0
 		particles.modulate.a = 1.0
 	if current_color == prefered_color and emit_particles:
-		if $SparkParticles:
-			$SparkParticles.emitting = true
-		if $SparkParticles2:
-			$SparkParticles2.emitting = true
+		complete_requirement()
 
 func paint(color: Color, delta: float) -> void:
 	var new_color := current_color.lerp(color, 1.0 - exp(-10.0 * delta))
@@ -126,9 +121,12 @@ func paint(color: Color, delta: float) -> void:
 	change_color(new_color)
 	
 
-func change_body_part(type: Type, texture_id: int) -> void:
-	texture = Global.body_part_database.get_body_part_texture(type, texture_id)
+func change_body_part(_type: Type, texture_id: int) -> void:
+	texture = Global.BODY_PART_DATABASE.get_body_part_texture(_type, texture_id)
 	current_body_part = texture_id
+	if texture_id == prefered_body_part:
+		complete_requirement()
+		Global.game_scene.check_replacement(Global.current_robot)
 
 func set_rust_level(value: float, emit_particles: bool = true) -> void:
 	if !can_rust:
@@ -136,10 +134,7 @@ func set_rust_level(value: float, emit_particles: bool = true) -> void:
 	value = clamp(value, -1.0, 1.0)
 	rust_level = value
 	if rust_level == -1.0 and emit_particles:
-		if $SparkParticles:
-			$SparkParticles.emitting = true
-		if $SparkParticles2:
-			$SparkParticles2.emitting = true
+		complete_requirement()
 		return
 	var rust_material := material as ShaderMaterial
 	rust_material.set_shader_parameter("rust_strength", rust_level)
@@ -163,7 +158,8 @@ func _on_gui_input(event: InputEvent) -> void:
 				Global.shake_control(self, 10, 0.1)
 			else:
 				if Global.game_scene.current_body_part_type == type and Global.game_scene.current_body_part_id > -1:
-					texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, Global.game_scene.current_body_part_id)
+					#texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, Global.game_scene.current_body_part_id)
+					change_body_part(type, Global.game_scene.current_body_part_id)
 					Global.game_scene.current_body_part_id = -1
 					Global.game_scene.part_texture.texture = null
 					durability = 100
@@ -171,5 +167,11 @@ func _on_gui_input(event: InputEvent) -> void:
 					Global.game_scene.show_parts_drawer(type)
 			
 
-
-	
+func complete_requirement() -> void:
+	if $SparkParticles:
+			$SparkParticles.emitting = true
+	if $SparkParticles2:
+		$SparkParticles2.emitting = true
+	for requirement in Global.current_robot.requirements:
+		if requirement.body_part == self:
+			requirement.complete()

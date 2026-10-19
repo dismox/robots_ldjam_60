@@ -13,10 +13,17 @@ enum ItemType {
 }
 
 func _ready() -> void:
+	Global.money_changed.connect(_on_money_changed)
 	if !avaible:
 		self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 	if price > 0:
 		$PriceTag/PriceTagLabel.text = "$" + str(price)
+	if Global.money >= price:
+		$PriceTag.self_modulate = Color.WHITE
+	else:
+		$PriceTag.self_modulate = Color.DIM_GRAY
+
+func _on_money_changed(value: int):
 	if Global.money >= price:
 		$PriceTag.self_modulate = Color.WHITE
 	else:

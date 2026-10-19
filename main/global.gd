@@ -2,7 +2,7 @@ extends Node
 
 #var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
 var game_state: GameState
-var money: int = 10000
+var money: int = 2000
 var game_scene: GameScene
 var current_robot: Robot
 
@@ -23,6 +23,29 @@ enum GameState {
 var unlocked_items: Array[Item.ItemType] = [Item.ItemType.DRILL]
 
 signal money_changed(value: int)
+
+func _ready() -> void:
+	print("DATABASE: ", BODY_PART_DATABASE)
+	print("PALETTE: ", ROBOT_PALETTE)
+
+	print("DATABASE SCRIPT: ", BODY_PART_DATABASE.get_script())
+	print("PALETTE SCRIPT: ", ROBOT_PALETTE.get_script())
+
+	for property in BODY_PART_DATABASE.get_property_list():
+		if property.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
+			print(
+				property.name,
+				": ",
+				BODY_PART_DATABASE.get(property.name)
+			)
+
+	for property in ROBOT_PALETTE.get_property_list():
+		if property.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
+			print(
+				property.name,
+				": ",
+				ROBOT_PALETTE.get(property.name)
+			)
 
 func set_money(value: int):
 	money = value
