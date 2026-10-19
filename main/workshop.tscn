@@ -139,7 +139,7 @@ parameters/looping = true
 [node name="MusicPlayer2" type="AudioStreamPlayer" parent="." unique_id=300510843]
 unique_name_in_owner = true
 stream = ExtResource("3_1ebap")
-volume_db = -2.0
+volume_db = 5.0
 bus = &"Music"
 parameters/looping = true
 
@@ -484,6 +484,7 @@ offset_left = 43.0
 offset_top = 879.0
 offset_right = 351.0
 offset_bottom = 1083.0
+offset_transform_enabled = true
 toggle_mode = true
 texture_normal = ExtResource("7_a534b")
 texture_pressed = ExtResource("8_ei2x0")
@@ -492,6 +493,7 @@ texture_disabled = ExtResource("7_a534b")
 texture_focused = ExtResource("7_a534b")
 
 [node name="NextButton" type="TextureButton" parent="UILayer" unique_id=1984278053]
+unique_name_in_owner = true
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -503,6 +505,7 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
+offset_transform_enabled = true
 texture_normal = ExtResource("15_1pnch")
 texture_pressed = ExtResource("21_83spd")
 texture_hover = ExtResource("22_g5gjt")
@@ -527,7 +530,8 @@ label_settings = SubResource("LabelSettings_lj7jo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UILayer" unique_id=1800462551]
+[node name="RquirementsList" type="TextureRect" parent="UILayer" unique_id=1800462551]
+unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -536,10 +540,11 @@ offset_top = 110.0
 offset_right = -19.0
 offset_bottom = 620.0
 grow_horizontal = 0
+offset_transform_enabled = true
 texture = ExtResource("19_avfl2")
 stretch_mode = 2
 
-[node name="ListLabel" type="Label" parent="UILayer/TextureRect" unique_id=1627370826]
+[node name="ListLabel" type="Label" parent="UILayer/RquirementsList" unique_id=1627370826]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -554,7 +559,7 @@ grow_vertical = 2
 label_settings = ExtResource("10_0f3bu")
 autowrap_mode = 2
 
-[node name="Label2" type="Label" parent="UILayer/TextureRect" unique_id=890614525]
+[node name="Label2" type="Label" parent="UILayer/RquirementsList" unique_id=890614525]
 layout_mode = 1
 offset_left = 36.0
 offset_top = 16.0
@@ -689,6 +694,7 @@ alignment = 2
 [node name="Money" type="Label" parent="UILayer/HBoxContainer" unique_id=202371671]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_enabled = true
 text = "$0000"
 label_settings = SubResource("LabelSettings_4gvix")
 horizontal_alignment = 2
@@ -734,7 +740,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "BLA BLA BLA"
 label_settings = SubResource("LabelSettings_jkr2h")
 horizontal_alignment = 1
 autowrap_mode = 3

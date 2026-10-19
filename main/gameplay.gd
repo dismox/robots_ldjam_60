@@ -42,11 +42,14 @@ func fill_paint_container():
 		paint_container.get_child(i).modulate = Global.ROBOT_PALETTE.color_palette[i]
 
 func _on_money_changed(value: int):
+	if value != Global.money:
+		Global.shake_control(money)
 	money.text = "$" + str(Global.money)
 
 
 
 func _on_x_ray_button_toggled(toggled_on: bool) -> void:
+	Global.shake_control(%XRayButton)
 	if toggled_on:
 		AudioManager.play_sound("res://main/assets/sounds/lever_down.wav")
 		AudioManager.play_sound("res://main/assets/sounds/btn_pressed.wav")
@@ -83,6 +86,7 @@ func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 
 func _on_next_button_pressed() -> void:
 	AudioManager.play_sound("res://main/assets/sounds/lever_up.wav")
+	Global.shake_control(%NextButton)
 	if %XRayButton.button_pressed:
 		_on_x_ray_button_toggled(false)
 		%XRayButton.button_pressed = false
@@ -111,6 +115,7 @@ func _on_next_button_pressed() -> void:
 
 func update_requirements_label(robot: Robot) -> void:
 	#AudioManager.play_sound("res://main/assets/sounds/paper.wav", Vector2(-30.0, -10.0))
+	Global.shake_control(%RquirementsList)
 	var messages: Array[String] = []
 	var found_types: Array[Requirement.Type] = []
 

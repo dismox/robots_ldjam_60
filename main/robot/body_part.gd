@@ -176,6 +176,8 @@ func _on_gui_input(event: InputEvent) -> void:
 			
 
 func complete_requirement() -> void:
+	if $SparkParticles.emitting == false:
+		AudioManager.play_sound("res://main/assets/sounds/perfect.wav", Vector2(-10.0, 10.0), -10)
 	if $SparkParticles:
 			$SparkParticles.emitting = true
 	if $SparkParticles2:
