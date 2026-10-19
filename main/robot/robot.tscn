@@ -48,28 +48,46 @@ shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = 0.0
 
+[sub_resource type="Shader" id="Shader_j644l"]
+code = "shader_type canvas_item;
+
+uniform sampler2D rust_texture : source_color;
+uniform float rust_strength : hint_range(-1.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	vec4 rust = texture(rust_texture, UV);
+
+	float blend = rust.a * rust_strength;
+
+	COLOR = vec4(
+		base.rgb * mix(vec3(1.0), rust.rgb, blend),
+		base.a
+	) * COLOR;
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cg33d"]
-shader = SubResource("Shader_chm4n")
+shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vsw52"]
-shader = SubResource("Shader_chm4n")
+shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_12f26"]
-shader = SubResource("Shader_chm4n")
+shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_asxop"]
-shader = SubResource("Shader_chm4n")
+shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tmtkg"]
-shader = SubResource("Shader_chm4n")
+shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 

@@ -1,0 +1,331 @@
+[gd_scene format=3 uid="uid://drymkc3wgscqy"]
+
+[ext_resource type="Texture2D" uid="uid://cwjtftgrlulog" path="res://main/assets/rust.png" id="1_eq0a3"]
+[ext_resource type="Script" uid="uid://bt3ssgkc4ylx1" path="res://main/background_test.gd" id="1_xds2r"]
+[ext_resource type="Texture2D" uid="uid://bpsjrvjnx7jth" path="res://main/assets/robot_parts/head/head_1.png" id="2_xds2r"]
+[ext_resource type="Script" uid="uid://b64af88ukgtxj" path="res://main/robot/body_part.gd" id="3_sqn1n"]
+[ext_resource type="PackedScene" uid="uid://dlgq5pbhh3fdj" path="res://main/particles/spark_particles.tscn" id="4_f0iw5"]
+[ext_resource type="Texture2D" uid="uid://l5gsuo458ka7" path="res://main/assets/robot_parts/head_top/head_top_1.png" id="5_5seg1"]
+[ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="6_hgia0"]
+[ext_resource type="Texture2D" uid="uid://2c7yitt45sdm" path="res://main/assets/robot_parts/eyes/eyes_1.png" id="7_dahlw"]
+[ext_resource type="Texture2D" uid="uid://bgdbeld386pwu" path="res://main/assets/robot_parts/mouth/mouth_1.png" id="8_yvbld"]
+[ext_resource type="Texture2D" uid="uid://c2o0sgndwhf4t" path="res://main/assets/robot_parts/ears/ears_1.png" id="9_dprct"]
+[ext_resource type="Texture2D" uid="uid://d2kjpsijjq8sj" path="res://main/assets/robot_parts/nose/nose_1.png" id="10_o4t5i"]
+[ext_resource type="Shader" uid="uid://c6v6axeghfb1q" path="res://main/texture.gdshader" id="11_rw47j"]
+[ext_resource type="Texture2D" uid="uid://bohcd5x05xonl" path="res://main/assets/ui/xray_gear.png" id="12_1pmnr"]
+
+[sub_resource type="Shader" id="Shader_chm4n"]
+code = "shader_type canvas_item;
+
+uniform sampler2D rust_texture : source_color;
+uniform float rust_strength : hint_range(-1.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	vec4 rust = texture(rust_texture, UV);
+
+	float blend = rust.a * rust_strength;
+
+	COLOR = vec4(
+		base.rgb * mix(vec3(1.0), rust.rgb, blend),
+		base.a
+	) * COLOR;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbhkl"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("1_eq0a3")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxn6k"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("1_eq0a3")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfva7"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("1_eq0a3")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oujx1"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("1_eq0a3")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qelr"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("1_eq0a3")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dfvri"]
+shader = ExtResource("11_rw47j")
+shader_parameter/rust_texture = ExtResource("1_eq0a3")
+shader_parameter/rust_strength = 0.0
+
+[node name="Node2D" type="Node2D" unique_id=709003204]
+script = ExtResource("1_xds2r")
+
+[node name="Head" type="TextureRect" parent="." unique_id=1747753444]
+unique_name_in_owner = true
+z_index = 2
+material = SubResource("ShaderMaterial_kbhkl")
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 792.0
+offset_top = 329.0
+offset_right = 1130.0
+offset_bottom = 633.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+texture = ExtResource("2_xds2r")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+is_shaking = true
+
+[node name="SparkParticles" parent="Head" unique_id=848403985 instance=ExtResource("4_f0iw5")]
+z_index = 54
+position = Vector2(166, 83)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="HeadTop" type="TextureRect" parent="Head" unique_id=610883075]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_vxn6k")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.289
+anchor_right = 0.5
+anchor_bottom = 0.289
+offset_left = -45.0
+offset_top = -222.856
+offset_right = 45.0
+offset_bottom = 0.14399719
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("5_5seg1")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+type = 1
+is_shaking = true
+
+[node name="BoltParticles" parent="Head/HeadTop" unique_id=493265499 instance=ExtResource("6_hgia0")]
+show_behind_parent = true
+position = Vector2(47, 65)
+scale = Vector2(1.675, 0.12)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Head/HeadTop" unique_id=47910515 instance=ExtResource("4_f0iw5")]
+z_index = 54
+position = Vector2(46, 59)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Eyes" type="TextureRect" parent="Head" unique_id=322033666]
+unique_name_in_owner = true
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.42100003
+anchor_right = 0.5
+anchor_bottom = 0.42100003
+offset_left = -139.0
+offset_top = -74.98401
+offset_right = 139.0
+offset_bottom = 75.01599
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("7_dahlw")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+type = 3
+can_wreck = false
+can_rust = false
+has_color = false
+
+[node name="Mouth" type="TextureRect" parent="Head" unique_id=254740457]
+unique_name_in_owner = true
+z_index = 2
+material = SubResource("ShaderMaterial_nfva7")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.92100006
+anchor_right = 0.5
+anchor_bottom = 0.92100006
+offset_left = -179.5
+offset_top = -56.48401
+offset_right = 179.5
+offset_bottom = 56.51599
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("8_yvbld")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+type = 4
+is_shaking = true
+
+[node name="BoltParticles" parent="Head/Mouth" unique_id=341174786 instance=ExtResource("6_hgia0")]
+show_behind_parent = true
+position = Vector2(176, 64)
+scale = Vector2(2.62, 0.31)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Head/Mouth" unique_id=1416443717 instance=ExtResource("4_f0iw5")]
+z_index = 54
+position = Vector2(179, 56)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Ears" type="TextureRect" parent="Head" unique_id=1004584699]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_oujx1")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.5
+offset_top = -72.5
+offset_right = 288.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("9_dprct")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+type = 5
+is_shaking = true
+
+[node name="BoltParticles" parent="Head/Ears" unique_id=1246729409 instance=ExtResource("6_hgia0")]
+show_behind_parent = true
+position = Vector2(280, 48)
+scale = Vector2(7.27, 0.33)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Head/Ears" unique_id=430285052 instance=ExtResource("4_f0iw5")]
+z_index = 54
+position = Vector2(40, 56)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="SparkParticles2" parent="Head/Ears" unique_id=1205705925 instance=ExtResource("4_f0iw5")]
+z_index = 54
+position = Vector2(537, 71)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Nose" type="TextureRect" parent="Head" unique_id=1402501782]
+unique_name_in_owner = true
+z_index = 4
+material = SubResource("ShaderMaterial_8qelr")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -18.5
+offset_right = 21.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("10_o4t5i")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+type = 2
+can_wreck = false
+is_shaking = true
+
+[node name="BoltParticles" parent="Head/Nose" unique_id=2022787011 instance=ExtResource("6_hgia0")]
+show_behind_parent = true
+position = Vector2(16, 16)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Head/Nose" unique_id=2134773827 instance=ExtResource("4_f0iw5")]
+z_index = 54
+position = Vector2(18.999996, 18)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Brain" type="TextureRect" parent="Head" unique_id=387832544]
+unique_name_in_owner = true
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_dfvri")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -85.5
+offset_right = 53.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("12_1pmnr")
+stretch_mode = 3
+script = ExtResource("3_sqn1n")
+type = 10
+can_wreck = false
+can_rust = false
+has_color = false
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1246669512]
+position = Vector2(1908, 1051)
+
+[node name="Button" type="Button" parent="." unique_id=1396774767]
+offset_left = 725.0
+offset_top = 933.0
+offset_right = 1158.0
+offset_bottom = 1046.0
+text = "Создать"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
