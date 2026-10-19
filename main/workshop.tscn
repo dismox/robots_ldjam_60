@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dyv1342x3l1dc" path="res://main/assets/sounds/Cowboy beep-boop.mp3" id="2_8mlkk"]
 [ext_resource type="Texture2D" uid="uid://dmdukvpfsbpk4" path="res://main/assets/background.png" id="2_m2qia"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
+[ext_resource type="AudioStream" uid="uid://dympn088t7gl2" path="res://main/assets/sounds/Agent B.mp3" id="3_1ebap"]
 [ext_resource type="Texture2D" uid="uid://cagohirur5ktq" path="res://main/assets/ui/tools_panel.png" id="3_yitua"]
 [ext_resource type="Texture2D" uid="uid://217ag8jrcl83" path="res://main/assets/ui/drawer.png" id="6_ic5fk"]
 [ext_resource type="Texture2D" uid="uid://c63w55kimrot6" path="res://main/assets/ui/xray_button.png" id="7_a534b"]
@@ -45,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://bhagmooivjuin" path="res://main/assets/ui/sound_button_on.png" id="37_jkr2h"]
 [ext_resource type="Texture2D" uid="uid://bgos2jojx1x58" path="res://main/assets/ui/sound_button_off.png" id="38_rt3iy"]
 [ext_resource type="Script" uid="uid://dqwwjcwjhc3gj" path="res://main/text_displayer.gd" id="40_jkr2h"]
+[ext_resource type="AudioStream" uid="uid://cm0de77q65sfm" path="res://main/assets/sounds/drill.mp3" id="46_rt3iy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lj7jo"]
 font = ExtResource("14_k7k2e")
@@ -74,13 +76,15 @@ shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jkr2h"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8mlkk"]
-line_spacing = 16.0
+[sub_resource type="LabelSettings" id="LabelSettings_jkr2h"]
 font = ExtResource("13_0f3bu")
-font_size = 50
-font_color = Color(0.985468, 0.9765757, 0.966731, 1)
-outline_size = 17
-outline_color = Color(0, 0, 0, 1)
+font_size = 60
+font_color = Color(0.9324193, 0.88782126, 0.83695835, 1)
+outline_size = 19
+outline_color = Color(0.18431373, 0.11372549, 0.07058824, 1)
+shadow_size = 19
+shadow_color = Color(0.15294118, 0.07450981, 0.03529412, 1)
+shadow_offset = Vector2(5, 5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7tsgm"]
 particles_animation = true
@@ -126,7 +130,16 @@ script = ExtResource("1_s8op5")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1505699870]
 unique_name_in_owner = true
 stream = ExtResource("2_8mlkk")
+volume_db = -2.0
+pitch_scale = 0.8
 autoplay = true
+parameters/looping = true
+
+[node name="MusicPlayer2" type="AudioStreamPlayer" parent="." unique_id=300510843]
+unique_name_in_owner = true
+stream = ExtResource("3_1ebap")
+volume_db = -2.0
+bus = &"Music"
 parameters/looping = true
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=2110333918]
@@ -721,7 +734,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "BLA BLA BLA"
-label_settings = SubResource("LabelSettings_8mlkk")
+label_settings = SubResource("LabelSettings_jkr2h")
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -749,6 +762,15 @@ offset_transform_enabled = true
 mouse_filter = 2
 stretch_mode = 2
 script = ExtResource("2_mrfjb")
+
+[node name="ItemSound" type="AudioStreamPlayer2D" parent="GameObjectLayer/CurrentItemNode" unique_id=356239398]
+unique_name_in_owner = true
+stream = ExtResource("46_rt3iy")
+volume_db = 10.0
+attenuation = 0.55478483
+panning_strength = 0.4
+bus = &"SFX"
+parameters/looping = true
 
 [node name="PartTexture" type="TextureRect" parent="GameObjectLayer/CurrentItemNode" unique_id=1482693479]
 unique_name_in_owner = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dympn088t7gl2"
+path="res://.godot/imported/Agent B.mp3-3bb9a609dd3fb4da2c9ea8e41d8d1059.mp3str"
+
+[deps]
+
+source_file="res://main/assets/sounds/Agent B.mp3"
+dest_files=["res://.godot/imported/Agent B.mp3-3bb9a609dd3fb4da2c9ea8e41d8d1059.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

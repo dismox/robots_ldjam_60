@@ -35,13 +35,16 @@ func _on_gui_input(event: InputEvent) -> void:
 			if !avaible:
 				buy_item()
 			else:
+				AudioManager.play_sound("res://main/assets/sounds/battery_out.wav", Vector2(-10.0, 10.0))
 				Global.game_scene.current_item_node.change_item(self)
 
 func _on_mouse_entered() -> void:
+	AudioManager.play_sound("res://main/assets/sounds/battery_in.wav", Vector2(10.0, 20.0), -10.0)
 	Global.shake_control(self)
 
 func buy_item() -> void:
 	if price <= Global.money:
+		AudioManager.play_sound("res://main/assets/sounds/money.wav", Vector2(-10.0, 10.0))
 		Global.set_money(Global.money - price)
 		avaible = true
 		$PriceTag.hide()
@@ -55,6 +58,7 @@ func process_item(part: BodyPart) -> void:
 				part.set_wreckness(part.wreckness - 0.01)
 				if part.wreckness > 0.0:
 					Global.shake_control(part, 10.0, 0.1)
+					#AudioManager.play_sound(part.wrecking_noise, Vector2(10.0, 20.0), -10.0)
 		ItemType.POLISHER:
 			if part.can_rust and part.durability > 0:
 				part.set_rust_level(part.rust_level - 0.01)

@@ -48,8 +48,12 @@ func _on_money_changed(value: int):
 
 func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		AudioManager.play_sound("res://main/assets/sounds/lever_down.wav")
+		AudioManager.play_sound("res://main/assets/sounds/btn_pressed.wav")
 		Global.move_to(x_ray, Vector2(x_ray.position.x, 30.0), 2.0)
 	else:
+		AudioManager.play_sound("res://main/assets/sounds/lever_up2.wav")
+		AudioManager.play_sound("res://main/assets/sounds/btn_released.wav")
 		Global.move_to(x_ray, Vector2(x_ray.position.x, 1100.0), 2.0)
 	if Global.current_robot:
 		for part in Global.current_robot.custom_parts:
@@ -78,6 +82,7 @@ func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_next_button_pressed() -> void:
+	AudioManager.play_sound("res://main/assets/sounds/lever_up.wav")
 	if %XRayButton.button_pressed:
 		_on_x_ray_button_toggled(false)
 		%XRayButton.button_pressed = false
@@ -105,6 +110,7 @@ func _on_next_button_pressed() -> void:
 
 
 func update_requirements_label(robot: Robot) -> void:
+	#AudioManager.play_sound("res://main/assets/sounds/paper.wav", Vector2(-30.0, -10.0))
 	var messages: Array[String] = []
 	var found_types: Array[Requirement.Type] = []
 
@@ -160,10 +166,12 @@ func _on_panic_button_pressed() -> void:
 
 func show_paint_drawer() -> void:
 	is_paint_drawer_active = true
+	AudioManager.play_sound("res://main/assets/sounds/box_open.wav", Vector2(-10.0, 10.0))
 	Global.move_to(paint_drawer, Vector2(280.0, paint_drawer.position.y), 1.0)
 	
 func hide_paint_drawer() -> void:
 	is_paint_drawer_active = false
+	AudioManager.play_sound("res://main/assets/sounds/box_close.wav", Vector2(-10.0, 10.0))
 	Global.move_to(paint_drawer, Vector2(-280.0, paint_drawer.position.y), 1.0)
 
 func change_color(color: Color) -> void:
@@ -187,11 +195,13 @@ func fill_parts_container(type: BodyPartType.Type):
 		new_part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, i)
 
 func show_parts_drawer(type: BodyPartType.Type) -> void:
+	AudioManager.play_sound("res://main/assets/sounds/box_open.wav", Vector2(-10.0, 10.0))
 	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, 0), 1.0)
 	fill_parts_container(type)
 	current_item_node.return_item()
 	
 func hide_parts_drawer() -> void:
+	AudioManager.play_sound("res://main/assets/sounds/box_close.wav", Vector2(-10.0, 10.0))
 	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -1080.0), 1.0)
 
 
@@ -200,9 +210,11 @@ func _on_music_button_toggled(toggled_on: bool) -> void:
 
 	if bus_index != -1:
 		if toggled_on:
+			AudioManager.play_sound("res://main/assets/sounds/btn_pressed.wav")
 			AudioServer.set_bus_volume_db(bus_index, -72.0)
 		else:
-			AudioServer.set_bus_volume_db(bus_index, -10.0)
+			AudioManager.play_sound("res://main/assets/sounds/btn_released.wav")
+			AudioServer.set_bus_volume_db(bus_index, -24.0)
 
 
 func _on_sfx_button_toggled(toggled_on: bool) -> void:
@@ -210,6 +222,8 @@ func _on_sfx_button_toggled(toggled_on: bool) -> void:
 
 	if bus_index != -1:
 		if toggled_on:
+			AudioManager.play_sound("res://main/assets/sounds/btn_pressed.wav")
 			AudioServer.set_bus_volume_db(bus_index, -72.0)
 		else:
-			AudioServer.set_bus_volume_db(bus_index, -10.0)
+			AudioManager.play_sound("res://main/assets/sounds/btn_released.wav")
+			AudioServer.set_bus_volume_db(bus_index, -6.0)

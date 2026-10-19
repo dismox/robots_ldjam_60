@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bohcd5x05xonl" path="res://main/assets/ui/xray_gear.png" id="13_vsw52"]
 [ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="16_8dvs4"]
 [ext_resource type="Texture2D" uid="uid://8aeampo2wc0t" path="res://main/assets/ui/xray_heart.png" id="17_12f26"]
+[ext_resource type="AudioStream" uid="uid://baxadro158tfd" path="res://main/assets/sounds/motor.mp3" id="24_j644l"]
 
 [sub_resource type="Shader" id="Shader_chm4n"]
 code = "shader_type canvas_item;
@@ -673,3 +674,10 @@ emitting = false
 amount = 30
 one_shot = true
 explosiveness = 1.0
+
+[node name="MotorAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=914353778]
+stream = ExtResource("24_j644l")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
