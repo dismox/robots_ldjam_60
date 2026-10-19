@@ -6,6 +6,9 @@ var money: int = 2000
 var game_scene: GameScene
 var current_robot: Robot
 
+var current_text
+var text_queue: Array[String]
+
 const BODY_PART_DATABASE = preload(
 	"res://main/all_body_parts.tres"
 )

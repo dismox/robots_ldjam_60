@@ -27,6 +27,21 @@ var main_color: Color = Color.WHITE
 @export var color_palette: Array[Color]
 static var static_color_palette: Array[Color]
 
+@export var voices: Array[AudioStream]
+var voice: AudioStream
+var voice_pitch: float = 1.0
+
+@export var comes_phrases: Array[String] = []
+@export var goes_satisfied_phrases: Array[String] = []
+@export var goes_unsatisfied_phrases: Array[String] = []
+@export var drill_phrases: Array[String] = []
+@export var polish_phrases: Array[String] = []
+@export var paint_phrases: Array[String] = []
+@export var saw_phrases: Array[String] = []
+@export var part_replacement_phrases: Array[String] = []
+@export var x_ray_phrases: Array[String] = []
+
+
 var requirements: Array[Requirement]
 
 const REQUIREMENT_PRICES: Dictionary = {
@@ -42,6 +57,8 @@ const RUST_WEIGHT: float = 1.0
 const COLOR_WEIGHT: float = 1.0
 
 func _ready() -> void:
+	voice_pitch += randf_range(-20.0, 20.0)
+	voice = voices.pick_random()
 	static_color_palette = color_palette
 	generate()
 	Global.current_robot = self

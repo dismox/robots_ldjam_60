@@ -1,7 +1,8 @@
 extends TextureRect
 class_name BodyPart
 
-@export var type: Type
+@export var type: BodyPartType.Type
+
 
 @export var current_color: Color = Color.WHITE
 @export var prefered_color: Color = Color.WHITE
@@ -121,7 +122,7 @@ func paint(color: Color, delta: float) -> void:
 	change_color(new_color)
 	
 
-func change_body_part(_type: Type, texture_id: int) -> void:
+func change_body_part(_type: BodyPartType.Type, texture_id: int) -> void:
 	texture = Global.BODY_PART_DATABASE.get_body_part_texture(_type, texture_id)
 	current_body_part = texture_id
 	if texture_id == prefered_body_part:

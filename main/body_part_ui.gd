@@ -2,7 +2,7 @@ extends TextureRect
 class_name BodyPartUI
 
 var id: int
-var type: BodyPart.Type
+var type: BodyPartType.Type
 
 func _ready() -> void:
 	connect("mouse_entered", _on_mouse_entered)

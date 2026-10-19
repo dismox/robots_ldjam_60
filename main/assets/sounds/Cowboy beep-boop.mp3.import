@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dyv1342x3l1dc"
+path="res://.godot/imported/Cowboy beep-boop.mp3-84fb4e7cda9fafcc80011cc99f8d51ef.mp3str"
+
+[deps]
+
+source_file="res://main/assets/sounds/Cowboy beep-boop.mp3"
+dest_files=["res://.godot/imported/Cowboy beep-boop.mp3-84fb4e7cda9fafcc80011cc99f8d51ef.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=183.0
+beat_count=256
+bar_beats=4

@@ -20,10 +20,12 @@ var current_item: Item
 
 @onready var part_replacement_container: TextureRect = %PartReplacementContainer
 @onready var part_replacement: TextureRect = %PartReplacement
+@onready var part_replacement_label: Label = %PartReplacementLabel
+@onready var text_displayer: Panel = $UILayer/TextDisplayer
 
 
 var current_body_part_id: int
-var current_body_part_type: BodyPart.Type
+var current_body_part_type: BodyPartType.Type
 var is_paint_drawer_active: bool = false
 
 func _ready() -> void:
@@ -45,10 +47,13 @@ func _on_money_changed(value: int):
 
 
 func _on_x_ray_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		Global.move_to(x_ray, Vector2(x_ray.position.x, 30.0), 2.0)
+	else:
+		Global.move_to(x_ray, Vector2(x_ray.position.x, 1100.0), 2.0)
 	if Global.current_robot:
 		for part in Global.current_robot.custom_parts:
 			if toggled_on:
-				Global.move_to(x_ray, Vector2(x_ray.position.x, 30.0), 2.0)
 				Global.game_state = Global.GameState.GAMEPLAY_XRAY
 				if part.modulation_tween:
 					part.modulation_tween.kill()
@@ -59,7 +64,6 @@ func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 				#part.self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 				Global.current_robot.wireframe.self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 			else:
-				Global.move_to(x_ray, Vector2(x_ray.position.x, 1100.0), 2.0)
 				Global.game_state = Global.GameState.GAMEPLAY_NORMAL
 				if part.modulation_tween:
 					part.modulation_tween.kill()
@@ -74,6 +78,10 @@ func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_next_button_pressed() -> void:
+	if %XRayButton.button_pressed:
+		_on_x_ray_button_toggled(false)
+		%XRayButton.button_pressed = false
+	
 	if Global.current_robot:
 		check_result()
 		Global.current_robot.queue_free()
@@ -90,6 +98,8 @@ func _on_next_button_pressed() -> void:
 	for part in robot.custom_parts:
 		Global.shake_control(part, 30.0)
 
+	Global.text_queue.append(robot.comes_phrases.pick_random())
+	text_displayer.type_text()
 	update_requirements_label(robot)
 	check_replacement(Global.current_robot)
 
@@ -122,9 +132,17 @@ func update_requirements_label(robot: Robot) -> void:
 
 func check_replacement(robot: Robot) -> bool:
 	var has_replacements: bool = false
+	part_replacement_label.text = ""
 	for requirement in robot.requirements:
 		if requirement.type == Requirement.Type.REPLACEMENT and !requirement.completed:
 			part_replacement.texture = Global.BODY_PART_DATABASE.get_body_part_texture(requirement.body_part.type, requirement.body_part.prefered_body_part) 
+			if (requirement.body_part.type == BodyPartType.Type.ARM or requirement.body_part.type == BodyPartType.Type.SHOULDER):
+				if requirement.body_part.flip_h:
+					part_replacement_label.text = "RIGHT "
+				else:
+					part_replacement_label.text = "LEFT "
+			part_replacement_label.text += str(BodyPartType.Type.keys()[requirement.body_part.type]).replace("_", " ")
+			part_replacement.flip_h = requirement.body_part.flip_h
 			part_replacement_container.show()
 			has_replacements = true
 			break
@@ -155,7 +173,7 @@ func change_color(color: Color) -> void:
 	hide_paint_drawer()
 
 
-func fill_parts_container(type: BodyPart.Type):
+func fill_parts_container(type: BodyPartType.Type):
 	var parts_amount = Global.BODY_PART_DATABASE.get_body_part_array_size(type)
 	for part in body_parts_container.get_children():
 		part.queue_free()
@@ -168,10 +186,30 @@ func fill_parts_container(type: BodyPart.Type):
 		new_part.id = i
 		new_part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, i)
 
-func show_parts_drawer(type: BodyPart.Type) -> void:
+func show_parts_drawer(type: BodyPartType.Type) -> void:
 	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, 0), 1.0)
 	fill_parts_container(type)
 	current_item_node.return_item()
 	
 func hide_parts_drawer() -> void:
 	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -1080.0), 1.0)
+
+
+func _on_music_button_toggled(toggled_on: bool) -> void:
+	var bus_index := AudioServer.get_bus_index("Music")
+
+	if bus_index != -1:
+		if toggled_on:
+			AudioServer.set_bus_volume_db(bus_index, -72.0)
+		else:
+			AudioServer.set_bus_volume_db(bus_index, -10.0)
+
+
+func _on_sfx_button_toggled(toggled_on: bool) -> void:
+	var bus_index := AudioServer.get_bus_index("SFX")
+
+	if bus_index != -1:
+		if toggled_on:
+			AudioServer.set_bus_volume_db(bus_index, -72.0)
+		else:
+			AudioServer.set_bus_volume_db(bus_index, -10.0)

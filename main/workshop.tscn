@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://w5xvhqd27ddd"]
 
 [ext_resource type="Script" uid="uid://btua4i6yhf0ie" path="res://main/gameplay.gd" id="1_s8op5"]
+[ext_resource type="AudioStream" uid="uid://dyv1342x3l1dc" path="res://main/assets/sounds/Cowboy beep-boop.mp3" id="2_8mlkk"]
 [ext_resource type="Texture2D" uid="uid://dmdukvpfsbpk4" path="res://main/assets/background.png" id="2_m2qia"]
 [ext_resource type="Script" uid="uid://blkgtieyxnwei" path="res://main/current_item_node.gd" id="2_mrfjb"]
 [ext_resource type="Texture2D" uid="uid://cagohirur5ktq" path="res://main/assets/ui/tools_panel.png" id="3_yitua"]
@@ -39,16 +40,11 @@
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="32_nhi0k"]
 [ext_resource type="Script" uid="uid://b526shgadchqp" path="res://main/body_part_ui.gd" id="33_rmefo"]
 [ext_resource type="Texture2D" uid="uid://cefilne6s2mgk" path="res://main/assets/ui/thinking_cloud.png" id="34_ksu1h"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
-font = ExtResource("14_k7k2e")
-font_size = 60
-font_color = Color(0.9324193, 0.88782126, 0.83695835, 1)
-outline_size = 19
-outline_color = Color(0.18431373, 0.11372549, 0.07058824, 1)
-shadow_size = 19
-shadow_color = Color(0.15294118, 0.07450981, 0.03529412, 1)
-shadow_offset = Vector2(5, 5)
+[ext_resource type="Texture2D" uid="uid://nrgsedxk450s" path="res://main/assets/ui/music_button_on.png" id="35_jpm7x"]
+[ext_resource type="Texture2D" uid="uid://cphkdy3jsbjm2" path="res://main/assets/ui/music_button_off.png" id="36_8mlkk"]
+[ext_resource type="Texture2D" uid="uid://bhagmooivjuin" path="res://main/assets/ui/sound_button_on.png" id="37_jkr2h"]
+[ext_resource type="Texture2D" uid="uid://bgos2jojx1x58" path="res://main/assets/ui/sound_button_off.png" id="38_rt3iy"]
+[ext_resource type="Script" uid="uid://dqwwjcwjhc3gj" path="res://main/text_displayer.gd" id="40_jkr2h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lj7jo"]
 font = ExtResource("14_k7k2e")
@@ -65,6 +61,26 @@ line_spacing = 16.0
 font = ExtResource("13_0f3bu")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
+font = ExtResource("14_k7k2e")
+font_size = 60
+font_color = Color(0.9324193, 0.88782126, 0.83695835, 1)
+outline_size = 19
+outline_color = Color(0.18431373, 0.11372549, 0.07058824, 1)
+shadow_size = 19
+shadow_color = Color(0.15294118, 0.07450981, 0.03529412, 1)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jkr2h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mlkk"]
+line_spacing = 16.0
+font = ExtResource("13_0f3bu")
+font_size = 50
+font_color = Color(0.985468, 0.9765757, 0.966731, 1)
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7tsgm"]
 particles_animation = true
@@ -107,6 +123,13 @@ anim_offset_max = 1.0
 [node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1505699870]
+unique_name_in_owner = true
+stream = ExtResource("2_8mlkk")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=2110333918]
 
 [node name="Background" type="TextureRect" parent="BackgroundLayer" unique_id=1311736852]
@@ -139,9 +162,21 @@ anchor_bottom = 0.34600002
 offset_left = -115.625015
 offset_top = -111.67001
 offset_right = 127.374985
-offset_bottom = 99.32999
+offset_bottom = 59.329987
 expand_mode = 1
 stretch_mode = 5
+
+[node name="PartReplacementLabel" type="Label" parent="RobotsLayer/PartReplacementContainer" unique_id=297082763]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 31.0
+offset_top = 198.0
+offset_right = 307.0
+offset_bottom = 234.0
+text = "BODY PART"
+label_settings = ExtResource("10_0f3bu")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RobotStartPosition" type="Marker2D" parent="RobotsLayer" unique_id=1318234240]
 unique_name_in_owner = true
@@ -430,21 +465,8 @@ label_settings = ExtResource("10_0f3bu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Money" type="Label" parent="UILayer" unique_id=202371671]
-unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -462.0
-offset_top = 12.0
-offset_right = -24.0
-offset_bottom = 76.0
-grow_horizontal = 0
-text = "$0000"
-label_settings = SubResource("LabelSettings_4gvix")
-horizontal_alignment = 2
-
 [node name="XRayButton" type="TextureButton" parent="UILayer" unique_id=871643545]
+unique_name_in_owner = true
 offset_left = 43.0
 offset_top = 879.0
 offset_right = 351.0
@@ -497,9 +519,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -492.0
-offset_top = 86.0
+offset_top = 110.0
 offset_right = -19.0
-offset_bottom = 596.0
+offset_bottom = 620.0
 grow_horizontal = 0
 texture = ExtResource("19_avfl2")
 stretch_mode = 2
@@ -639,6 +661,74 @@ stretch_mode = 5
 script = ExtResource("33_rmefo")
 metadata/_custom_type_script = "uid://b526shgadchqp"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer" unique_id=1379199386]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1059.0
+offset_right = -10.0
+offset_bottom = 103.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="Money" type="Label" parent="UILayer/HBoxContainer" unique_id=202371671]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$0000"
+label_settings = SubResource("LabelSettings_4gvix")
+horizontal_alignment = 2
+
+[node name="MusicButton" type="TextureButton" parent="UILayer/HBoxContainer" unique_id=1296123577]
+layout_mode = 2
+size_flags_vertical = 8
+toggle_mode = true
+texture_normal = ExtResource("35_jpm7x")
+texture_pressed = ExtResource("36_8mlkk")
+texture_hover = ExtResource("35_jpm7x")
+texture_disabled = ExtResource("36_8mlkk")
+texture_focused = ExtResource("35_jpm7x")
+
+[node name="SFXButton" type="TextureButton" parent="UILayer/HBoxContainer" unique_id=699064384]
+layout_mode = 2
+size_flags_vertical = 8
+toggle_mode = true
+texture_normal = ExtResource("37_jkr2h")
+texture_pressed = ExtResource("38_rt3iy")
+texture_hover = ExtResource("37_jkr2h")
+texture_disabled = ExtResource("38_rt3iy")
+texture_focused = ExtResource("37_jkr2h")
+
+[node name="TextDisplayer" type="Panel" parent="UILayer" unique_id=2099599400]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -501.0
+offset_top = 45.0
+offset_right = 453.0
+offset_bottom = 232.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jkr2h")
+script = ExtResource("40_jkr2h")
+
+[node name="TextLabel" type="Label" parent="UILayer/TextDisplayer" unique_id=528969728]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BLA BLA BLA"
+label_settings = SubResource("LabelSettings_8mlkk")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextAnimatior" type="AnimationPlayer" parent="UILayer/TextDisplayer" unique_id=1200271040]
+unique_name_in_owner = true
+
 [node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
 unique_name_in_owner = true
 
@@ -774,3 +864,5 @@ position = Vector2(326, 538)
 [connection signal="gui_input" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_gui_input"]
 [connection signal="mouse_entered" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_mouse_exited"]
+[connection signal="toggled" from="UILayer/HBoxContainer/MusicButton" to="." method="_on_music_button_toggled"]
+[connection signal="toggled" from="UILayer/HBoxContainer/SFXButton" to="." method="_on_sfx_button_toggled"]
