@@ -16,7 +16,10 @@ var current_item: Item
 @onready var parts_drawer: TextureRect = %PartsDrawer
 @onready var body_part: TextureRect = %BodyPart
 @onready var body_parts_container: GridContainer = %BodyPartsContainer
+@onready var part_texture: TextureRect = %PartTexture
 
+var current_body_part_id: int
+var current_body_part_type: BodyPart.Type
 var is_paint_drawer_active: bool = false
 
 func _ready() -> void:
@@ -138,14 +141,17 @@ func fill_parts_container(type: BodyPart.Type):
 		part.queue_free()
 	
 	for i in range(parts_amount):
-		var new_part = body_part.duplicate(true)
+		var new_part = body_part.duplicate(DUPLICATE_SCRIPTS | DUPLICATE_SCRIPTS)
 		body_parts_container.add_child(new_part)
 		new_part.show()
+		new_part.type = type
+		new_part.id = i
 		new_part.texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, i)
 
 func show_parts_drawer(type: BodyPart.Type) -> void:
 	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, 0), 1.0)
 	fill_parts_container(type)
+	current_item_node.return_item()
 	
 func hide_parts_drawer() -> void:
 	Global.move_to(parts_drawer, Vector2(parts_drawer.position.x, -1080.0), 1.0)

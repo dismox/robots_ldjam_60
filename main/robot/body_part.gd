@@ -101,6 +101,7 @@ func set_durability(value: int) -> void:
 		texture = null
 		set_rust_level(0.0, false)
 		set_wreckness(0.0, false)
+		change_color(Color.WHITE)
 
 func change_color(color: Color, emit_particles: bool = true):
 	self_modulate = color
@@ -161,7 +162,13 @@ func _on_gui_input(event: InputEvent) -> void:
 			if durability > 0:
 				Global.shake_control(self, 10, 0.1)
 			else:
-				Global.game_scene.show_parts_drawer(type)
+				if Global.game_scene.current_body_part_type == type and Global.game_scene.current_body_part_id > -1:
+					texture = Global.BODY_PART_DATABASE.get_body_part_texture(type, Global.game_scene.current_body_part_id)
+					Global.game_scene.current_body_part_id = -1
+					Global.game_scene.part_texture.texture = null
+					durability = 100
+				else:
+					Global.game_scene.show_parts_drawer(type)
 			
 
 

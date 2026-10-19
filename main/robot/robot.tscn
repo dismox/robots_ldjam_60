@@ -16,7 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="11_asxop"]
 [ext_resource type="Texture2D" uid="uid://du1fl26rfoi81" path="res://main/assets/robot_parts/arm/arm_1.png" id="12_81ma6"]
 [ext_resource type="Texture2D" uid="uid://b8be7ly8u0d60" path="res://main/assets/robot_parts/shoulder/shoulder_1.png" id="13_tmtkg"]
+[ext_resource type="Texture2D" uid="uid://bohcd5x05xonl" path="res://main/assets/ui/xray_gear.png" id="13_vsw52"]
 [ext_resource type="PackedScene" uid="uid://7h8jhfnve4me" path="res://main/particles/bolt_particles.tscn" id="16_8dvs4"]
+[ext_resource type="Texture2D" uid="uid://8aeampo2wc0t" path="res://main/assets/ui/xray_heart.png" id="17_12f26"]
 
 [sub_resource type="Shader" id="Shader_chm4n"]
 code = "shader_type canvas_item;
@@ -61,15 +63,15 @@ shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_81ma6"]
-shader = ExtResource("4_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = 0.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tmtkg"]
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81ma6"]
+shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j644l"]
 shader = SubResource("Shader_chm4n")
@@ -325,21 +327,6 @@ amount = 30
 one_shot = true
 explosiveness = 1.0
 
-[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_81ma6")
-layout_mode = 0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 10
-can_wreck = false
-can_rust = false
-has_color = false
-
 [node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
 unique_name_in_owner = true
 z_index = 4
@@ -379,6 +366,34 @@ emitting = false
 amount = 30
 one_shot = true
 explosiveness = 1.0
+
+[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
+unique_name_in_owner = true
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_81ma6")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -85.5
+offset_right = 53.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("13_vsw52")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 10
+can_wreck = false
+can_rust = false
+has_color = false
 
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
@@ -476,10 +491,22 @@ amount = 9
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_chm4n")
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -86.0
+offset_right = 131.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 offset_transform_enabled = true
 mouse_filter = 0
+texture = ExtResource("17_12f26")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 11

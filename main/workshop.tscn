@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://cd7ff0fvsd2bf" path="res://main/assets/ui/drawer_button_pressed.png" id="31_rmefo"]
 [ext_resource type="Texture2D" uid="uid://u5o3mx63odrd" path="res://main/assets/ui/drawer_button_hovered.png" id="32_asy1s"]
 [ext_resource type="Texture2D" uid="uid://dk8c776m0ahlj" path="res://main/assets/robot_parts/body_top/body_top_1.png" id="32_nhi0k"]
+[ext_resource type="Script" uid="uid://b526shgadchqp" path="res://main/body_part_ui.gd" id="33_rmefo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4gvix"]
 font = ExtResource("14_k7k2e")
@@ -490,10 +491,6 @@ offset_right = 12.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "- painting
-- polishing
-- repair
-- replacement of parts"
 label_settings = ExtResource("10_0f3bu")
 autowrap_mode = 2
 
@@ -532,6 +529,7 @@ offset_left = 453.0
 offset_top = -1048.0
 offset_right = 1435.0
 offset_bottom = -36.0
+mouse_filter = 2
 texture = ExtResource("28_undrf")
 
 [node name="HidePartsButton" type="TextureButton" parent="UILayer/PartsDrawer" unique_id=655712282]
@@ -581,17 +579,20 @@ offset_bottom = -189.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
+scroll_hint_mode = 1
+tile_scroll_hint = true
 
 [node name="BodyPartsContainer" type="GridContainer" parent="UILayer/PartsDrawer/ScrollContainer" unique_id=1272841191]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="BodyPart" type="TextureRect" parent="UILayer" unique_id=1253443805]
+[node name="BodyPart" type="TextureRect" parent="UILayer" unique_id=1560549844]
 unique_name_in_owner = true
 visible = false
 offset_left = 513.0
@@ -599,9 +600,12 @@ offset_top = -1035.0
 offset_right = 797.0
 offset_bottom = -751.0
 size_flags_horizontal = 3
+offset_transform_enabled = true
 texture = ExtResource("32_nhi0k")
 expand_mode = 4
 stretch_mode = 5
+script = ExtResource("33_rmefo")
+metadata/_custom_type_script = "uid://b526shgadchqp"
 
 [node name="GameObjectLayer" type="CanvasLayer" parent="." unique_id=979808894]
 unique_name_in_owner = true
@@ -610,16 +614,36 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 top_level = true
 z_index = 83
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -128.0
-offset_top = -192.0
-offset_bottom = -64.0
+anchors_preset = -1
+anchor_left = 0.96700007
+anchor_top = -0.119
+anchor_right = 0.96700007
+anchor_bottom = -0.119
+offset_left = -64.64014
+offset_top = -63.479996
+offset_right = 63.359863
+offset_bottom = 64.520004
 grow_horizontal = 0
+offset_transform_enabled = true
 mouse_filter = 2
 stretch_mode = 2
 script = ExtResource("2_mrfjb")
+
+[node name="PartTexture" type="TextureRect" parent="GameObjectLayer/CurrentItemNode" unique_id=1482693479]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="DrillParticles" parent="GameObjectLayer/CurrentItemNode" unique_id=493265499 instance=ExtResource("10_4n5ef")]
 unique_name_in_owner = true
@@ -715,3 +739,6 @@ position = Vector2(326, 538)
 [connection signal="pressed" from="UILayer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="UILayer/PanicButton" to="." method="_on_panic_button_pressed"]
 [connection signal="pressed" from="UILayer/PartsDrawer/HidePartsButton" to="." method="hide_parts_drawer"]
+[connection signal="gui_input" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_gui_input"]
+[connection signal="mouse_entered" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_mouse_exited"]

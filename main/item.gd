@@ -16,7 +16,7 @@ func _ready() -> void:
 	if !avaible:
 		self_modulate = Color(0.0, 0.0, 0.0, 1.0)
 	if price > 0:
-		$PriceTag/PriceTagLabel.text = str(price)
+		$PriceTag/PriceTagLabel.text = "$" + str(price)
 	if Global.money >= price:
 		$PriceTag.self_modulate = Color.WHITE
 	else:
