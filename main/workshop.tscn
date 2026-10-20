@@ -48,6 +48,10 @@
 [ext_resource type="Texture2D" uid="uid://bgos2jojx1x58" path="res://main/assets/ui/sound_button_off.png" id="38_rt3iy"]
 [ext_resource type="Script" uid="uid://dqwwjcwjhc3gj" path="res://main/text_displayer.gd" id="40_jkr2h"]
 [ext_resource type="AudioStream" uid="uid://cm0de77q65sfm" path="res://main/assets/sounds/drill.mp3" id="46_rt3iy"]
+[ext_resource type="Texture2D" uid="uid://clvim112uat7j" path="res://main/assets/good_ending.png" id="49_m2s07"]
+[ext_resource type="Texture2D" uid="uid://dpoqxs46mv5f" path="res://main/assets/bad_ending.png" id="50_srfay"]
+[ext_resource type="Texture2D" uid="uid://dpkcoe78n1htl" path="res://main/assets/credits_1.png" id="51_tec4s"]
+[ext_resource type="Texture2D" uid="uid://b6scva10q0732" path="res://main/assets/credits_2.png" id="52_pycuv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lj7jo"]
 font = ExtResource("14_k7k2e")
@@ -124,6 +128,44 @@ scale_curve = SubResource("CurveTexture_buy4y")
 color = Color(0.49747366, 0.49747366, 0.49747366, 1)
 color_initial_ramp = SubResource("GradientTexture1D_cg33d")
 anim_offset_max = 1.0
+
+[sub_resource type="Animation" id="Animation_0hnko"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits/Credits2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5rwh7"]
+resource_name = "credits"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits/Credits2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrs08"]
+_data = {
+&"RESET": SubResource("Animation_0hnko"),
+&"credits": SubResource("Animation_5rwh7")
+}
 
 [node name="GameScene" type="Node" unique_id=425906612]
 script = ExtResource("1_s8op5")
@@ -590,17 +632,19 @@ label_settings = SubResource("LabelSettings_avfl2")
 autowrap_mode = 2
 
 [node name="PanicButton" type="TextureButton" parent="UILayer" unique_id=1603140766]
+unique_name_in_owner = true
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -372.0
+offset_left = 28.0
 offset_top = -447.0
-offset_right = 453.0
+offset_right = 853.0
 offset_bottom = -216.0
 grow_horizontal = 0
 grow_vertical = 0
+offset_transform_enabled = true
 tooltip_text = "Panic Button
 - Use this to alert an agent about a suspect
 WARNING! Choosing an innocent person could have serious consequences..."
@@ -766,9 +810,11 @@ script = ExtResource("40_jkr2h")
 [node name="TextLabel" type="Label" parent="UILayer/TextDisplayer" unique_id=528969728]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 2.23
+offset_right = 2.0
+offset_bottom = -0.010009766
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_jkr2h")
@@ -906,6 +952,155 @@ stretch_mode = 2
 [node name="Camera2D" type="Camera2D" parent="." unique_id=340578607]
 position = Vector2(326, 538)
 
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=2094101353]
+unique_name_in_owner = true
+visible = false
+
+[node name="Win" type="TextureRect" parent="GameOver" unique_id=1962684765]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("49_m2s07")
+expand_mode = 1
+
+[node name="Lose" type="TextureRect" parent="GameOver" unique_id=187826852]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("50_srfay")
+expand_mode = 1
+
+[node name="TextDisplayerGameOver" type="Panel" parent="GameOver" unique_id=1256903101]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -926.0
+offset_top = 824.0
+offset_right = 497.0
+offset_bottom = 1062.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jkr2h")
+script = ExtResource("40_jkr2h")
+
+[node name="TextLabelWin" type="Label" parent="GameOver/TextDisplayerGameOver" unique_id=272841701]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_jkr2h")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CreditsButton" type="TextureButton" parent="GameOver" unique_id=97889708]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -452.0
+offset_top = -213.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+tooltip_text = "If the job is done, go ahead and click!"
+theme = ExtResource("21_tpxkm")
+texture_normal = ExtResource("15_1pnch")
+texture_pressed = ExtResource("21_83spd")
+texture_hover = ExtResource("22_g5gjt")
+texture_disabled = ExtResource("21_83spd")
+texture_focused = ExtResource("15_1pnch")
+
+[node name="Label" type="Label" parent="GameOver/CreditsButton" unique_id=421893981]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -51.5
+offset_right = 138.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONTINUE"
+label_settings = SubResource("LabelSettings_lj7jo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Node2D" parent="GameOver" unique_id=2099200925]
+unique_name_in_owner = true
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver/Credits" unique_id=1240289096]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_lrs08")
+autoplay = &"credits"
+
+[node name="Credits1" type="Sprite2D" parent="GameOver/Credits" unique_id=661268769]
+position = Vector2(960, 545)
+texture = ExtResource("51_tec4s")
+
+[node name="Credits2" type="Sprite2D" parent="GameOver/Credits" unique_id=1577057298]
+position = Vector2(960, 545)
+texture = ExtResource("52_pycuv")
+
+[node name="FreeplayButton" type="TextureButton" parent="GameOver/Credits" unique_id=929598051]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1662.0001
+offset_top = 905.0
+offset_right = 2098.0
+offset_bottom = 1102.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.54, 0.54)
+offset_transform_enabled = true
+tooltip_text = "If the job is done, go ahead and click!"
+theme = ExtResource("21_tpxkm")
+texture_normal = ExtResource("15_1pnch")
+texture_pressed = ExtResource("21_83spd")
+texture_hover = ExtResource("22_g5gjt")
+texture_disabled = ExtResource("21_83spd")
+texture_focused = ExtResource("15_1pnch")
+
+[node name="Label" type="Label" parent="GameOver/Credits/FreeplayButton" unique_id=3496113]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -51.5
+offset_right = 138.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONTINUE"
+label_settings = SubResource("LabelSettings_lj7jo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="gui_input" from="UILayer/PaintDrawer/PaintContainer/ColorContainer" to="UILayer/PaintDrawer/PaintContainer/ColorContainer" method="_on_gui_input"]
 [connection signal="gui_input" from="UILayer/Drill" to="UILayer/Drill" method="_on_gui_input"]
 [connection signal="mouse_entered" from="UILayer/Drill" to="UILayer/Drill" method="_on_mouse_entered"]
@@ -924,3 +1119,5 @@ position = Vector2(326, 538)
 [connection signal="mouse_exited" from="UILayer/BodyPart" to="UILayer/BodyPart" method="_on_mouse_exited"]
 [connection signal="toggled" from="UILayer/HBoxContainer/MusicButton" to="." method="_on_music_button_toggled"]
 [connection signal="toggled" from="UILayer/HBoxContainer/SFXButton" to="." method="_on_sfx_button_toggled"]
+[connection signal="pressed" from="GameOver/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="GameOver/Credits/FreeplayButton" to="." method="_on_freeplay_button_pressed"]

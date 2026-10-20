@@ -2,9 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://main/robot/robot.tscn" id="1_wddfs"]
 [ext_resource type="Script" uid="uid://c4osswr02r1ye" path="res://main/robot/agent.gd" id="2_ptdxf"]
+[ext_resource type="AudioStream" uid="uid://cirm43ip4d17a" path="res://main/assets/sounds/voice_1.wav" id="3_1lx44"]
 [ext_resource type="Texture2D" uid="uid://cssamvlu5b85a" path="res://main/assets/robot_parts/head/head_agent.png" id="3_ptdxf"]
+[ext_resource type="AudioStream" uid="uid://jscks6ghnrbw" path="res://main/assets/sounds/voice_2.wav" id="4_nrkdu"]
 [ext_resource type="Texture2D" uid="uid://2avt6ag84gpf" path="res://main/assets/robot_parts/head_top/head_top_agent.png" id="4_tbmsl"]
+[ext_resource type="AudioStream" uid="uid://b0rya4dve41n4" path="res://main/assets/sounds/voice_3.wav" id="5_lllbe"]
 [ext_resource type="Texture2D" uid="uid://bxhuoiogo5md6" path="res://main/assets/robot_parts/eyes/eyes_agent.png" id="5_po0n5"]
+[ext_resource type="AudioStream" uid="uid://8wmerk3c4ii" path="res://main/assets/sounds/voice_4.wav" id="6_3da0l"]
 [ext_resource type="Texture2D" uid="uid://bx3r6j4a7yarc" path="res://main/assets/robot_parts/mouth/mouth_agent.png" id="6_jrdww"]
 [ext_resource type="Texture2D" uid="uid://csr3lha2k8vgm" path="res://main/assets/robot_parts/ears/ears_agent.png" id="7_xja8g"]
 [ext_resource type="Texture2D" uid="uid://b8x45m6v2fl57" path="res://main/assets/robot_parts/nose/nose_agent.png" id="8_nugae"]
@@ -32,7 +36,7 @@ void fragment() {
 	) * COLOR;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_po0n5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1c116"]
 resource_local_to_scene = true
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("13_po0n5")
@@ -42,9 +46,20 @@ shader_parameter/rust_strength = -1.0
 script = ExtResource("2_ptdxf")
 custom_parts = []
 inside_parts = []
-color_palette = []
+voices = Array[AudioStream]([ExtResource("3_1lx44"), ExtResource("4_nrkdu"), ExtResource("5_lllbe"), ExtResource("6_3da0l"), ExtResource("3_1lx44")])
+comes_phrases = Array[String](["Dont ask questions. We are looking for a suspicious guy, last time we had a clue somewhere around this place.", "We don't know his appearance, cause he changes it all the time.", "So we figured out, he might as well come to you.", "If he does, look for his heart, all the nasty things he did made it really small, twise smaller, than regular bot's heart.", "Here, take this button. When you'll be sure its him, press it.", "Try to not press button on a innocent person. May cause all of us big troubles."])
 
-[node name="Head" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="0" unique_id=445030624]
+[node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="0" unique_id=1929036463]
+texture = ExtResource("9_1lx44")
+
+[node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1674611870]
+offset_left = -248.5
+offset_top = -332.0
+offset_right = 249.5
+offset_bottom = 188.0
+texture = ExtResource("10_nrkdu")
+
+[node name="Head" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=445030624]
 offset_left = -170.5
 offset_top = -125.756
 offset_right = 167.5
@@ -61,7 +76,14 @@ offset_bottom = 113.65203
 grow_vertical = 2
 texture = ExtResource("4_tbmsl")
 
-[node name="Eyes" parent="Wireframe/Head" index="2" unique_id=1012287820]
+[node name="Ears" parent="Wireframe/Head" index="2" unique_id=2100132916]
+offset_left = -456.5
+offset_top = -94.0
+offset_right = 120.5
+offset_bottom = 51.0
+texture = ExtResource("7_xja8g")
+
+[node name="Eyes" parent="Wireframe/Head" index="3" unique_id=1012287820]
 z_index = 5
 offset_left = -143.5
 offset_top = -66.740005
@@ -69,36 +91,19 @@ offset_right = 149.5
 offset_bottom = 83.25999
 texture = ExtResource("5_po0n5")
 
-[node name="Mouth" parent="Wireframe/Head" index="3" unique_id=563573763]
+[node name="Mouth" parent="Wireframe/Head" index="4" unique_id=563573763]
 offset_left = -125.5
 offset_top = -40.72
 offset_right = 233.5
 offset_bottom = 72.28
 texture = ExtResource("6_jrdww")
 
-[node name="Ears" parent="Wireframe/Head" index="4" unique_id=2100132916]
-offset_left = -456.5
-offset_top = -94.0
-offset_right = 120.5
-offset_bottom = 51.0
-texture = ExtResource("7_xja8g")
-
-[node name="Nose" parent="Wireframe/Head" index="6" unique_id=1772832644]
+[node name="Nose" parent="Wireframe/Head" index="5" unique_id=1772832644]
 offset_left = -109.5
 offset_top = -159.0
 offset_right = 109.5
 offset_bottom = 49.0
 texture = ExtResource("8_nugae")
-
-[node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1929036463]
-texture = ExtResource("9_1lx44")
-
-[node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=1674611870]
-offset_left = -248.5
-offset_top = -332.0
-offset_right = 249.5
-offset_bottom = 188.0
-texture = ExtResource("10_nrkdu")
 
 [node name="LeftArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="3" unique_id=1720877252]
 texture = ExtResource("11_lllbe")
@@ -114,7 +119,7 @@ texture = ExtResource("12_3da0l")
 texture = ExtResource("11_lllbe")
 
 [node name="RightShoulder" parent="Wireframe/RightArm" index="2" unique_id=389838525]
-material = SubResource("ShaderMaterial_po0n5")
+material = SubResource("ShaderMaterial_1c116")
 offset_left = -104.5
 offset_top = -189.5
 offset_right = 161.71375

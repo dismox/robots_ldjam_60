@@ -2,12 +2,15 @@ extends Node
 
 #var body_part_database: BodyPartsDatabase = BodyPartsDatabase.new()
 
-var villian_timer: int = 2
+var villian: Villian
+var villian_is_coming: bool = false
+var villian_coming_chance: float = 0.0
 
 var game_state: GameState
 var money: int = 0
 var game_scene: GameScene
 var current_robot: Robot
+var game_over: bool = false
 
 var current_text
 var text_queue: Array[String]

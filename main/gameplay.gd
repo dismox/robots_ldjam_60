@@ -23,6 +23,11 @@ var current_item: Item
 @onready var part_replacement_label: Label = %PartReplacementLabel
 @onready var text_displayer: Panel = $UILayer/TextDisplayer
 
+@onready var music_player: AudioStreamPlayer = %MusicPlayer
+@onready var music_player_2: AudioStreamPlayer = %MusicPlayer2
+
+@onready var panic_button: TextureButton = %PanicButton
+
 
 var current_body_part_id: int
 var current_body_part_type: BodyPartType.Type
@@ -30,10 +35,17 @@ var is_paint_drawer_active: bool = false
 
 func _ready() -> void:
 	Global.game_scene = self
+	create_villian()
 	money.text = "$" + str(Global.money)
 	Global.money_changed.connect(_on_money_changed)
 	fill_paint_container()
 	
+func create_villian():
+	var scene = load("res://main/robot/villian.tscn")
+	var villian = scene.instantiate()
+	Global.villian = villian
+	Global.villian.hide()
+	Global.villian.global_position = robot_start_position.global_position
 
 func fill_paint_container():
 	for i in range(Global.ROBOT_PALETTE.color_palette.size()):
@@ -45,7 +57,6 @@ func _on_money_changed(value: int):
 	if value != Global.money:
 		Global.shake_control(money)
 	money.text = "$" + str(Global.money)
-
 
 
 func _on_x_ray_button_toggled(toggled_on: bool) -> void:
@@ -87,19 +98,51 @@ func _on_x_ray_button_toggled(toggled_on: bool) -> void:
 func _on_next_button_pressed() -> void:
 	AudioManager.play_sound("res://main/assets/sounds/lever_up.wav")
 	Global.shake_control(%NextButton)
+	if Global.text_queue.size() != 0:
+		return
+	
 	if %XRayButton.button_pressed:
 		_on_x_ray_button_toggled(false)
 		%XRayButton.button_pressed = false
 	
 	if Global.current_robot:
 		check_result()
-		Global.current_robot.queue_free()
-
-	var new_robot_scene: PackedScene = load("res://main/robot/robot.tscn")
-	var robot: Robot = new_robot_scene.instantiate()
-
+		if Global.current_robot is Villian:
+			if Global.villian.times_arrived >= 4 and !Global.game_over:
+				game_over()
+				return
+			Global.current_robot.hide()
+			Global.current_robot = null
+			Global.villian.times_arrived += 1
+		else:
+			Global.current_robot.queue_free()
+		
+	
+	var robot: Robot
+	
+	if Global.villian.times_arrived == 4 and !Global.game_over:
+		var new_robot_scene: PackedScene = load("res://main/robot/agent.tscn")
+		robot = new_robot_scene.instantiate()
+		Global.villian.times_arrived += 1
+	elif Global.villian_is_coming and !Global.game_over:
+		robot = Global.villian
+		Global.villian.show()
+		Global.villian_is_coming = false
+		robot.global_position = robot_start_position.global_position
+	else:
+		var new_robot_scene: PackedScene = load("res://main/robot/robot.tscn")
+		robot = new_robot_scene.instantiate()
+		if Global.villian.times_arrived > 4:
+			if randf() <= Global.villian_coming_chance:
+				Global.villian_is_coming = true
+			else:
+				Global.villian_coming_chance += 0.15
+	
+	Global.current_robot = robot
 	robot.generate()
+		
 	#robot.filter_requirements_by_available_items()
+	
 
 	robot_start_position.add_child(robot)
 	Global.move_to(robot, robot_end_position.global_position)
@@ -107,6 +150,8 @@ func _on_next_button_pressed() -> void:
 	for part in robot.custom_parts:
 		Global.shake_control(part, 30.0)
 
+	if robot is Agent:
+		robot.say()
 	Global.text_queue.append(robot.comes_phrases.pick_random())
 	text_displayer.type_text()
 	update_requirements_label(robot)
@@ -167,7 +212,10 @@ func check_result() -> void:
 	Global.set_money(Global.money + Global.current_robot.calculate_revenue())
 
 func _on_panic_button_pressed() -> void:
-	pass # Replace with function body.
+	if Global.current_robot is Villian:
+		win()
+	else:
+		game_over()
 
 func show_paint_drawer() -> void:
 	is_paint_drawer_active = true
@@ -232,3 +280,31 @@ func _on_sfx_button_toggled(toggled_on: bool) -> void:
 		else:
 			AudioManager.play_sound("res://main/assets/sounds/btn_released.wav")
 			AudioServer.set_bus_volume_db(bus_index, -6.0)
+
+func game_over():
+	Global.game_over = true
+	%PanicButton.hide()
+	Global.game_scene.music_player.stop()
+	Global.game_scene.music_player_2.play()
+	%GameOver.show()
+	%Lose.show()
+	Global.text_queue = ["Win"]
+	%TextDisplayerGameOver.type_text()
+	
+func win():
+	Global.game_over = true
+	%PanicButton.hide()
+	Global.game_scene.music_player.stop()
+	Global.game_scene.music_player_2.play()
+	%GameOver.show()
+	%Win.show()
+	Global.text_queue = ["Lose"]
+	%TextDisplayerGameOver.type_text()
+
+func _on_credits_button_pressed() -> void:
+	%Credits.show()
+
+func _on_freeplay_button_pressed() -> void:
+	Global.game_scene.music_player.play()
+	Global.game_scene.music_player_2.stop()
+	%GameOver.hide()

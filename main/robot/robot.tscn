@@ -48,6 +48,26 @@ shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j644l"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d838f"]
+shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wieel"]
+shader = SubResource("Shader_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chm4n"]
+shader = ExtResource("4_chm4n")
+shader_parameter/rust_texture = ExtResource("5_8dvs4")
+shader_parameter/rust_strength = 0.0
+
 [sub_resource type="Shader" id="Shader_j644l"]
 code = "shader_type canvas_item;
 
@@ -76,12 +96,12 @@ shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_12f26"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asxop"]
 shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_asxop"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12f26"]
 shader = SubResource("Shader_j644l")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
@@ -92,26 +112,6 @@ shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_81ma6"]
-shader = ExtResource("4_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j644l"]
-shader = SubResource("Shader_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = -1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d838f"]
-shader = ExtResource("4_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wieel"]
-shader = SubResource("Shader_chm4n")
-shader_parameter/rust_texture = ExtResource("5_8dvs4")
-shader_parameter/rust_strength = -1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_chm4n"]
 shader = ExtResource("4_chm4n")
 shader_parameter/rust_texture = ExtResource("5_8dvs4")
 shader_parameter/rust_strength = 0.0
@@ -164,261 +164,6 @@ can_rust = false
 has_color = false
 is_shaking = true
 metadata/_edit_use_anchors_ = true
-
-[node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
-unique_name_in_owner = true
-z_index = 2
-material = SubResource("ShaderMaterial_cg33d")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.013
-anchor_right = 0.5
-anchor_bottom = 0.013
-offset_left = -169.0
-offset_top = -152.036
-offset_right = 169.0
-offset_bottom = 151.964
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-mouse_force_pass_scroll_events = false
-texture = ExtResource("4_i0eal")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-is_shaking = true
-
-[node name="SparkParticles" parent="Wireframe/Head" unique_id=848403985 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(166, 83)
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-
-[node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
-unique_name_in_owner = true
-z_index = -1
-material = SubResource("ShaderMaterial_vsw52")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.289
-anchor_right = 0.5
-anchor_bottom = 0.289
-offset_left = -45.0
-offset_top = -222.856
-offset_right = 45.0
-offset_bottom = 0.14399719
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("5_chm4n")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 1
-is_shaking = true
-
-[node name="BoltParticles" parent="Wireframe/Head/HeadTop" unique_id=493265499 instance=ExtResource("16_8dvs4")]
-show_behind_parent = true
-position = Vector2(47, 65)
-scale = Vector2(1.675, 0.12)
-emitting = false
-amount = 9
-
-[node name="SparkParticles" parent="Wireframe/Head/HeadTop" unique_id=1178076783 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(46, 59)
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-
-[node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
-unique_name_in_owner = true
-z_index = 3
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.42100003
-anchor_right = 0.5
-anchor_bottom = 0.42100003
-offset_left = -139.0
-offset_top = -74.98401
-offset_right = 139.0
-offset_bottom = 75.01599
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("7_jdled")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 3
-can_wreck = false
-can_rust = false
-has_color = false
-
-[node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
-unique_name_in_owner = true
-z_index = 2
-material = SubResource("ShaderMaterial_12f26")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.92100006
-anchor_right = 0.5
-anchor_bottom = 0.92100006
-offset_left = -179.5
-offset_top = -56.48401
-offset_right = 179.5
-offset_bottom = 56.51599
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("8_cg33d")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 4
-is_shaking = true
-
-[node name="BoltParticles" parent="Wireframe/Head/Mouth" unique_id=1088554949 instance=ExtResource("16_8dvs4")]
-show_behind_parent = true
-position = Vector2(176, 64)
-scale = Vector2(2.62, 0.31)
-emitting = false
-amount = 9
-
-[node name="SparkParticles" parent="Wireframe/Head/Mouth" unique_id=195831529 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(179, 56)
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-
-[node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
-unique_name_in_owner = true
-z_index = -1
-material = SubResource("ShaderMaterial_asxop")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -288.5
-offset_top = -72.5
-offset_right = 288.5
-offset_bottom = 72.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("9_vsw52")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 5
-is_shaking = true
-
-[node name="BoltParticles" parent="Wireframe/Head/Ears" unique_id=90581697 instance=ExtResource("16_8dvs4")]
-show_behind_parent = true
-position = Vector2(280, 48)
-scale = Vector2(7.27, 0.33)
-emitting = false
-amount = 9
-
-[node name="SparkParticles" parent="Wireframe/Head/Ears" unique_id=753720069 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(40, 56)
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-
-[node name="SparkParticles2" parent="Wireframe/Head/Ears" unique_id=1469976445 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(537, 71)
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-
-[node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
-unique_name_in_owner = true
-z_index = 4
-material = SubResource("ShaderMaterial_tmtkg")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = -18.5
-offset_right = 21.0
-offset_bottom = 18.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("6_8dvs4")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 2
-can_wreck = false
-is_shaking = true
-
-[node name="BoltParticles" parent="Wireframe/Head/Nose" unique_id=1420413534 instance=ExtResource("16_8dvs4")]
-show_behind_parent = true
-position = Vector2(16, 16)
-emitting = false
-amount = 9
-
-[node name="SparkParticles" parent="Wireframe/Head/Nose" unique_id=338911709 instance=ExtResource("7_cg33d")]
-z_index = 54
-position = Vector2(18.999996, 18)
-emitting = false
-amount = 30
-one_shot = true
-explosiveness = 1.0
-
-[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
-unique_name_in_owner = true
-visible = false
-z_index = 5
-material = SubResource("ShaderMaterial_81ma6")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -53.5
-offset_top = -85.5
-offset_right = 53.5
-offset_bottom = 21.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-offset_transform_enabled = true
-mouse_filter = 0
-texture = ExtResource("13_vsw52")
-stretch_mode = 3
-script = ExtResource("2_ewvo3")
-type = 10
-can_wreck = false
-can_rust = false
-has_color = false
 
 [node name="BodyBottom" type="TextureRect" parent="Wireframe" unique_id=1929036463]
 unique_name_in_owner = true
@@ -535,6 +280,261 @@ texture = ExtResource("17_12f26")
 stretch_mode = 3
 script = ExtResource("2_ewvo3")
 type = 11
+can_wreck = false
+can_rust = false
+has_color = false
+
+[node name="Head" type="TextureRect" parent="Wireframe" unique_id=445030624]
+unique_name_in_owner = true
+z_index = 2
+material = SubResource("ShaderMaterial_cg33d")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.013
+anchor_right = 0.5
+anchor_bottom = 0.013
+offset_left = -169.0
+offset_top = -180.036
+offset_right = 169.0
+offset_bottom = 175.964
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+texture = ExtResource("4_i0eal")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+is_shaking = true
+
+[node name="SparkParticles" parent="Wireframe/Head" unique_id=848403985 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(166, 83)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="HeadTop" type="TextureRect" parent="Wireframe/Head" unique_id=1111886860]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_vsw52")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.289
+anchor_right = 0.5
+anchor_bottom = 0.289
+offset_left = -45.0
+offset_top = -222.856
+offset_right = 45.0
+offset_bottom = 0.14399719
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("5_chm4n")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 1
+is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/Head/HeadTop" unique_id=493265499 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(47, 65)
+scale = Vector2(1.675, 0.12)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Wireframe/Head/HeadTop" unique_id=1178076783 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(46, 59)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Ears" type="TextureRect" parent="Wireframe/Head" unique_id=2100132916]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_asxop")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.5
+offset_top = -72.5
+offset_right = 288.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("9_vsw52")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 5
+is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/Head/Ears" unique_id=90581697 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(280, 48)
+scale = Vector2(7.27, 0.33)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Wireframe/Head/Ears" unique_id=753720069 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(40, 56)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="SparkParticles2" parent="Wireframe/Head/Ears" unique_id=1469976445 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(537, 71)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Eyes" type="TextureRect" parent="Wireframe/Head" unique_id=1012287820]
+unique_name_in_owner = true
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.42100003
+anchor_right = 0.5
+anchor_bottom = 0.42100003
+offset_left = -139.0
+offset_top = -74.98401
+offset_right = 139.0
+offset_bottom = 75.01599
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("7_jdled")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 3
+can_wreck = false
+can_rust = false
+has_color = false
+
+[node name="Mouth" type="TextureRect" parent="Wireframe/Head" unique_id=563573763]
+unique_name_in_owner = true
+z_index = 10
+material = SubResource("ShaderMaterial_12f26")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.92100006
+anchor_right = 0.5
+anchor_bottom = 0.92100006
+offset_left = -179.5
+offset_top = -56.48401
+offset_right = 179.5
+offset_bottom = 56.51599
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("8_cg33d")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 4
+is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/Head/Mouth" unique_id=1088554949 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(176, 64)
+scale = Vector2(2.62, 0.31)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Wireframe/Head/Mouth" unique_id=195831529 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(179, 56)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Nose" type="TextureRect" parent="Wireframe/Head" unique_id=1772832644]
+unique_name_in_owner = true
+z_index = 4
+material = SubResource("ShaderMaterial_tmtkg")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -18.5
+offset_right = 21.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("6_8dvs4")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 2
+can_wreck = false
+is_shaking = true
+
+[node name="BoltParticles" parent="Wireframe/Head/Nose" unique_id=1420413534 instance=ExtResource("16_8dvs4")]
+show_behind_parent = true
+position = Vector2(16, 16)
+emitting = false
+amount = 9
+
+[node name="SparkParticles" parent="Wireframe/Head/Nose" unique_id=338911709 instance=ExtResource("7_cg33d")]
+z_index = 54
+position = Vector2(18.999996, 18)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+
+[node name="Brain" type="TextureRect" parent="Wireframe/Head" unique_id=1119586839]
+unique_name_in_owner = true
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_81ma6")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -85.5
+offset_right = 53.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+mouse_filter = 0
+texture = ExtResource("13_vsw52")
+stretch_mode = 3
+script = ExtResource("2_ewvo3")
+type = 10
 can_wreck = false
 can_rust = false
 has_color = false

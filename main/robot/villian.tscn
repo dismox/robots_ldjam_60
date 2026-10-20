@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bm48k7jtevvix" path="res://main/assets/robot_parts/head/head_8.png" id="3_qbw2t"]
 [ext_resource type="Texture2D" uid="uid://bof0jg7qrk1c" path="res://main/assets/robot_parts/eyes/eyes_8.png" id="4_ocjsf"]
 [ext_resource type="Texture2D" uid="uid://hay2u32udn6m" path="res://main/assets/robot_parts/mouth/mouth_8.png" id="5_31aep"]
+[ext_resource type="AudioStream" uid="uid://b0rya4dve41n4" path="res://main/assets/sounds/voice_3.wav" id="5_j04a6"]
 [ext_resource type="Texture2D" uid="uid://c12lc8em7r3eg" path="res://main/assets/robot_parts/ears/ears_8.png" id="6_7xbrf"]
 [ext_resource type="Texture2D" uid="uid://bysyiodngqqxd" path="res://main/assets/robot_parts/nose/nose_8.png" id="7_j04a6"]
 [ext_resource type="Texture2D" uid="uid://c5ph1bkmbofii" path="res://main/assets/robot_parts/body_bottom/body_bottom_8.png" id="8_0v03g"]
@@ -31,19 +32,38 @@ void fragment() {
 	) * COLOR;
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5thq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywd0x"]
 resource_local_to_scene = true
 shader = SubResource("Shader_chm4n")
 shader_parameter/rust_texture = ExtResource("12_51ka1")
 shader_parameter/rust_strength = -1.0
 
-[node name="Robot" unique_id=560495161 node_paths=PackedStringArray("custom_parts", "inside_parts") instance=ExtResource("1_k5thq")]
+[node name="Robot" unique_id=560495161 node_paths=PackedStringArray("original_parts", "custom_parts", "inside_parts") instance=ExtResource("1_k5thq")]
 script = ExtResource("2_ywd0x")
+original_parts = [NodePath("Wireframe/Head"), NodePath("Wireframe/Head/HeadTop"), NodePath("Wireframe/Head/Eyes"), NodePath("Wireframe/Head/Mouth"), NodePath("Wireframe/Head/Ears"), NodePath("Wireframe/Head/Nose"), NodePath("Wireframe/BodyBottom"), NodePath("Wireframe/BodyTop"), NodePath("Wireframe/LeftArm"), NodePath("Wireframe/LeftArm/LeftShoulder"), NodePath("Wireframe/RightArm"), NodePath("Wireframe/RightArm/RightShoulder")]
 custom_parts = []
-inside_parts = []
-color_palette = []
+inside_parts = [NodePath("Wireframe/Head/Brain"), NodePath("Wireframe/BodyTop/Heart")]
+voices = Array[AudioStream]([ExtResource("5_j04a6")])
 
-[node name="Head" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="0" unique_id=445030624]
+[node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="0" unique_id=1929036463]
+anchor_top = 0.873
+anchor_bottom = 0.873
+offset_top = -136.456
+offset_bottom = 136.544
+texture = ExtResource("8_0v03g")
+has_color = false
+
+[node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1674611870]
+texture = ExtResource("9_0mb2a")
+has_color = false
+
+[node name="Heart" parent="Wireframe/BodyTop" index="2" unique_id=853200514]
+offset_left = 78.55554
+offset_bottom = -38.0
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Head" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=445030624]
 offset_left = -168.5
 offset_top = -190.036
 offset_right = 169.5
@@ -52,21 +72,15 @@ texture = ExtResource("3_qbw2t")
 has_color = false
 
 [node name="HeadTop" parent="Wireframe/Head" index="1" unique_id=1111886860]
+anchor_top = -0.027
+anchor_bottom = -0.027
+offset_top = -111.576996
+offset_bottom = 111.423004
+grow_vertical = 2
 texture = null
 has_color = false
 
-[node name="Eyes" parent="Wireframe/Head" index="2" unique_id=1012287820]
-offset_top = -130.98401
-offset_bottom = 19.015991
-texture = ExtResource("4_ocjsf")
-
-[node name="Mouth" parent="Wireframe/Head" index="3" unique_id=563573763]
-offset_top = -48.48401
-offset_bottom = 160.51599
-texture = ExtResource("5_31aep")
-has_color = false
-
-[node name="Ears" parent="Wireframe/Head" index="4" unique_id=2100132916]
+[node name="Ears" parent="Wireframe/Head" index="2" unique_id=2100132916]
 offset_left = -288.0
 offset_top = -114.5
 offset_right = 289.0
@@ -74,55 +88,84 @@ offset_bottom = 159.5
 texture = ExtResource("6_7xbrf")
 has_color = false
 
+[node name="Eyes" parent="Wireframe/Head" index="3" unique_id=1012287820]
+anchor_top = 0.337
+anchor_bottom = 0.337
+offset_top = -74.11301
+offset_bottom = 73.88699
+texture = ExtResource("4_ocjsf")
+
+[node name="Mouth" parent="Wireframe/Head" index="4" unique_id=563573763]
+anchor_top = 1.0500001
+anchor_bottom = 1.0500001
+offset_top = -104.45001
+offset_bottom = 104.54999
+texture = ExtResource("5_31aep")
+has_color = false
+
 [node name="Nose" parent="Wireframe/Head" index="5" unique_id=1772832644]
-offset_left = -178.0
-offset_top = -66.5
-offset_right = 174.0
-offset_bottom = 110.5
+anchors_preset = -1
+anchor_top = 0.638
+anchor_bottom = 0.638
+offset_left = -176.0
+offset_top = -88.662
+offset_right = 176.0
+offset_bottom = 88.338
 texture = ExtResource("7_j04a6")
 can_wreck = true
 has_color = false
 
-[node name="BodyBottom" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="1" unique_id=1929036463]
-offset_left = -225.5
-offset_top = -104.304016
-offset_right = 226.5
-offset_bottom = 168.69598
-texture = ExtResource("8_0v03g")
-has_color = false
-
-[node name="BodyTop" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="2" unique_id=1674611870]
-texture = ExtResource("9_0mb2a")
-has_color = false
-
-[node name="Heart" parent="Wireframe/BodyTop" index="2" unique_id=853200514]
-visible = true
-offset_left = 78.55554
-offset_bottom = -38.0
+[node name="Brain" parent="Wireframe/Head" index="6" unique_id=1119586839]
+offset_left = -66.71428
+offset_top = -154.5
+offset_right = 69.095245
+offset_bottom = -30.5
 expand_mode = 1
 stretch_mode = 0
 
 [node name="LeftArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="3" unique_id=1720877252]
+anchor_left = -0.046000004
+anchor_top = 0.65500003
+anchor_right = -0.046000004
+anchor_bottom = 0.65500003
+offset_left = -92.33
+offset_top = -278.16003
+offset_right = 92.67
+offset_bottom = 278.83997
 texture = ExtResource("10_8ksim")
 has_color = false
 
 [node name="LeftShoulder" parent="Wireframe/LeftArm" index="2" unique_id=1301256859]
-offset_left = -143.0
-offset_top = -196.127
-offset_right = 144.0
-offset_bottom = 96.873
+anchor_top = -0.060000002
+anchor_bottom = -0.060000002
+offset_left = -143.5
+offset_top = -146.58
+offset_right = 143.5
+offset_bottom = 146.42
 texture = ExtResource("11_xbc2n")
 has_color = false
 
 [node name="RightArm" parent="Wireframe" parent_id_path=PackedInt32Array(1305989227) index="4" unique_id=1702133536]
+anchor_left = 1.0580001
+anchor_top = 0.65500003
+anchor_right = 1.0580001
+anchor_bottom = 0.65500003
+offset_left = -92.410034
+offset_top = -278.16003
+offset_right = 92.589966
+offset_bottom = 278.83997
 texture = ExtResource("10_8ksim")
 has_color = false
 
 [node name="RightShoulder" parent="Wireframe/RightArm" index="2" unique_id=389838525]
-material = SubResource("ShaderMaterial_k5thq")
-offset_left = -138.0
-offset_top = -209.736
-offset_right = 149.0
-offset_bottom = 83.264
+material = SubResource("ShaderMaterial_ywd0x")
+anchor_left = 0.54300004
+anchor_top = -0.046000004
+anchor_right = 0.54300004
+anchor_bottom = -0.046000004
+offset_left = -143.45502
+offset_top = -146.37799
+offset_right = 143.54498
+offset_bottom = 146.62201
 texture = ExtResource("11_xbc2n")
 has_color = false

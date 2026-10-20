@@ -44,6 +44,7 @@ func _on_mouse_entered() -> void:
 
 func buy_item() -> void:
 	if price <= Global.money:
+		Global.villian_is_coming = true
 		AudioManager.play_sound("res://main/assets/sounds/money.wav", Vector2(-10.0, 10.0))
 		Global.set_money(Global.money - price)
 		avaible = true

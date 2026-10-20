@@ -69,6 +69,7 @@ func _ready() -> void:
 	if $BoltParticles:
 		particles = $BoltParticles
 		particles.modulate = current_color
+		set_wreckness(wreckness, false)
 
 func _process(delta: float) -> void:
 	if is_mouse_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -141,10 +142,11 @@ func paint(color: Color, delta: float) -> void:
 	change_color(new_color)
 	
 
-func change_body_part(_type: BodyPartType.Type, texture_id: int) -> void:
+func change_body_part(_type: BodyPartType.Type, texture_id: int, use_sound: bool = true) -> void:
 	texture = Global.BODY_PART_DATABASE.get_body_part_texture(_type, texture_id)
 	current_body_part = texture_id
-	AudioManager.play_sound("res://main/assets/sounds/part_install.wav", Vector2.ZERO, -5.0)
+	if use_sound:
+		AudioManager.play_sound("res://main/assets/sounds/part_install.wav", Vector2.ZERO, -5.0)
 	if texture_id == prefered_body_part:
 		complete_requirement()
 		Global.game_scene.check_replacement(Global.current_robot)
